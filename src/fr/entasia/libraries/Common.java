@@ -19,7 +19,7 @@ public abstract class Common {
 	public static Logger logger;
 	public static Thread thr = Thread.currentThread();
 
-	public static boolean load() throws Exception {
+	public static boolean load() throws Throwable {
 		logger.info("Librairies globales en cours de chargement...");
 
 		loadAPIs();
@@ -53,7 +53,7 @@ public abstract class Common {
 		return true;
 	}
 
-	public static void loadAPIs() throws Exception {
+	public static void loadAPIs() throws Throwable {
 		ArrayList<String> classes = new ArrayList<>();
 		classes.addAll(Arrays.asList("sql.SQLConnection", "sql.SQLSecurity"));
 		classes.addAll(Arrays.asList("ChatComponent"));
@@ -73,10 +73,6 @@ public abstract class Common {
 		for(String c : classes){
 			classesData.add(Class.forName("fr.entasia.apis."+c));
 		}
-	}
-
-	public static void main(String[] af) throws Exception {
-
 	}
 
 }
