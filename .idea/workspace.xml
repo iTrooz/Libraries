@@ -6,18 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be16de7c-d62b-4ba3-bca0-8b6165c3b946" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/fr/entasia/apis/MoneyUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fr/entasia/apis/ChatComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fr/entasia/apis/ChatComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fr/entasia/apis/ServerUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fr/entasia/apis/ServerUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fr/entasia/apis/other/InstantFirework.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fr/entasia/apis/other/InstantFirework.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fr/entasia/apis/sql/SQLConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fr/entasia/apis/sql/SQLConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fr/entasia/libraries/Bungee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fr/entasia/libraries/Bungee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fr/entasia/libraries/Common.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fr/entasia/libraries/Common.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fr/entasia/libraries/Paper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fr/entasia/libraries/Paper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fr/entasia/libraries/bungee/listeners/BaseListeners.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fr/entasia/libraries/bungee/listeners/BaseListeners.java" afterDir="false" />
-    </list>
+    <list default="true" id="be16de7c-d62b-4ba3-bca0-8b6165c3b946" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,7 +42,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1573669572243" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -166,13 +155,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1567603645705</updated>
-    </task>
-    <task id="LOCAL-00024" summary="test">
-      <created>1573395906781</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1573395906781</updated>
     </task>
     <task id="LOCAL-00025" summary="test">
       <created>1573400290220</created>
@@ -510,7 +492,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587722105765</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="update">
+      <created>1590491931307</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1590491931307</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -541,7 +530,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Auto_Import" timestamp="1586178228555">
@@ -566,12 +556,12 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="378" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.26.1680.1010@0.0.1920.1040" timestamp="1589624595315" />
-    <state x="2435" y="137" width="697" height="738" key="CommitChangelistDialog2" timestamp="1587722104995">
-      <screen x="1920" y="26" width="1680" height="1010" />
+    <state x="589" y="114" width="697" height="738" key="CommitChangelistDialog2" timestamp="1590491930802">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="588" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1586510183520" />
     <state x="2435" y="111" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1680.1010@1920.0.1680.1010" timestamp="1587291328518" />
-    <state x="589" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.26.1680.1010@0.0.1920.1040" timestamp="1587636278328" />
+    <state x="589" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.26.1680.1010@0.0.1920.1040" timestamp="1590491930802" />
     <state x="2435" y="137" key="CommitChangelistDialog2/0.0.1920.1040/1920.26.1680.1010@1920.26.1680.1010" timestamp="1587722104995" />
     <state x="418" y="25" width="697" height="738" key="CommitChangelistDialog2/0.25.1366.743@0.25.1366.743" timestamp="1582569263893" />
     <state x="741" y="274" width="440" height="488" key="FileChooserDialogImpl" timestamp="1590328130205">
@@ -610,23 +600,23 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="672" y="236" key="MultipleFileMergeDialog/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1584197505766" />
-    <state x="440" y="94" width="1026" height="738" key="SettingsEditor" timestamp="1589278338510">
+    <state x="440" y="94" width="1026" height="738" key="SettingsEditor" timestamp="1590494031932">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="440" y="94" key="SettingsEditor/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1586685950120" />
     <state x="2305" y="0" key="SettingsEditor/0.0.1920.1040/1920.0.1680.1010@1920.0.1680.1010" timestamp="1582645197018" />
-    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040/1920.26.1680.1010@0.0.1920.1040" timestamp="1589278338510" />
+    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040/1920.26.1680.1010@0.0.1920.1040" timestamp="1590494031932" />
     <state x="313" y="25" width="1026" height="738" key="SettingsEditor/0.25.1366.743@0.25.1366.743" timestamp="1582636804287" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1589365332686">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1920.1040/1920.26.1680.1010@0.0.1920.1040" timestamp="1589365332686" />
-    <state x="2403" y="271" width="802" height="523" key="Vcs.Push.Dialog.v2" timestamp="1587722106889">
-      <screen x="1920" y="26" width="1680" height="1010" />
+    <state x="552" y="252" width="802" height="523" key="Vcs.Push.Dialog.v2" timestamp="1590491975203">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1586510185571" />
     <state x="2403" y="245" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1680.1010@1920.0.1680.1010" timestamp="1587291330092" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.26.1680.1010@0.0.1920.1040" timestamp="1587636280014" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.26.1680.1010@0.0.1920.1040" timestamp="1590491975203" />
     <state x="2403" y="271" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.26.1680.1010@1920.26.1680.1010" timestamp="1587722106889" />
     <state x="393" y="205" width="802" height="523" key="Vcs.Push.Dialog.v2/0.25.1366.743@0.25.1366.743" timestamp="1582569594806" />
     <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587652220825">
