@@ -57,7 +57,7 @@ public abstract class Common {
 		ArrayList<String> classes = new ArrayList<>();
 		classes.addAll(Arrays.asList("sql.SQLConnection", "sql.SQLSecurity"));
 		classes.addAll(Arrays.asList("ChatComponent"));
-		classes.addAll(Arrays.asList("TextUtilsn", "ServerUtils"));
+		classes.addAll(Arrays.asList("TextUtils", "ServerUtils"));
 		if (ServerUtils.bukkit) {
 			classes.addAll(Arrays.asList("menus.MenuAPI", "menus.MenuClickEvent", "menus.MenuCloseEvent", "menus.MenuCreator", "menus.MenuFlag"));
 			classes.addAll(Arrays.asList("nbt.EntityNBT", "nbt.ItemNBT", "nbt.NBTComponent", "nbt.NBTer", "nbt.TileNBT"));
