@@ -1,0 +1,4 @@
+name: Libraries
+version: 1.0
+main: fr.entasia.libraries.Paper
+softdepend: [ProtocolLib]

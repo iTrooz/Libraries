@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Libraries">
+    <output-path>D:/donnees/jars/plugins</output-path>
+    <root id="archive" name="Libraries.jar">
+      <element id="module-output" name="Libraries" />
+      <element id="dir-copy" path="$PROJECT_DIR$/ressources" />
+    </root>
+  </artifact>
+</component>

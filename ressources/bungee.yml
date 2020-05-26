@@ -1,0 +1,4 @@
+name: Libraries
+version: '1.0'
+main: fr.entasia.libraries.Bungee
+author: iTrooz_

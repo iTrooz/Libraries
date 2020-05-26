@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="WaterFall1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../libs/WaterFall.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

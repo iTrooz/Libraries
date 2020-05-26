@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="WaterFall">
+    <CLASSES>
+      <root url="jar://D:/donnees/jars/servers/WaterFall.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
