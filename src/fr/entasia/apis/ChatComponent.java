@@ -67,13 +67,13 @@ public class ChatComponent {
 		return components.toArray(new BaseComponent[0]);
 	}
 
-//	public static BaseComponent[] create(BaseComponent[]... compos){
-//		List<BaseComponent> components = new ArrayList<>();
-//		for(BaseComponent[] bc : compos) {
-//			components.addAll(Arrays.asList(bc));
-//		}
-//		return components.toArray(new BaseComponent[0]);
-//	}
+	public static BaseComponent[] create(BaseComponent[]... compos){
+		List<BaseComponent> components = new ArrayList<>();
+		for(BaseComponent[] bc : compos) {
+			components.addAll(Arrays.asList(bc));
+		}
+		return components.toArray(new BaseComponent[0]);
+	}
 
 	public static BaseComponent[] create(String... compos){
 		StringBuilder a = new StringBuilder();

@@ -6,7 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be16de7c-d62b-4ba3-bca0-8b6165c3b946" name="Default Changelist" comment="" />
+    <list default="true" id="be16de7c-d62b-4ba3-bca0-8b6165c3b946" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/fr/entasia/apis/ChatComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fr/entasia/apis/ChatComponent.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,7 +44,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1573669572243" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../intellij-2/Test" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
