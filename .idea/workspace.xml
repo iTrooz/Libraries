@@ -6,7 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be16de7c-d62b-4ba3-bca0-8b6165c3b946" name="Default Changelist" comment="" />
+    <list default="true" id="be16de7c-d62b-4ba3-bca0-8b6165c3b946" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,7 +43,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1573669572243" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../intellij-2/Test" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -155,20 +157,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1567603645705</updated>
-    </task>
-    <task id="LOCAL-00025" summary="test">
-      <created>1573400290220</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1573400290220</updated>
-    </task>
-    <task id="LOCAL-00026" summary="test">
-      <created>1573493022226</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1573493022226</updated>
     </task>
     <task id="LOCAL-00027" summary="test">
       <created>1573496443109</created>
@@ -499,7 +487,21 @@
       <option name="project" value="LOCAL" />
       <updated>1590491931307</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="update">
+      <created>1590494035248</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1590494035248</updated>
+    </task>
+    <task id="LOCAL-00075" summary="update">
+      <created>1590494097230</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1590494097231</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -556,20 +558,20 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="378" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.26.1680.1010@0.0.1920.1040" timestamp="1589624595315" />
-    <state x="589" y="114" width="697" height="738" key="CommitChangelistDialog2" timestamp="1590491930802">
+    <state x="589" y="114" width="697" height="738" key="CommitChangelistDialog2" timestamp="1590494096662">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="588" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1586510183520" />
     <state x="2435" y="111" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1680.1010@1920.0.1680.1010" timestamp="1587291328518" />
-    <state x="589" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.26.1680.1010@0.0.1920.1040" timestamp="1590491930802" />
+    <state x="589" y="114" key="CommitChangelistDialog2/0.0.1920.1040/1920.26.1680.1010@0.0.1920.1040" timestamp="1590494096662" />
     <state x="2435" y="137" key="CommitChangelistDialog2/0.0.1920.1040/1920.26.1680.1010@1920.26.1680.1010" timestamp="1587722104995" />
     <state x="418" y="25" width="697" height="738" key="CommitChangelistDialog2/0.25.1366.743@0.25.1366.743" timestamp="1582569263893" />
-    <state x="741" y="274" width="440" height="488" key="FileChooserDialogImpl" timestamp="1590328130205">
+    <state x="741" y="274" width="440" height="488" key="FileChooserDialogImpl" timestamp="1590494825803">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1076" y="261" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1586769193728" />
     <state x="2568" y="266" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1680.1010@1920.0.1680.1010" timestamp="1586968375343" />
-    <state x="741" y="274" key="FileChooserDialogImpl/0.0.1920.1040/1920.26.1680.1010@0.0.1920.1040" timestamp="1590328130205" />
+    <state x="741" y="274" key="FileChooserDialogImpl/0.0.1920.1040/1920.26.1680.1010@0.0.1920.1040" timestamp="1590494825803" />
     <state x="2568" y="292" width="440" height="488" key="FileChooserDialogImpl/0.0.1920.1040/1920.26.1680.1010@1920.26.1680.1010" timestamp="1590315773696" />
     <state x="526" y="199" width="612" height="507" key="FileChooserDialogImpl/0.25.1366.743@0.25.1366.743" timestamp="1582637944842" />
     <state width="1877" height="343" key="GridCell.Tab.0.bottom" timestamp="1589445945758">
@@ -611,23 +613,23 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1920.1040/1920.26.1680.1010@0.0.1920.1040" timestamp="1589365332686" />
-    <state x="552" y="252" width="802" height="523" key="Vcs.Push.Dialog.v2" timestamp="1590491975203">
+    <state x="552" y="252" width="802" height="523" key="Vcs.Push.Dialog.v2" timestamp="1590494100370">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1586510185571" />
     <state x="2403" y="245" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1680.1010@1920.0.1680.1010" timestamp="1587291330092" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.26.1680.1010@0.0.1920.1040" timestamp="1590491975203" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.26.1680.1010@0.0.1920.1040" timestamp="1590494100370" />
     <state x="2403" y="271" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.26.1680.1010@1920.26.1680.1010" timestamp="1587722106889" />
     <state x="393" y="205" width="802" height="523" key="Vcs.Push.Dialog.v2/0.25.1366.743@0.25.1366.743" timestamp="1582569594806" />
     <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587652220825">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.26.1680.1010@0.0.1920.1040" timestamp="1587652220825" />
-    <state x="613" y="249" width="737" height="606" key="find.popup" timestamp="1589965840841">
+    <state x="1160" y="217" width="737" height="606" key="find.popup" timestamp="1590494087365">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="613" y="249" width="694" height="542" key="find.popup/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1586514839858" />
-    <state x="613" y="249" width="737" height="606" key="find.popup/0.0.1920.1040/1920.26.1680.1010@0.0.1920.1040" timestamp="1589965840841" />
+    <state x="1160" y="217" width="737" height="606" key="find.popup/0.0.1920.1040/1920.26.1680.1010@0.0.1920.1040" timestamp="1590494087365" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1589633459575">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

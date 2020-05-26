@@ -39,7 +39,7 @@ public class Paper extends JavaPlugin {
 		    main = this;
 		    Common.logger = getLogger();
 		    ServerUtils.bukkit = true;
-		    ServerUtils.bungeeMode = Bukkit.spigot().getSpigotConfig().getBoolean("settings.bungeecord", false);
+		    ServerUtils.bungeeMode = Bukkit.spigot().getConfig().getBoolean("settings.bungeecord", false);
 		    ServerUtils.version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
 
 
