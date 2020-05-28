@@ -5,8 +5,27 @@
       <artifact name="Libraries" />
     </artifacts-to-build>
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="be16de7c-d62b-4ba3-bca0-8b6165c3b946" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/fr/entasia/apis/other/Randomiser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,17 +63,15 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1573669572243" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../intellij-2/Test" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\iTrooz_\workspaces\Entasia\intellij\Libraries\ex" />
-      <recent name="C:\Users\iTrooz_\workspaces\Entasia\intellij\Libraries\ressources" />
-      <recent name="C:\Users\iTrooz_\workspaces\Entasia\intellij-entasia\Libraries\src\fr\entasia\libraries\utils" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\iTrooz_\workspaces\intellij-entasia\Libraries\src\fr\entasia\libraries\utils" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="fr.entasia.apis" />
@@ -63,8 +80,10 @@
       <recent name="fr.entasia.libraries.myUtils.sCustom" />
       <recent name="fr.entasia.apis.nbt" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\iTrooz_\workspaces\intellij-entasia\Libraries\src\fr\entasia\libraries\utils" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\iTrooz_\workspaces\Entasia\intellij\Libraries\ex" />
+      <recent name="C:\Users\iTrooz_\workspaces\Entasia\intellij\Libraries\ressources" />
+      <recent name="C:\Users\iTrooz_\workspaces\Entasia\intellij-entasia\Libraries\src\fr\entasia\libraries\utils" />
     </key>
   </component>
   <component name="RunAnythingCache">
