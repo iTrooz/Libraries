@@ -40,8 +40,12 @@ public abstract class Common {
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			logger.severe("Erreur lors de la lecture de server.properties !");
-			if(!enableDev)return false;
+			if(enableDev){
+				logger.warning("Erreur lors de la lecture de server.properties !");
+			}else {
+				logger.severe("Erreur lors de la lecture de server.properties !");
+				return false;
+			}
 		}
 		logger.info("Nom du serveur : " + ServerUtils.serverName);
 

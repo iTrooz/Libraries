@@ -1,7 +1,6 @@
 package fr.entasia.apis.nbt;
 
-import com.sun.istack.internal.Nullable;
-
+import javax.annotation.Nullable;
 import java.lang.reflect.Method;
 
 public class NBTComponent {
