@@ -35,6 +35,17 @@ public class ItemUtils {
 	private static Field profileField;
 	private static Method getHandle, getTileEntity, setGameProfile, getGameProfile;
 
+
+	public static boolean hasName(ItemStack item){
+		return (item!=null&&item.hasItemMeta()&&item.getItemMeta().hasDisplayName());
+	}
+
+	public static boolean hasName(ItemStack item, String name){
+		if(!hasName(item))return false;
+		return item.getItemMeta().getDisplayName().equals(name);
+	}
+
+
 	static {
 		try{
 			SkullMeta meta = (SkullMeta) Bukkit.getItemFactory().getItemMeta(Material.SKULL_ITEM);

@@ -1,5 +1,6 @@
 package fr.entasia.apis.menus;
 
+import fr.entasia.apis.ItemUtils;
 import fr.entasia.apis.ServerUtils;
 import fr.entasia.libraries.Paper;
 import org.bukkit.entity.Player;
@@ -121,18 +122,19 @@ public class MenuAPI implements Listener {
 							if(e.getClick()==ClickType.LEFT||e.getClick()== ClickType.SHIFT_LEFT)mce.click = MenuClickEvent.ClickType.LEFT;
 							else if (e.getClick()==ClickType.RIGHT||e.getClick()== ClickType.SHIFT_RIGHT)mce.click = MenuClickEvent.ClickType.RIGHT;
 							else mce.click = MenuClickEvent.ClickType.UNKNOW;
-							if (e.getClickedInventory().getType() == InventoryType.CHEST) {
+							if (e.getClickedInventory() == null )return; // il veut drop un item
+							if (e.getClickedInventory().getType() == InventoryType.CHEST) { // cliqué sur l'inv chest
 								mce.slot = e.getSlot();
-								if (md.menu.containSlot(e.getSlot())){
+								if (md.menu.containSlot(e.getSlot())){ // slot déplacable
 									try{
 										if(md.menu.onFreeSlotClick(mce)) e.setCancelled(true);
 									}catch(Exception e2){
 										e2.printStackTrace();
 									}
-								}else{
+								}else{ // slot déplacable
 									e.setCancelled(true);
 									((Player) e.getWhoClicked()).updateInventory();
-									if (md.menu.containFlag(MenuFlag.AllItemsTrigger) || (e.getCurrentItem().hasItemMeta() && e.getCurrentItem().getItemMeta().hasDisplayName())) {
+									if (md.menu.containFlag(MenuFlag.AllItemsTrigger) || ItemUtils.hasName(e.getCurrentItem())) {
 										try{
 											md.menu.onMenuClick(mce);
 										}catch(Exception e2){
@@ -140,7 +142,7 @@ public class MenuAPI implements Listener {
 										}
 									}
 								}
-							} else {
+							} else { // clické sur son inv
 								if (!(md.menu.containFlag(MenuFlag.NoMoveLocalInv) && md.menu.slots.length == 0)) {
 									if (e.getAction() == InventoryAction.MOVE_TO_OTHER_INVENTORY) { // shift click
 										e.setCancelled(true);
@@ -170,7 +172,7 @@ public class MenuAPI implements Listener {
 							}
 						}
 					}
-				} catch (Exception e2) {
+				} catch (Throwable e2) {
 					e.setCancelled(true);
 					e2.printStackTrace();
 					ServerUtils.permMsg("staff.errormsgs", "\n\n",
