@@ -70,6 +70,10 @@ public class NBTComponent {
 		}
 	}
 
+	public void setKeyString(String key, Object value) {
+		setKeyString(key, value.toString());
+	}
+
 	public void setKeyString(String key, String value) {
 		try{
 			setString.invoke(rawnbt, key, value);

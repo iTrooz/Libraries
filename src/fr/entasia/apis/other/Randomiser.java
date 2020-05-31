@@ -1,49 +1,39 @@
 package fr.entasia.apis.other;
 
 import fr.entasia.errors.EntasiaException;
-import it.unimi.dsi.fastutil.doubles.Double2BooleanLinkedOpenHashMap;
 
 import java.util.Random;
 
 public class Randomiser {
 
-	public static Random random = new Random();
+	public static final Random random = new Random();
 
 	private final int max;
-	private double r;
-	private double cPercent = 0;
+	public double number;
+	public boolean real = true;
+	public double cPercent = 0;
 
 	public Randomiser(){
-		this(1000);
+		this(100);
 	}
 
 	public Randomiser(int max){
 		this.max = max;
-		this.r = random.nextInt(max);
+		this.number = random.nextInt(max);
 	}
 
 
 	public boolean isInNext(double percents){
 		if(cPercent ==-1)throw new EntasiaException("Value already found !");
-		cPercent +=percents;
+		cPercent += percents;
 		if(cPercent >= max)throw new EntasiaException("Excedded maximum !");
 
-		if(r<cPercent){
+		if(cPercent>= number){
 			cPercent = -1;
-			return true;
+			return real;
 		}
 		return false;
 	}
-
-	public double getNumber(){
-		return r;
-
-	}
-	public double getCPercent(){
-		return cPercent;
-	}
-
-
 
 
 //	private ArrayList<Integer> list = new ArrayList<>();
