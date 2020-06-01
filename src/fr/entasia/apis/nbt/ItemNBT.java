@@ -2,6 +2,7 @@ package fr.entasia.apis.nbt;
 
 import org.bukkit.inventory.ItemStack;
 
+import javax.annotation.Nullable;
 import java.lang.reflect.Method;
 
 public class ItemNBT {
@@ -23,13 +24,14 @@ public class ItemNBT {
 		}
 	}
 
+	@Nullable
 	public static NBTComponent getNBT(ItemStack item){
 		try{
 			Object nmsStack = getNMSItem.invoke(null, item);
 
 			Object a = getNMSItemTag.invoke(nmsStack);
-			if(a==null)return new NBTComponent("{}");
-			else return new NBTComponent(a);
+			if(a.equals(""))return null;
+			return new NBTComponent(a);
 		}catch(Exception ex){
 			ex.printStackTrace();
 		}
