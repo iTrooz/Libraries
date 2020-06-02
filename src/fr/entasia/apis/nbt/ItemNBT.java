@@ -1,18 +1,14 @@
 package fr.entasia.apis.nbt;
 
-import com.sun.istack.internal.NotNull;
 import fr.entasia.errors.EntasiaException;
-import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.lang.reflect.Method;
 
 public class ItemNBT {
 
-	public static Method getNMSItem, getBukkitItem, setNMSItemTag, getNMSItemTag;
-
+	public static Method getNMSItem, getBukkitMeta, setNMSItemTag, getNMSItemTag;
 
 
 	public static ItemStack setNBT(ItemStack item, NBTComponent nbt) {
@@ -21,8 +17,9 @@ public class ItemNBT {
 
 			setNMSItemTag.invoke(nmsStack, nbt.rawnbt);
 
-			return (ItemStack) getBukkitItem.invoke(null, nmsStack);
-
+			ItemMeta meta = (ItemMeta) getBukkitMeta.invoke(null, nmsStack);
+			item.setItemMeta(meta);
+			return item;
 		} catch (Exception ex) {
 			throw new EntasiaException(ex);
 		}
@@ -45,6 +42,7 @@ public class ItemNBT {
 		NBTComponent nbt = getNBT(item);
 		if(nbt==null)nbt = new NBTComponent();
 		nbt.fusion(add);
-		return setNBT(item, nbt);
+		setNBT(item, nbt);
+		return item;
 	}
 }

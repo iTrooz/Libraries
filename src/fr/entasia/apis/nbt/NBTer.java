@@ -7,13 +7,21 @@ import java.lang.reflect.Method;
 
 public class NBTer {
 
+	/*
+		NBTComponent.mapProperty = TagCompoundClass.getDeclaredField("map");
+		NBTComponent.mapProperty.setAccessible(true);
+
+		Class<?> mapClass = HashMap.class;
+
+		NBTComponent.mapGetter = mapClass.getDeclaredMethod("get", Object.class);
+	 */
+
 	public static Class<?> TagCompoundClass;
 
 	public static Method parseNBT;
 
 	public static void init(){
 		try{
-//			net.minecraft.server.v1_9_R2.NBTTagCompound
 			TagCompoundClass = Class.forName("net.minecraft.server."+ ServerUtils.version + ".NBTTagCompound");
 
 			Class<?> MojangsonParserClass = Class.forName("net.minecraft.server."+ServerUtils.version + ".MojangsonParser");
@@ -33,22 +41,19 @@ public class NBTer {
 			NBTComponent.getString = TagCompoundClass.getDeclaredMethod("getString", String.class);
 			NBTComponent.getCompound = TagCompoundClass.getDeclaredMethod("getCompound", String.class);
 
-//			NBTComponent.mapProperty = TagCompoundClass.getDeclaredField("map");
-//			NBTComponent.mapProperty.setAccessible(true);
 
-//			Class<?> mapClass = HashMap.class;
-//
-//			NBTComponent.mapGetter = mapClass.getDeclaredMethod("get", Object.class);
-
+			// ITEM
 			Class<?> NMSItemStackClass = Class.forName("net.minecraft.server."+ServerUtils.version + ".ItemStack");
 			Class<?> CraftItemStackClass = Class.forName("org.bukkit.craftbukkit."+ServerUtils.version + ".inventory.CraftItemStack");
 
 			ItemNBT.getNMSItem = CraftItemStackClass.getMethod("asNMSCopy", ItemStack.class);
-			ItemNBT.setNMSItemTag = NMSItemStackClass.getMethod("setTag", TagCompoundClass);
-			ItemNBT.getBukkitItem = CraftItemStackClass.getMethod("asBukkitCopy", NMSItemStackClass);
 			ItemNBT.getNMSItemTag = NMSItemStackClass.getMethod("getTag");
+			ItemNBT.setNMSItemTag = NMSItemStackClass.getMethod("setTag", TagCompoundClass);
+			ItemNBT.getBukkitMeta = CraftItemStackClass.getMethod("getItemMeta", NMSItemStackClass);
+//			ItemNBT.getBukkitItem = CraftItemStackClass.getMethod("asBukkitCopy", NMSItemStackClass);
 
 
+			// ENTITY
 			Class<?> NMSEntityClass = Class.forName("net.minecraft.server."+ServerUtils.version + ".Entity");
 			Class<?> CraftEntityClass = Class.forName("org.bukkit.craftbukkit."+ServerUtils.version + ".entity.CraftEntity");
 
@@ -66,11 +71,6 @@ public class NBTer {
 		catch(Exception ex){
 			ex.printStackTrace();
 		}
-	}
-
-	@Deprecated
-	public static NBTComponent parseNBT(String rawNBT) {
-		return new NBTComponent(rawParseNBT(rawNBT));
 	}
 
 	protected static Object rawParseNBT(String rawNBT) {

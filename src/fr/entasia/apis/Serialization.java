@@ -6,39 +6,58 @@ import fr.entasia.apis.nbt.NBTer;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
+import javax.annotation.Nonnull;
 import java.util.Base64;
 
 public class Serialization {
 
+	/*
+	Séparateurs :
+	général ;
+	inv item :
+	item ,
+	 */
 
-	public static String SerialiseInv(ItemStack[] inv) {
+	public static String serialiseItem(@Nonnull ItemStack item) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(item.getType().toString()).append(",").append(item.getAmount()).append(",").append(item.getDurability());
+		NBTComponent s = ItemNBT.getNBT(item);
+		if(s!=null)sb.append(",").append(Base64.getEncoder().encodeToString(s.getNBT().getBytes()));
+		return sb.toString();
+	}
+
+	public static ItemStack derialiseItem(@Nonnull String s) {
+		String[] ss = s.split(",");
+		ItemStack ssss = new ItemStack(Material.getMaterial(ss[0]), Integer.parseInt(ss[1]), Short.parseShort(ss[2]));
+		if(ss.length>3)ItemNBT.setNBT(ssss, new NBTComponent(new String(Base64.getDecoder().decode(ss[3]))));
+		return ssss;
+	}
+
+	public static String serialiseInv(ItemStack[] inv) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(inv.length);
 		int inc=0;
-		for(ItemStack i : inv){
-			if(i!=null&&i.getType()!=Material.AIR){
-				sb.append(";").append(inc).append(",").append(i.getType().toString()).append(",").append(i.getAmount()).append(",").append(i.getDurability());
-				NBTComponent s = ItemNBT.getNBT(i);
-				if(s!=null)sb.append(",").append(Base64.getEncoder().encodeToString(s.getNBT().getBytes()));
+		for(ItemStack item : inv){
+			if(item!=null&&item.getType()!=Material.AIR){
+				sb.append(";").append(inc).append(":").append(serialiseItem(item));
 			}
 			inc++;
 		}
 		return sb.toString();
 	}
 
-	public static ItemStack[] DeserialiseInv(String inv) {
+	public static ItemStack[] deserialiseInv(String inv) {
 		String[] s = inv.split(";");
-		ItemStack[] items=null;
+		ItemStack[] ii = null;
 		for(String i : s){
-			if(items==null){
-				items = new ItemStack[Integer.parseInt(i)];
+			if(ii==null){
+				ii = new ItemStack[Integer.parseInt(i)];
 			}else{
-				String[] ss = i.split(",");
+				String[] ss = i.split(":");
 				int sss = Integer.parseInt(ss[0]);
-				items[sss] = new ItemStack(Material.getMaterial(ss[1]), Integer.parseInt(ss[2]), Short.parseShort(ss[3]));
-				if(ss.length>4)items[sss] = ItemNBT.setNBT(items[sss], NBTer.parseNBT(new String(Base64.getDecoder().decode(ss[4]))));
+				ii[sss] = derialiseItem(ss[1]);
 			}
 		}
-		return items;
+		return ii;
 	}
 }
