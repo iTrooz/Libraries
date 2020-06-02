@@ -85,7 +85,9 @@ public class NBTComponent {
 	@Nullable
 	public String getKeyString(String key) {
 		try{
-			return (String) getString.invoke(rawnbt, key);
+			String a = (String) getString.invoke(rawnbt, key);
+			if(a.equals(""))return null;
+			return a;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

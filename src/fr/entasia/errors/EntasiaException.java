@@ -5,4 +5,8 @@ public class EntasiaException extends RuntimeException {
 	public EntasiaException(String s){
 		super(s);
 	}
+
+	public EntasiaException(Throwable thr){
+		super(thr.getMessage());
+	}
 }
