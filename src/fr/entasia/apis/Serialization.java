@@ -26,7 +26,7 @@ public class Serialization {
 		return sb.toString();
 	}
 
-	public static ItemStack derialiseItem(@Nonnull String s) {
+	public static ItemStack deserialiseItem(@Nonnull String s) {
 		String[] ss = s.split(",");
 		ItemStack ssss = new ItemStack(Material.getMaterial(ss[0]), Integer.parseInt(ss[1]), Short.parseShort(ss[2]));
 		if(ss.length>3)ItemNBT.setNBT(ssss, new NBTComponent(new String(Base64.getDecoder().decode(ss[3]))));
@@ -55,7 +55,7 @@ public class Serialization {
 			}else{
 				String[] ss = i.split(":");
 				int sss = Integer.parseInt(ss[0]);
-				ii[sss] = derialiseItem(ss[1]);
+				ii[sss] = deserialiseItem(ss[1]);
 			}
 		}
 		return ii;

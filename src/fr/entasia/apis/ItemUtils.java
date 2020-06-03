@@ -199,4 +199,14 @@ public class ItemUtils {
 			this.name = op.getName();
 		}
 	}
+
+
+	public static void damage(ItemStack item, int by){
+		if(item.getType().getMaxDurability()==0)throw new EntasiaException("Invalid item : no durability");
+		short dura = (short) (item.getDurability()+by);
+		if(dura>item.getType().getMaxDurability())item.setType(Material.AIR);
+		else item.setDurability(dura);
+
+	}
+
 }

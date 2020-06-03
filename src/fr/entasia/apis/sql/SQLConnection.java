@@ -11,6 +11,7 @@ public class SQLConnection {
 
 	protected static String host;
 	protected static int port=0;
+	protected String url;
 	public String user,password;
 	public String db;
 
@@ -22,11 +23,18 @@ public class SQLConnection {
 	}
 
 	public SQLConnection(String user, String db) throws SQLException {
-		if(db==null||db.equals(""))this.db = "";
+		if(db==null)this.db = "";
 		else this.db = db;
 		this.user = user;
 		this.password = SQLSecurity.getPassword(user);
+		this.url = "jdbc:mysql://" + host+":"+port+"/"+this.db+"?useSSL=false";
 		unsafeConnect();
+	}
+
+	public SQLConnection sqlite(String file) throws ClassNotFoundException {
+		Class.forName("org.sqlite.JDBC");
+		this.url = "jdbc:sqlite:"+file;
+		return this;
 	}
 
 
@@ -41,7 +49,7 @@ public class SQLConnection {
 	}
 
 	public void unsafeConnect() throws SQLException {
-		connection = DriverManager.getConnection("jdbc:mysql://" + host+":"+port+"/"+db+"?useSSL=false", user, password);
+		connection = DriverManager.getConnection(url, user, password);
 		fastSelectUnsafe("SELECT 1=1");
 	}
 
