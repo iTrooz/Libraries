@@ -37,7 +37,6 @@ public class SQLConnection {
 		return this;
 	}
 
-
 	public boolean connect() {
 		try {
 			unsafeConnect();

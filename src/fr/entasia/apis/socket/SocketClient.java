@@ -40,6 +40,7 @@ public class SocketClient {
 						errorHandler(e);
 						continue;
 					}
+
 					logger.info("Nouveau paquet : " + msg);
 					String[] arg = msg.split(" ");
 					String key = arg[0];

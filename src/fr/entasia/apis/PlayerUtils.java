@@ -4,6 +4,7 @@ import org.bukkit.entity.Player;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.UUID;
 
 public class PlayerUtils {
 
@@ -39,23 +40,7 @@ public class PlayerUtils {
 		return null;
 	}
 
-//	public static String getUUIDByName(String name){
-//		try{
-//			ResultSet rs = SQLConnection.connection.prepareStatement("SELECT uuid from playerdata.global where name='"+name+"'").executeQuery();
-//			if(rs.next()) return rs.getString(1);
-//		}catch(SQLException e){
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
-
-//	public static String getNameByUUID(String uuid){
-//		try{
-//			ResultSet rs = SQLConnection.connection.prepareStatement("SELECT name from playerdata.global where uuid='"+uuid+"'").executeQuery();
-//			if(rs.next()) return rs.getString(1);
-//		}catch(SQLException e){
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
+	public static UUID getUUID(String name){
+		return UUID.nameUUIDFromBytes(("OfflinePlayer:"+name).getBytes());
+	}
 }
