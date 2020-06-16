@@ -11,15 +11,34 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ChatComponent {
-	private List<BaseComponent> comps;
+
+	private final List<BaseComponent> comps;
+
+
 
 	public ChatComponent(){
 		comps = new ArrayList<>();
 	}
 
 	public ChatComponent(String text){
-		comps = Arrays.asList(TextComponent.fromLegacyText(text));
+		comps = new ArrayList<>();
+		append(text);
 	}
+
+	public ChatComponent(String... lines){
+		comps = new ArrayList<>();
+		append(String.join("\n", lines));
+	}
+
+	public void append(String text){
+		comps.addAll(Arrays.asList(TextComponent.fromLegacyText(text)));
+	}
+
+	public void append(ChatComponent cc){
+		comps.addAll(cc.comps);
+	}
+
+
 
 	public void setHoverEvent(HoverEvent hover){
 		for(BaseComponent b : comps) b.setHoverEvent(hover);
@@ -35,54 +54,30 @@ public class ChatComponent {
 
 
 
-	public void append(ChatComponent cc){
-		comps.addAll(cc.comps);
-	}
-
-
-
-	public BaseComponent[] create(){
-		return comps.toArray(new BaseComponent[0]);
-	}
-
-//	public static BaseComponent[] create(Object... objs){
+//	public static BaseComponent[] create(BaseComponent[]... compos){
 //		List<BaseComponent> components = new ArrayList<>();
-//		for(Object o : objs){
-//			if(o instanceof BaseComponent[]){
-//				components.addAll(Arrays.asList((BaseComponent[])o));
-//			}else if(o instanceof ChatComponent){
-//				components.addAll(((ChatComponent)o).comps);
-//			}else if(o instanceof String){
-//				components.addAll(Arrays.asList(create((String)o)));
-//			}
+//		for(BaseComponent[] bc : compos) {
+//			components.addAll(Arrays.asList(bc));
 //		}
 //		return components.toArray(new BaseComponent[0]);
 //	}
 
-	public static BaseComponent[] create(ChatComponent... compos){
-		List<BaseComponent> components = new ArrayList<>();
-		for(ChatComponent cc : compos){
-			components.addAll(cc.comps);
-		}
-		return components.toArray(new BaseComponent[0]);
-	}
 
-	public static BaseComponent[] create(BaseComponent[]... compos){
-		List<BaseComponent> components = new ArrayList<>();
-		for(BaseComponent[] bc : compos) {
-			components.addAll(Arrays.asList(bc));
-		}
-		return components.toArray(new BaseComponent[0]);
-	}
 
-	public static BaseComponent[] create(String... compos){
-		StringBuilder a = new StringBuilder();
-		for(String i : compos)a.append(i);
-		return create(a.toString());
-	}
+	public BaseComponent[] create(){
+	return comps.toArray(new BaseComponent[0]);
+}
 
 	public static BaseComponent[] create(String text){
 		return TextComponent.fromLegacyText(text);
+	}
+
+	public static BaseComponent[] create(ChatComponent... text){
+		ArrayList<BaseComponent> list = new ArrayList<>();
+		for(ChatComponent cc : text){
+			list.addAll(cc.comps);
+		}
+		return list.toArray(new BaseComponent[0]);
 	}
 
 }

@@ -10,7 +10,7 @@ public class SQLConnection {
 	public Connection connection;
 
 	protected static String host;
-	protected static int port=0;
+	protected static int port;
 	protected String url;
 	public String user,password;
 	public String db;
