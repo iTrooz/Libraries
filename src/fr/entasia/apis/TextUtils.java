@@ -1,7 +1,9 @@
 package fr.entasia.apis;
 
+import io.netty.util.internal.MathUtil;
 import net.md_5.bungee.api.ChatColor;
 
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public class TextUtils {
@@ -11,6 +13,18 @@ public class TextUtils {
 	}
 
 	public static Pattern regex = Pattern.compile("entasia", Pattern.CASE_INSENSITIVE);
+
+	public static String setColors(String msg) {
+		char[] list = msg.toCharArray();
+		for(int i=1;i<list.length;i++){
+			if(list[i]=='&'){
+				if(ChatColor.getByChar(list[i-1])!=null){
+					list[i] = '§';
+				}
+			}
+		}
+		return new String(list);
+	}
 
 	public static String formatMessage(String msg, ChatColor color) {
 		return regex.matcher(msg).replaceAll("§bEnta§7sia"+color)

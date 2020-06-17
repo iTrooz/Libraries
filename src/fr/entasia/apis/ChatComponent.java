@@ -30,12 +30,14 @@ public class ChatComponent {
 		append(String.join("\n", lines));
 	}
 
-	public void append(String text){
+	public ChatComponent append(String text){
 		comps.addAll(Arrays.asList(TextComponent.fromLegacyText(text)));
+		return this;
 	}
 
-	public void append(ChatComponent cc){
+	public ChatComponent append(ChatComponent cc){
 		comps.addAll(cc.comps);
+		return this;
 	}
 
 
