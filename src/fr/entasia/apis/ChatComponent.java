@@ -40,6 +40,11 @@ public class ChatComponent {
 		return this;
 	}
 
+	public ChatComponent append(BaseComponent[] cc){
+		comps.addAll(Arrays.asList(cc));
+		return this;
+	}
+
 
 
 	public void setHoverEvent(HoverEvent hover){
