@@ -4,6 +4,7 @@ import io.netty.util.internal.MathUtil;
 import net.md_5.bungee.api.ChatColor;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.regex.Pattern;
 
 public class TextUtils {
@@ -47,14 +48,14 @@ public class TextUtils {
 		}
 		StringBuilder f = new StringBuilder();
 //		if(i==1)return "";
-		byte b = 0;
+		boolean b = false;
 		for(int j=0;j<t.length;j++){
 			if(t[j]!=0){
-				if(b==1)f.insert(0, " et ");
+				if(b)f.insert(0, " et ");
 				else f.insert(0, ", "); // et / ,
 				if(t[j] != 1&&j != 5)f.insert(0, 's'); // pluriel
 				f.insert(0, t[j]+" "+n[j]);
-				b++;
+				b = true;
 			}
 		}
 		return f.substring(0, f.length()-2);
@@ -147,4 +148,17 @@ public class TextUtils {
 		}
 		return sb.toString()+str;
 	}
+
+	public static String formatCalendar(Calendar c){
+		return get(c, Calendar.YEAR, 0)+"/"+get(c, Calendar.MONTH, 1)+"/"+get(c, Calendar.DAY_OF_MONTH, 0)
+				+" "+get(c, Calendar.HOUR_OF_DAY, 0)+":"+get(c, Calendar.MINUTE, 0);
+	}
+
+	private static String get(Calendar when, int type, int add){
+		String b = String.valueOf(when.get(type)+add);
+		if(b.length()==1)return "0"+b;
+		else return b;
+	}
+
+
 }
