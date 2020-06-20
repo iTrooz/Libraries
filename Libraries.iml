@@ -9,7 +9,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="spigot-1.12.2-2" level="project" />
-    <orderEntry type="library" name="ProtocolLib" level="project" />
     <orderEntry type="library" name="WaterFall" level="project" />
+    <orderEntry type="library" name="ProtocolLib" level="project" />
   </component>
 </module>

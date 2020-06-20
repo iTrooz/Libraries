@@ -10,14 +10,11 @@ public class EntityNBT {
 
 	public static Method getNMSEntity, setNMSEntityNBT, getNMSEntityNBT;
 
-
-	@Nullable
 	public static NBTComponent getNBT(Entity entity){
 		try{
 			Object nmsEntity = getNMSEntity.invoke(entity);
 			Object a = NBTer.TagCompoundClass.newInstance();
 			getNMSEntityNBT.invoke(nmsEntity, a);
-			if(a==null)return null;
 			return new NBTComponent(a);
 		}catch(Exception ex){
 			throw new EntasiaException(ex);
@@ -35,6 +32,7 @@ public class EntityNBT {
 
 	public static void addNBT(Entity entity, NBTComponent add){
 		NBTComponent nbt = getNBT(entity);
+		if(nbt==null)nbt = new NBTComponent();
 		nbt.fusion(add);
 		setNBT(entity, nbt);
 	}

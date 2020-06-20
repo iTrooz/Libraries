@@ -1,6 +1,8 @@
 package fr.entasia.apis.nbt;
 
 import fr.entasia.apis.ServerUtils;
+import net.minecraft.server.v1_12_R1.Entity;
+import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import org.bukkit.inventory.ItemStack;
 
 import java.lang.reflect.Method;
@@ -65,7 +67,6 @@ public class NBTer {
 				EntityNBT.getNMSEntityNBT = NMSEntityClass.getDeclaredMethod("save", TagCompoundClass);
 
 			}
-
 			EntityNBT.setNMSEntityNBT = NMSEntityClass.getDeclaredMethod("f", TagCompoundClass);
 		}
 		catch(Exception ex){

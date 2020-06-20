@@ -26,6 +26,12 @@ public class ItemNBT {
 		}
 	}
 
+	public static NBTComponent getNBTSafe(ItemStack item){
+		NBTComponent nbt = getNBT(item);
+		if(nbt==null)return new NBTComponent();
+		return nbt;
+	}
+
 	@Nullable
 	public static NBTComponent getNBT(ItemStack item){
 		try{
