@@ -4,6 +4,7 @@ import fr.entasia.errors.EntasiaException;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import javax.annotation.Nullable;
 import java.lang.reflect.Method;
 
 public class ItemNBT {
@@ -25,6 +26,7 @@ public class ItemNBT {
 		}
 	}
 
+	@Nullable
 	public static NBTComponent getNBT(ItemStack item){
 		try{
 			Object nmsStack = getNMSItem.invoke(null, item);
