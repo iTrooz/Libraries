@@ -8,10 +8,10 @@ public class Randomiser {
 
 	public static final Random random = new Random();
 
-	private final int max;
+	public int max;
 	public double number;
 	public boolean real = true;
-	public double cPercent = 0;
+	public double cPercent;
 
 	public Randomiser(){
 		this(100);
@@ -19,7 +19,7 @@ public class Randomiser {
 
 	public Randomiser(int max){
 		this.max = max;
-		this.number = random.nextInt(max);
+		regen();
 	}
 
 
@@ -33,6 +33,11 @@ public class Randomiser {
 			return real;
 		}
 		return false;
+	}
+
+	public void regen(){
+		this.number = random.nextInt(max);
+		this.cPercent = 0;
 	}
 
 
