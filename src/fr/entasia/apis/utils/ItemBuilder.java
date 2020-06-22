@@ -19,6 +19,15 @@ public class ItemBuilder {
 		meta = item.getItemMeta();
 	}
 
+	public ItemBuilder damage(short damage){
+		item.setDurability(damage);
+		return this;
+	}
+	public ItemBuilder damage(int damage){
+		item.setDurability((short)damage);
+		return this;
+	}
+
 	public ItemBuilder name(String name){
 		meta.setDisplayName(name);
 		return this;

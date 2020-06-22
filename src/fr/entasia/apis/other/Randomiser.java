@@ -14,19 +14,19 @@ public class Randomiser {
 	public double cPercent;
 
 	public Randomiser(){
-		this(100);
+		this(100, true);
 	}
 
-	public Randomiser(int max){
+	public Randomiser(int max, boolean regen){
 		this.max = max;
-		regen();
+		if(regen)regen();
 	}
 
 
 	public boolean isInNext(double percents){
 		if(cPercent ==-1)throw new EntasiaException("Value already found !");
 		cPercent += percents;
-		if(cPercent >= max)throw new EntasiaException("Excedded maximum !");
+		if(cPercent > max)throw new EntasiaException("Excedded maximum !");
 
 		if(cPercent>= number){
 			cPercent = -1;
