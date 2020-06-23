@@ -6,6 +6,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.UUID;
 
+@Deprecated
 public class PlayerUtils {
 
 	private static Class<?> CraftPlayerClass;

@@ -1,7 +1,7 @@
 package fr.entasia.libraries.bungee.listeners;
 
 
-import fr.entasia.apis.ChatComponent;
+import fr.entasia.apis.other.ChatComponent;
 import fr.entasia.apis.socket.SocketClient;
 import fr.entasia.libraries.Common;
 import net.md_5.bungee.api.chat.TextComponent;

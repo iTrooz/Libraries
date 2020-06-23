@@ -1,5 +1,6 @@
 package fr.entasia.apis;
 
+import fr.entasia.apis.other.ChatComponent;
 import fr.entasia.libraries.Common;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.BaseComponent;
@@ -7,6 +8,7 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+@Deprecated
 public class ServerUtils {
 	public static String version;
 	public static String serverName;

@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.UUID;
 
+@Deprecated
 public class ItemUtils {
 
 	public static Gson gson = new Gson();

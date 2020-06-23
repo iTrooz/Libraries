@@ -1,5 +1,6 @@
 package fr.entasia.apis;
 
+@Deprecated
 public class MathUtils {
 
 	public static boolean isBetween(double value, double first, double second){

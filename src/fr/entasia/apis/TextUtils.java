@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.regex.Pattern;
 
+@Deprecated
 public class TextUtils {
 
 	public static String firstLetterUpper(String a){

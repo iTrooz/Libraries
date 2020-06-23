@@ -1,7 +1,7 @@
 package fr.entasia.libraries;
 
 import fr.entasia.apis.ServerUtils;
-import fr.entasia.apis.Signer;
+import fr.entasia.apis.other.Signer;
 import fr.entasia.apis.menus.MenuAPI;
 import fr.entasia.apis.nbt.NBTer;
 import fr.entasia.apis.other.InstantFirework;

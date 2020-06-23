@@ -9,6 +9,7 @@ import org.bukkit.inventory.ItemStack;
 import javax.annotation.Nonnull;
 import java.util.Base64;
 
+@Deprecated
 public class Serialization {
 
 	/*

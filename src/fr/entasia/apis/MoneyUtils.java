@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
+@Deprecated
 public class MoneyUtils {
 
 	public static int getMoney(UUID uuid) {

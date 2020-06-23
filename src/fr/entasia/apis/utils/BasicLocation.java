@@ -1,6 +1,5 @@
-package fr.entasia.apis;
+package fr.entasia.apis.utils;
 
-@Deprecated
 public class BasicLocation {
 	public int x;
 	public int y;
