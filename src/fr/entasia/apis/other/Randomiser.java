@@ -17,6 +17,10 @@ public class Randomiser {
 		this(100, true);
 	}
 
+	public Randomiser(int max){
+		this(max, true);
+	}
+
 	public Randomiser(int max, boolean regen){
 		this.max = max;
 		if(regen)regen();

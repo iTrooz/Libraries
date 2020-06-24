@@ -10,4 +10,10 @@ public class Mutable <T> {
     public Mutable(T value){
         this.value = value;
     }
+
+
+    @Override
+    public String toString() {
+        return "Mutavle{"+"value="+value+"}";
+    }
 }

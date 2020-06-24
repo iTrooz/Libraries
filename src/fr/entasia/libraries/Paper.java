@@ -1,6 +1,6 @@
 package fr.entasia.libraries;
 
-import fr.entasia.apis.ServerUtils;
+import fr.entasia.apis.utils.ServerUtils;
 import fr.entasia.apis.other.Signer;
 import fr.entasia.apis.menus.MenuAPI;
 import fr.entasia.apis.nbt.NBTer;
@@ -9,6 +9,7 @@ import fr.entasia.apis.regionManager.api.RegionManager;
 import fr.entasia.apis.sql.SQLSecurity;
 import fr.entasia.libraries.paper.listeners.BaseListener;
 import org.bukkit.Bukkit;
+import org.bukkit.Server;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -41,6 +42,9 @@ public class Paper extends JavaPlugin {
 		    ServerUtils.bukkit = true;
 		    ServerUtils.bungeeMode = Bukkit.spigot().getConfig().getBoolean("settings.bungeecord", false);
 		    ServerUtils.version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
+		    fr.entasia.apis.ServerUtils.bukkit = ServerUtils.bukkit;
+		    fr.entasia.apis.ServerUtils.bungeeMode = ServerUtils.bungeeMode;
+		    fr.entasia.apis.ServerUtils.version = ServerUtils.version;
 
 
 		    // Configuration
