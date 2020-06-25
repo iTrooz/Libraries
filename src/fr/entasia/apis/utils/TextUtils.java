@@ -36,29 +36,32 @@ public class TextUtils {
 	private static final int[] d = {60, 60, 24, 30, 12, 100};
 	private static final String[] n = {"seconde","minute","heure","jour","mois","année","siècle"};
 
+	public static void main(String[] fa){
+		System.out.println(secondsToTime(426424218));
+	}
+
 
 	public static String secondsToTime(int seconds){
 		int[] t = new int[n.length];
 		t[0] = seconds;
 		int i;
 		for(i = 1; i<n.length; i++){
-			t[i]   = t[i-1] / d[i-1];
+			t[i]  = t[i-1] / d[i-1];
 			t[i-1] = t[i-1] % d[i-1];
 			if(t[i] == 0)break;
 		}
 		StringBuilder f = new StringBuilder();
-//		if(i==1)return "";
-		boolean b = false;
 		for(int j=0;j<t.length;j++){
 			if(t[j]!=0){
-				if(b)f.insert(0, " et ");
-				else f.insert(0, ", "); // et / ,
-				if(t[j] != 1&&j != 5)f.insert(0, 's'); // pluriel
+				if(t[j] != 1&&j != 4)f.insert(0, 's'); // pluriel
 				f.insert(0, t[j]+" "+n[j]);
-				b = true;
+				f.insert(0, ", ");
 			}
 		}
-		return f.substring(0, f.length()-2);
+		f.delete(0, 2);
+		i = f.lastIndexOf(",");
+		if(i!=-1)f.replace(i, i+1, " et");
+		return f.toString();
 	}
 
 
