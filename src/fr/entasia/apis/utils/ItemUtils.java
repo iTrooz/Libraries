@@ -202,17 +202,26 @@ public class ItemUtils {
 	}
 
 
-	public static void damage(ItemStack item, int by){
+	public static boolean damage(ItemStack item, int by){
 		if(item.getType().getMaxDurability()==0)throw new EntasiaException("Invalid item : no durability");
 		short dura = (short) (item.getDurability()+by);
-		if(dura>item.getType().getMaxDurability())item.setType(Material.AIR);
-		else item.setDurability(dura);
+		if(dura>item.getType().getMaxDurability()){
+			item.setType(Material.AIR);
+			return true;
+		}else{
+			item.setDurability(dura);
+			return false;
+		}
 	}
 
-	public static void giveOrDrop(Player p, ItemStack item){
+	public static boolean giveOrDrop(Player p, ItemStack item){
 		if(p.getInventory().firstEmpty()==-1){
 			p.getWorld().dropItem(p.getLocation(), item);
-		}else p.getInventory().addItem(item);
+			return false;
+		}else{
+			p.getInventory().addItem(item);
+			return true;
+		}
 	}
 
 
