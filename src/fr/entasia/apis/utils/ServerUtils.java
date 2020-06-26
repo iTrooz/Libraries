@@ -20,8 +20,8 @@ public class ServerUtils {
 
 
 
-	public static void permMsg(String perm, String... message){
-		permMsg(perm, ChatComponent.create(String.join("", message)));
+	public static void permMsg(String perm, String... lines){
+		permMsg(perm, ChatComponent.create(String.join("\n", lines)));
 	}
 
 	public static void permMsg(String perm, BaseComponent[] message){
