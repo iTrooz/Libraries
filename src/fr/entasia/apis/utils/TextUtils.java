@@ -2,6 +2,8 @@ package fr.entasia.apis.utils;
 
 import io.netty.util.internal.MathUtil;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
 import java.util.Calendar;
@@ -162,6 +164,4 @@ public class TextUtils {
 		if(b.length()==1)return "0"+b;
 		else return b;
 	}
-
-
 }

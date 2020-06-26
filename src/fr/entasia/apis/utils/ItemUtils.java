@@ -9,6 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -206,7 +207,13 @@ public class ItemUtils {
 		short dura = (short) (item.getDurability()+by);
 		if(dura>item.getType().getMaxDurability())item.setType(Material.AIR);
 		else item.setDurability(dura);
-
 	}
+
+	public static void giveOrDrop(Player p, ItemStack item){
+		if(p.getInventory().firstEmpty()==-1){
+			p.getWorld().dropItem(p.getLocation(), item);
+		}else p.getInventory().addItem(item);
+	}
+
 
 }

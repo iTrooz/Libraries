@@ -1,4 +1,4 @@
-package fr.entasia.apis.utils;
+package fr.entasia.apis.other;
 
 import fr.entasia.apis.nbt.ItemNBT;
 import fr.entasia.apis.nbt.NBTComponent;

@@ -1,7 +1,7 @@
 package fr.entasia.apis.regionManager.api;
 
-import fr.entasia.apis.BasicLocation;
-import fr.entasia.apis.MathUtils;
+import fr.entasia.apis.utils.BasicLocation;
+import fr.entasia.apis.utils.MathUtils;
 import org.bukkit.Location;
 import org.bukkit.World;
 

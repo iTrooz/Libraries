@@ -1,6 +1,6 @@
 package fr.entasia.apis.regionManager.api;
 
-import fr.entasia.apis.BasicLocation;
+import fr.entasia.apis.utils.BasicLocation;
 import fr.entasia.apis.MathUtils;
 import fr.entasia.libraries.Paper;
 import fr.entasia.libraries.paper.listeners.RegionEventTrigger;
