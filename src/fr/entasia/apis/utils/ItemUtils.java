@@ -28,7 +28,7 @@ public class ItemUtils {
 
 	public static Gson gson = new Gson();
 
-	private static ArrayList<String> skulls = new ArrayList<>();
+	private static final ArrayList<String> skulls = new ArrayList<>();
 
 	private static Class<?> craftWorldClass;
 	private static Constructor<?> blockPosConstruct;
@@ -217,10 +217,10 @@ public class ItemUtils {
 	public static boolean giveOrDrop(Player p, ItemStack item){
 		if(p.getInventory().firstEmpty()==-1){
 			p.getWorld().dropItem(p.getLocation(), item);
-			return false;
+			return true;
 		}else{
 			p.getInventory().addItem(item);
-			return true;
+			return false;
 		}
 	}
 

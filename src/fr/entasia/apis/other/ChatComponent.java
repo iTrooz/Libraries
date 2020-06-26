@@ -47,16 +47,19 @@ public class ChatComponent {
 
 
 
-	public void setHoverEvent(HoverEvent hover){
+	public ChatComponent setHoverEvent(HoverEvent hover){
 		for(BaseComponent b : comps) b.setHoverEvent(hover);
+		return this;
 	}
 
-	public void setClickEvent(ClickEvent click){
+	public ChatComponent setClickEvent(ClickEvent click){
 		for(BaseComponent b : comps) b.setClickEvent(click);
+		return this;
 	}
 
-	public void setColor(ChatColor color){
+	public ChatComponent setColor(ChatColor color){
 		for(BaseComponent b : comps) b.setColor(color);
+		return this;
 	}
 
 
