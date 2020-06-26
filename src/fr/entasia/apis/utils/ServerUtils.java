@@ -18,8 +18,6 @@ public class ServerUtils {
 		return !(serverName.equalsIgnoreCase("login")||serverName.equalsIgnoreCase("hub"));
 	}
 
-
-
 	public static void permMsg(String perm, String... lines){
 		permMsg(perm, ChatComponent.create(String.join("\n", lines)));
 	}
