@@ -12,7 +12,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static fr.entasia.libraries.Paper.main;
+import static fr.entasia.libraries.paper.Paper.main;
 
 public class Signer {
     public static PacketContainer pc = null;

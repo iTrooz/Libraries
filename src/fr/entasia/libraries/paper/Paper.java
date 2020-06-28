@@ -1,19 +1,21 @@
-package fr.entasia.libraries;
+package fr.entasia.libraries.paper;
 
-import fr.entasia.apis.utils.ServerUtils;
-import fr.entasia.apis.other.Signer;
+import fr.entasia.apis.events.bukkit.ServerStartEvent;
 import fr.entasia.apis.menus.MenuAPI;
 import fr.entasia.apis.nbt.NBTer;
 import fr.entasia.apis.other.InstantFirework;
+import fr.entasia.apis.other.Signer;
 import fr.entasia.apis.regionManager.api.RegionManager;
 import fr.entasia.apis.sql.SQLSecurity;
+import fr.entasia.apis.utils.ServerUtils;
+import fr.entasia.libraries.Common;
 import fr.entasia.libraries.paper.listeners.BaseListener;
 import org.bukkit.Bukkit;
-import org.bukkit.Server;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -42,9 +44,9 @@ public class Paper extends JavaPlugin {
 		    ServerUtils.bukkit = true;
 		    ServerUtils.bungeeMode = Bukkit.spigot().getConfig().getBoolean("settings.bungeecord", false);
 		    ServerUtils.version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
-		    fr.entasia.apis.ServerUtils.bukkit = ServerUtils.bukkit;
-		    fr.entasia.apis.ServerUtils.bungeeMode = ServerUtils.bungeeMode;
-		    fr.entasia.apis.ServerUtils.version = ServerUtils.version;
+//		    fr.entasia.apis.ServerUtils.bukkit = ServerUtils.bukkit;
+//		    fr.entasia.apis.ServerUtils.bungeeMode = ServerUtils.bungeeMode;
+//		    fr.entasia.apis.ServerUtils.version = ServerUtils.version;
 
 
 		    // Configuration
@@ -68,25 +70,16 @@ public class Paper extends JavaPlugin {
 		    }
 
 
-		    // Grosses APIs
-		    NBTer.init();
-		    InstantFirework.init();
-		    if (enableSigner&&Bukkit.getPluginManager().getPlugin("ProtocolLib") != null) {
-		    	Signer.initPackets();
-		    }
-		    if (enableRegions) RegionManager.init();
-		    if (enableMenus) MenuAPI.init();
-
-
 		    // Commons
 		    if(!Common.load()&&!Common.enableDev){
 			    stopServer();
 			    return;
 		    }
 
-
 		    // Chargement des listeners
 		    getServer().getPluginManager().registerEvents(new BaseListener(), this);
+
+		    others();
 
 	    } catch (Throwable e) {
 		    e.printStackTrace();
@@ -97,5 +90,25 @@ public class Paper extends JavaPlugin {
     @Override
     public void onDisable() {
 	    getLogger().info("Librairies globales déchargées");
+    }
+
+    public static void others() throws Throwable {
+	    // Grosses APIs
+	    NBTer.init();
+	    InstantFirework.init();
+	    if (enableSigner&&Bukkit.getPluginManager().getPlugin("ProtocolLib") != null) {
+		    Signer.initPackets();
+	    }
+	    if (enableRegions) RegionManager.init();
+	    if (enableMenus) MenuAPI.init();
+
+
+	    new BukkitRunnable() {
+		    @Override
+		    public void run() {
+	            Bukkit.getPluginManager().callEvent(new ServerStartEvent());
+		    }
+	    }.runTask(main);
+
     }
 }

@@ -1,11 +1,7 @@
 package fr.entasia.apis.utils;
 
-import io.netty.util.internal.MathUtil;
 import net.md_5.bungee.api.ChatColor;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.regex.Pattern;
 

@@ -2,7 +2,6 @@ package fr.entasia.apis;
 
 import fr.entasia.apis.nbt.ItemNBT;
 import fr.entasia.apis.nbt.NBTComponent;
-import fr.entasia.apis.nbt.NBTer;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 

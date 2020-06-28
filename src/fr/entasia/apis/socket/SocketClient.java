@@ -1,7 +1,7 @@
 package fr.entasia.apis.socket;
 
 
-import fr.entasia.apis.ServerUtils;
+import fr.entasia.apis.utils.ServerUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;

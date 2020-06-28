@@ -1,6 +1,6 @@
 package fr.entasia.apis.sql;
 
-import fr.entasia.apis.ServerUtils;
+import fr.entasia.apis.utils.ServerUtils;
 
 import javax.annotation.Nullable;
 import java.sql.*;

@@ -1,14 +1,11 @@
 package fr.entasia.apis.regionManager.events;
 
+import fr.entasia.apis.events.EntasiaEvent;
 import fr.entasia.apis.regionManager.api.Region;
 import fr.entasia.apis.regionManager.api.RegionAction;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
-import org.bukkit.event.HandlerList;
 
-public class RegionLeaveEvent extends Event {
-
-	private static final HandlerList handlers = new HandlerList();
+public class RegionLeaveEvent extends EntasiaEvent {
 
 	private Region r;
 	private Player p;
@@ -29,15 +26,6 @@ public class RegionLeaveEvent extends Event {
 	
 	public RegionAction getTriggerType(){
 		return tt;
-	}
-
-	@Override
-	public HandlerList getHandlers() {
-		return handlers;
-	}
-
-	public static HandlerList getHandlerList() {
-		return handlers;
 	}
 
 }

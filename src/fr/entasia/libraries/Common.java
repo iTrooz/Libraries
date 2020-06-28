@@ -1,16 +1,12 @@
 package fr.entasia.libraries;
 
-import fr.entasia.apis.menus.MenuAPI;
-import fr.entasia.apis.utils.OtherUtils;
-import fr.entasia.apis.utils.ServerUtils;
 import fr.entasia.apis.socket.SocketClient;
 import fr.entasia.apis.sql.SQLConnection;
-import org.bukkit.Server;
+import fr.entasia.apis.utils.ServerUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.FileInputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Properties;
 import java.util.logging.Logger;
 
@@ -21,7 +17,7 @@ public abstract class Common {
 	public static SQLConnection sql;
 	public static boolean enableDev, enableSocket, enableSQL;
 	public static Logger logger;
-	public static Thread thr = Thread.currentThread();
+	public static Thread mainThread = Thread.currentThread();
 
 	public static boolean load() throws Throwable {
 		logger.info("Librairies globales en cours de chargement...");

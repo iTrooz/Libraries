@@ -1,8 +1,8 @@
 package fr.entasia.apis.menus;
 
-import fr.entasia.apis.ItemUtils;
-import fr.entasia.apis.ServerUtils;
-import fr.entasia.libraries.Paper;
+import fr.entasia.apis.utils.ItemUtils;
+import fr.entasia.apis.utils.ServerUtils;
+import fr.entasia.libraries.paper.Paper;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

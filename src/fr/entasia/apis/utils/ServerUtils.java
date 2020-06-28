@@ -35,9 +35,10 @@ public class ServerUtils {
 	}
 
 
+	// not Bukkit method because of Bungee
 
 	public static boolean isMainThread(){
-		return Thread.currentThread().equals(Common.thr);
+		return Thread.currentThread().equals(Common.mainThread);
 	}
 
 	public static void wantMainThread(){

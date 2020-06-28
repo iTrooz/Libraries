@@ -1,4 +1,4 @@
 name: Libraries
 version: '1.0'
-main: fr.entasia.libraries.Bungee
+main: fr.entasia.libraries.bungee.Bungee
 author: iTrooz_

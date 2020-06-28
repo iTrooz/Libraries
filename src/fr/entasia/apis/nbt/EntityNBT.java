@@ -3,7 +3,6 @@ package fr.entasia.apis.nbt;
 import fr.entasia.errors.EntasiaException;
 import org.bukkit.entity.Entity;
 
-import javax.annotation.Nullable;
 import java.lang.reflect.Method;
 
 public class EntityNBT {

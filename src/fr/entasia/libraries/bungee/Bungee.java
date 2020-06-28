@@ -1,9 +1,10 @@
-package fr.entasia.libraries;
+package fr.entasia.libraries.bungee;
 
-import fr.entasia.apis.ServerUtils;
 import fr.entasia.apis.socket.SocketClient;
 import fr.entasia.apis.socket.SocketEvent;
 import fr.entasia.apis.sql.SQLSecurity;
+import fr.entasia.apis.utils.ServerUtils;
+import fr.entasia.libraries.Common;
 import fr.entasia.libraries.bungee.listeners.BaseListeners;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.config.ServerInfo;
@@ -77,33 +78,32 @@ public class Bungee extends Plugin{
 
 			// Events de base pour le socket
 
-			SocketClient.addListener(new SocketEvent("send") {
-			     @Override
-			     public void onEvent(String[] data) {
-			         ProxiedPlayer p = ProxyServer.getInstance().getPlayer(data[0]);
-			         ServerInfo t = ProxyServer.getInstance().getServerInfo(data[1]);
-			         if (t != null && p != null) p.connect(t);
-			     }
-			});
-
-
 			// Chargement des listeners
 			getProxy().getPluginManager().registerListener(this, new BaseListeners());
 
+			others();
 
 		}catch(Throwable e){
 			e.printStackTrace();
 			stopServer();
 		}
-
-
-
-
 	}
-
 
 	@Override
 	public void onDisable() {
 		getLogger().info("[Librairies] Librairies globales déchargées");
+	}
+
+
+	private static void others() throws Throwable {
+
+		SocketClient.addListener(new SocketEvent("send") {
+			@Override
+			public void onEvent(String[] data) {
+				ProxiedPlayer p = ProxyServer.getInstance().getPlayer(data[0]);
+				ServerInfo t = ProxyServer.getInstance().getServerInfo(data[1]);
+				if (t != null && p != null) p.connect(t);
+			}
+		});
 	}
 }
