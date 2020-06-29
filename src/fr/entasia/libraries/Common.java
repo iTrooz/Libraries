@@ -34,7 +34,6 @@ public abstract class Common {
 			Properties prop = new Properties();
 			prop.load(new FileInputStream("server.properties"));
 			ServerUtils.serverName = prop.getProperty("server-name");
-			fr.entasia.apis.ServerUtils.serverName = ServerUtils.serverName;
 			if(ServerUtils.serverName == null){
 				logger.severe("server name is not defined");
 				if(!enableDev)return false;
