@@ -16,9 +16,9 @@ public class TextUtils {
 	public static String setColors(String msg) {
 		char[] list = msg.toCharArray();
 		for(int i=1;i<list.length;i++){
-			if(list[i]=='&'){
-				if(ChatColor.getByChar(list[i-1])!=null){
-					list[i] = '§';
+			if(list[i-1]=='&'){
+				if(ChatColor.getByChar(list[i])!=null){
+					list[i-1] = '§';
 				}
 			}
 		}
@@ -33,11 +33,6 @@ public class TextUtils {
 
 	private static final int[] d = {60, 60, 24, 30, 12, 100};
 	private static final String[] n = {"seconde","minute","heure","jour","mois","année","siècle"};
-
-	public static void main(String[] fa){
-		System.out.println(secondsToTime(426424218));
-	}
-
 
 	public static String secondsToTime(int seconds){
 		int[] t = new int[n.length];
