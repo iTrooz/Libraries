@@ -22,7 +22,11 @@ public class BaseListeners implements Listener {
 		if(!Common.enableDev){
 			UUID b = UUID.nameUUIDFromBytes(("OfflinePlayer:"+e.getConnection().getName()).getBytes());
 			if(e.getConnection().getUniqueId().equals(b)){
-				if(SocketClient.isConnected){
+				if(Common.enableSocket&&!SocketClient.isConnected) {
+					e.setCancelled(true);
+					e.setCancelReason(new TextComponent("§cProblème de connexion avec un service §bEnta§7sia§c. Patience un peu." +
+							"\n\nEncore des problèmes après 5 minutes ? Contacte un membre du staff."));
+				}else{
 					try {
 						Common.sql.checkConnect();
 						PreparedStatement ps = Common.sql.connection.prepareStatement("UPDATE playerdata.global SET address=? WHERE uuid=?");
@@ -42,10 +46,6 @@ public class BaseListeners implements Listener {
 						e.setCancelReason(new TextComponent("§cDésolé , quelque chose s'est mal passé. Réesaye de te connecter." +
 								"\n\nEncore des problèmes après 5 minutes ? Contacte un membre du staff"));
 					}
-				}else {
-					e.setCancelled(true);
-					e.setCancelReason(new TextComponent("§cProblème de connexion avec un service §bEnta§7sia§c. Patience un peu." +
-							"\n\nEncore des problèmes après 5 minutes ? Contacte un membre du staff."));
 				}
 			}else{
 				e.setCancelled(true);
