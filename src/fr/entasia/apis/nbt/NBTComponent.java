@@ -70,10 +70,6 @@ public class NBTComponent {
 		}
 	}
 
-	public void setKeyString(String key, Object value) {
-		setKeyString(key, value.toString());
-	}
-
 	public void setValue(NBTTypes type, String key, Object value) {
 		try{
 			type.setter.invoke(rawnbt, key, value);
@@ -93,6 +89,12 @@ public class NBTComponent {
 		}
 		return null;
 	}
+
+	@Deprecated
+	public void setKeyString(String key, Object value) {
+		setKeyString(key, value.toString());
+	}
+
 	@Deprecated
 	public void setKeyString(String key, String value) {
 		try{
@@ -113,12 +115,6 @@ public class NBTComponent {
 			e.printStackTrace();
 		}
 		return null;
-	}
-
-	public String getKeyStringSafe(String key) {
-		String a = getKeyString(key);
-		if(a==null)return "";
-		else return a;
 	}
 
 
