@@ -25,8 +25,6 @@ import java.util.UUID;
 
 public class ItemUtils {
 
-	public static Gson gson = new Gson();
-
 	private static final ArrayList<String> skulls = new ArrayList<>();
 
 	private static Class<?> craftWorldClass;

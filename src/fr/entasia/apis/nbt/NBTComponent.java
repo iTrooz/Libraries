@@ -115,6 +115,12 @@ public class NBTComponent {
 		return null;
 	}
 
+	public String getKeyStringSafe(String key) {
+		String a = getKeyString(key);
+		if(a==null)return "";
+		else return a;
+	}
+
 
 
 //	public void setList(String key) {
@@ -145,6 +151,12 @@ public class NBTComponent {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public NBTComponent getComponentSafe(String key) {
+		NBTComponent a = getComponent(key);
+		if(a==null)return new NBTComponent();
+		else return a;
 	}
 
 	public String toString(){
