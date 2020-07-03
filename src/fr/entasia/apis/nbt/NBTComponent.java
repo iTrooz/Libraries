@@ -7,7 +7,7 @@ public class NBTComponent {
 
 //	public static Method mapGetter;
 //	public static Field mapProperty;
-	public static Method fusion, setPreciseTag, setString, delString, getString, getList, setList, getCompound;
+	public static Method fusion, setPreciseTag, delKey, getList, setList, getCompound;
 
 	protected Object rawnbt;
 
@@ -64,7 +64,7 @@ public class NBTComponent {
 
 	public void delKey(String key) {
 		try{
-			delString.invoke(rawnbt, key);
+			delKey.invoke(rawnbt, key);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -74,18 +74,39 @@ public class NBTComponent {
 		setKeyString(key, value.toString());
 	}
 
-	public void setKeyString(String key, String value) {
+	public void setValue(NBTTypes type, String key, Object value) {
 		try{
-			setString.invoke(rawnbt, key, value);
+			type.setter.invoke(rawnbt, key, value);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Nullable
+	public Object getValue(NBTTypes type, String key) {
+		try{
+			Object a = type.getter.invoke(rawnbt, key);
+			if(a.equals(""))return null;
+			else return a;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	@Deprecated
+	public void setKeyString(String key, String value) {
+		try{
+			NBTTypes.String.setter.invoke(rawnbt, key, value);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Nullable
+	@Deprecated
 	public String getKeyString(String key) {
 		try{
-			String a = (String) getString.invoke(rawnbt, key);
+			String a = (String) NBTTypes.String.getter.invoke(rawnbt, key);
 			if(a.equals(""))return null;
 			return a;
 		} catch (Exception e) {
