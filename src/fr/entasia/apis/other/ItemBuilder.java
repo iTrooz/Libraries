@@ -3,6 +3,7 @@ package fr.entasia.apis.other;
 import fr.entasia.apis.nbt.ItemNBT;
 import fr.entasia.apis.nbt.NBTComponent;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -49,8 +50,13 @@ public class ItemBuilder {
 	}
 
 	public ItemBuilder nbt(NBTComponent nbt){
-		item.setItemMeta(meta);
+		item.setItemMeta(meta); // obligé
 		ItemNBT.setNBT(item, nbt);
+		return this;
+	}
+
+	public ItemBuilder enchant(Enchantment ench, int lvl){
+		item.addEnchantment(ench, lvl);
 		return this;
 	}
 
