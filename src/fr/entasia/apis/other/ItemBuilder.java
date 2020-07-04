@@ -56,7 +56,7 @@ public class ItemBuilder {
 	}
 
 	public ItemBuilder enchant(Enchantment ench, int lvl){
-		item.addEnchantment(ench, lvl);
+		item.addUnsafeEnchantment(ench, lvl);
 		return this;
 	}
 
