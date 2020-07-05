@@ -16,7 +16,11 @@ public class ItemBuilder {
 	public ItemMeta meta;
 
 	public ItemBuilder(Material type){
-		item = new ItemStack(type);
+		this(type, 1);
+	}
+
+	public ItemBuilder(Material type, int count){
+		item = new ItemStack(type, count);
 		meta = item.getItemMeta();
 	}
 

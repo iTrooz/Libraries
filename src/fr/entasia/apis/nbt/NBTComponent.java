@@ -78,7 +78,7 @@ public class NBTComponent {
 		}
 	}
 
-	@Nullable
+//	@Nullable
 	public Object getValue(NBTTypes type, String key) {
 		try{
 			Object a = type.getter.invoke(rawnbt, key);

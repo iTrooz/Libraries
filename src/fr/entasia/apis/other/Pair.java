@@ -1,21 +1,22 @@
 package fr.entasia.apis.other;
 
+// raison : Bungee ne dispose pas de org.apache.commons
 public class Pair<A, B> {
 
-    public A a;
-    public B b;
+    public A key;
+    public B value;
 
     public Pair(){
 
     }
 
     public Pair(A a, B b){
-        this.a = a;
-        this.b = b;
+        this.key = a;
+        this.value = b;
     }
 
     @Override
     public String toString() {
-        return "Pair{"+"a="+a+" | b="+b+"}";
+        return "Pair{"+"a="+ key +" | b="+ value +"}";
     }
 }
