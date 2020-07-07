@@ -34,17 +34,13 @@ public class ReflectionUtils {
 		return Class.forName("org.bukkit.craftbukkit."+ServerUtils.version+"." + c);
 	}
 
-	public static void setField(Object obj, String field, Object value) {
-		try{
-			Field f = obj.getClass().getDeclaredField(field);
-			f.setAccessible(true);
-			f.set(obj, value);
-		}catch(ReflectiveOperationException e){
-			e.printStackTrace();
-		}
+	public static void setField(Object obj, String field, Object value) throws ReflectiveOperationException {
+		Field f = obj.getClass().getDeclaredField(field);
+		f.setAccessible(true);
+		f.set(obj, value);
 	}
 
-	public static Object getField(Object obj, String field) throws Exception {
+	public static Object getField(Object obj, String field) throws ReflectiveOperationException {
 		Field f = obj.getClass().getDeclaredField(field);
 		f.setAccessible(true);
 		return f.get(obj);

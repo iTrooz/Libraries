@@ -15,7 +15,7 @@ public class ServerUtils {
 	public static boolean bungeeMode;
 
 	public static boolean isGameServer(){
-		return !(serverName.equalsIgnoreCase("login")||serverName.equalsIgnoreCase("hub"));
+		return !(serverName==null||serverName.equalsIgnoreCase("login")||serverName.equalsIgnoreCase("hub"));
 	}
 
 	public static void permMsg(String perm, String... lines){
