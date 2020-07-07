@@ -50,7 +50,6 @@ public class Bungee extends Plugin{
 			if (!getDataFolder().exists()) {
 				getDataFolder().mkdir();
 			}
-			BungeeCordLauncher
 
 			configFile = new File(getDataFolder(), "config.yml");
 			if(!configFile.exists())Files.copy(getResourceAsStream("config.yml"), configFile.toPath());
