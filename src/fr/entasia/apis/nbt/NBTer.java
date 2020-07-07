@@ -5,7 +5,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.lang.reflect.Method;
 
-public class NBTer {
+public class NBTer { // on juge pas le nom de la class merci :)
 
 	/*
 		NBTComponent.mapProperty = TagCompoundClass.getDeclaredField("map");

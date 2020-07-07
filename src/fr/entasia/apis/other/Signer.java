@@ -18,7 +18,7 @@ public class Signer {
     public static PacketContainer pc = null;
     public static boolean activate=false;
 
-    private static Map<String, Signer.SignReponse> listeners = new HashMap<>();
+    private static final Map<String, SignReponse> listeners = new HashMap<>();
 
     public static boolean open(Player p, SignReponse r) {
         open(p, 0 , 0, 0, r);
