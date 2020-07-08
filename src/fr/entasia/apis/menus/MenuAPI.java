@@ -90,7 +90,7 @@ public class MenuAPI implements Listener {
 							}
 						}
 					}
-				}catch(Exception e2){
+				}catch(Throwable e2){
 					e.setCancelled(true);
 					e2.printStackTrace();
 					ServerUtils.permMsg("staff.errormsgs", "\n\n",
