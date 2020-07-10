@@ -59,6 +59,11 @@ public class ItemBuilder {
 		return this;
 	}
 
+	public ItemBuilder enchant(Enchantment ench){
+		item.addUnsafeEnchantment(ench, 1);
+		return this;
+	}
+
 	public ItemBuilder enchant(Enchantment ench, int lvl){
 		item.addUnsafeEnchantment(ench, lvl);
 		return this;

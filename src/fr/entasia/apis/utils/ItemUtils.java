@@ -151,8 +151,6 @@ public class ItemUtils {
 		if(ServerUtils.version.equals("v1_9_R2"))o = new Ownering(op.getName());
 		else o = new Ownering(op);
 		placeSkullAsync(inv, slot, item, o, plugin);
-//		WorldServer a;
-//		a.getTileEntity()
 	}
 
 	public static void placeSkullAsync(Inventory inv, final int slot, final ItemStack item, final String owner, JavaPlugin plugin){

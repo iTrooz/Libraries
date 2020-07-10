@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 public class SocketClient {
 
 	public static Logger logger = Logger.getLogger("SocketClient");
-	public static Logger debug = Logger.getLogger("SocketDebug");
+//	public static Logger debug = Logger.getLogger("SocketDebug");
 	public static boolean isConnected = false;
 	public static boolean firstStartDone = false; // pour savoir dans quel Thead on est
 	public static boolean run = true;
@@ -32,7 +32,7 @@ public class SocketClient {
 			String msg;
 			while(run){
 				if(isConnected) {
-					debug.info("waiting for msg");
+//					debug.info("waiting for msg");
 					try {
 						msg = in.readLine();
 						if (msg == null) throw new IOException("Disconnected from server");
@@ -41,7 +41,7 @@ public class SocketClient {
 						continue;
 					}
 
-					logger.info("Nouveau paquet : " + msg);
+//					debug.info("Nouveau paquet : " + msg);
 					String[] arg = msg.split(" ");
 					String key = arg[0];
 					arg = Arrays.copyOfRange(arg, 1, arg.length);
