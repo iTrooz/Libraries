@@ -24,6 +24,11 @@ public class ItemBuilder {
 		meta = item.getItemMeta();
 	}
 
+	public ItemBuilder(Material type, int count, ItemMeta meta){
+		item = new ItemStack(type, count);
+		this.meta = meta;
+	}
+
 	public ItemBuilder damage(short damage){
 		item.setDurability(damage);
 		return this;
