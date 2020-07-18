@@ -1,6 +1,5 @@
 package fr.entasia.apis.regionManager.api;
 
-import fr.entasia.apis.utils.MathUtils;
 import fr.entasia.apis.utils.BasicLocation;
 import fr.entasia.libraries.paper.Paper;
 import fr.entasia.libraries.paper.listeners.RegionEventTrigger;
@@ -31,13 +30,13 @@ public class RegionManager {
 				w = Bukkit.getWorld(regionsConfig.getString(i + ".world"));
 				if (w == null) Paper.main.getLogger().info("Région " + i + " non chargée : monde invalide");
 				else {
-					x = (int) MathUtils.getLower(regionsConfig.getInt(i + ".b1.x"), regionsConfig.getInt(i + ".b2.x"));
-					y = (int) MathUtils.getLower(regionsConfig.getInt(i + ".b1.y"), regionsConfig.getInt(i + ".b2.y"));
-					z = (int) MathUtils.getLower(regionsConfig.getInt(i + ".b1.z"), regionsConfig.getInt(i + ".b2.z"));
+					x = Math.min(regionsConfig.getInt(i + ".b1.x"), regionsConfig.getInt(i + ".b2.x"));
+					y = Math.min(regionsConfig.getInt(i + ".b1.y"), regionsConfig.getInt(i + ".b2.y"));
+					z = Math.min(regionsConfig.getInt(i + ".b1.z"), regionsConfig.getInt(i + ".b2.z"));
 					BasicLocation lower = new BasicLocation(x, y, z);
-					x = (int) MathUtils.getGreater(regionsConfig.getInt(i + ".b1.x"), regionsConfig.getInt(i + ".b2.x"));
-					y = (int) MathUtils.getGreater(regionsConfig.getInt(i + ".b1.y"), regionsConfig.getInt(i + ".b2.y"));
-					z = (int) MathUtils.getGreater(regionsConfig.getInt(i + ".b1.z"), regionsConfig.getInt(i + ".b2.z"));
+					x = Math.max(regionsConfig.getInt(i + ".b1.x"), regionsConfig.getInt(i + ".b2.x"));
+					y = Math.max(regionsConfig.getInt(i + ".b1.y"), regionsConfig.getInt(i + ".b2.y"));
+					z = Math.max(regionsConfig.getInt(i + ".b1.z"), regionsConfig.getInt(i + ".b2.z"));
 					regs.add(new Region(i, lower, new BasicLocation(x, y, z), w));
 					Paper.main.getLogger().info("Région " + i + " chargée");
 				}

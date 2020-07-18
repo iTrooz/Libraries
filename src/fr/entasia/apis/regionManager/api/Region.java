@@ -1,15 +1,14 @@
 package fr.entasia.apis.regionManager.api;
 
 import fr.entasia.apis.utils.BasicLocation;
-import fr.entasia.apis.utils.MathUtils;
 import org.bukkit.Location;
 import org.bukkit.World;
 
 public class Region {
 
-	private World world;
-	private BasicLocation bound1, bound2;
-	private String name;
+	private final World world;
+	private final BasicLocation bound1, bound2;
+	private final String name;
 	
 	public Region(String n, BasicLocation b1, BasicLocation b2, World w){
 		name = n;
@@ -18,10 +17,14 @@ public class Region {
 		world = w;
 	}
 
+	private boolean between(int a, int min, int max){
+		return a>=min&&a<=max;
+	}
+
 	public boolean containsLocation(Location loc) {
-		return (loc.getWorld() == getWorld()&& MathUtils.isBetween(loc.getBlockX(), bound1.x, bound2.x) &&
-				MathUtils.isBetween(loc.getBlockY(), bound1.y, bound2.y) &&
-				MathUtils.isBetween(loc.getBlockZ(), bound1.z, bound2.z));
+		return (loc.getWorld() == getWorld()&& between(loc.getBlockX(), bound1.x, bound2.x) &&
+				between(loc.getBlockY(), bound1.y, bound2.y) &&
+				between(loc.getBlockZ(), bound1.z, bound2.z));
 	}
 	
 	public String getName(){
