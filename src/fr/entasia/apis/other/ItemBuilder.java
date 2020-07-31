@@ -8,6 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class ItemBuilder {
@@ -50,6 +51,11 @@ public class ItemBuilder {
 
 	public ItemBuilder lore(ArrayList<String> lore){
 		meta.setLore(lore);
+		return this;
+	}
+
+	public ItemBuilder lore(String... lore){
+		meta.setLore(Arrays.asList(lore));
 		return this;
 	}
 
