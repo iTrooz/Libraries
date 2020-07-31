@@ -4,12 +4,14 @@ import fr.entasia.apis.nbt.ItemNBT;
 import fr.entasia.apis.nbt.NBTComponent;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class ItemBuilder {
 
@@ -49,7 +51,7 @@ public class ItemBuilder {
 		return this;
 	}
 
-	public ItemBuilder lore(ArrayList<String> lore){
+	public ItemBuilder lore(List<String> lore){
 		meta.setLore(lore);
 		return this;
 	}
@@ -77,6 +79,18 @@ public class ItemBuilder {
 
 	public ItemBuilder enchant(Enchantment ench, int lvl){
 		meta.addEnchant(ench, lvl, true);
+		return this;
+	}
+
+	// Attention, ne pas utiliser avec enchant();
+	public ItemBuilder fakeEnchant(){
+		meta.addEnchant(Enchantment.LURE, 1,true);
+		meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		return this;
+	}
+
+	public ItemBuilder flags(ItemFlag... flags){
+		meta.addItemFlags(flags);
 		return this;
 	}
 

@@ -94,7 +94,7 @@ public class MenuAPI implements Listener {
 					e.setCancelled(true);
 					e2.printStackTrace();
 					ServerUtils.permMsg("staff.errormsgs", "\n\n",
-							"------§4§lERREUR RENCONTREE AVEC L'API DE MENUS PREVENEZ ITROOZ IMMEDIATEMMENT !",
+							"------§4§lERREUR RENCONTREE AVEC L'API DE MENUS : PREVENEZ ITROOZ IMMEDIATEMMENT !",
 							"Joueur : "+e.getWhoClicked().getName(),
 							"\n\n");
 				}
@@ -157,7 +157,7 @@ public class MenuAPI implements Listener {
 
 													try{
 														md.menu.onFreeSlotClick(mce);
-													}catch(Exception e2){
+													}catch(Throwable e2){
 														e2.printStackTrace();
 													}
 													break;
@@ -177,7 +177,7 @@ public class MenuAPI implements Listener {
 					e.setCancelled(true);
 					e2.printStackTrace();
 					ServerUtils.permMsg("staff.errormsgs", "\n\n",
-							"------§4§lERREUR RENCONTREE AVEC L'API DE MENUS PREVENEZ ITROOZ IMMEDIATEMMENT !",
+							"------§4§lERREUR RENCONTREE AVEC L'API DE MENUS : PREVENEZ ITROOZ IMMEDIATEMMENT !",
 							"Joueur : " + e.getWhoClicked().getName(),
 							"\n\n");
 				}
