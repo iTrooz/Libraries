@@ -137,7 +137,7 @@ public class MenuAPI implements Listener {
 									if (md.menu.containFlag(MenuFlag.AllItemsTrigger) || ItemUtils.hasName(e.getCurrentItem())) {
 										try{
 											md.menu.onMenuClick(mce);
-										}catch(Exception e2){
+										}catch(Throwable e2){
 											e2.printStackTrace();
 										}
 									}
