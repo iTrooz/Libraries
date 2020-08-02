@@ -66,9 +66,8 @@ public class Signer {
                     String[] a = event.getPacket().getStringArrays().read(0);
                     try{
                         r.onFinish(a);
-                    }catch(Exception e){
+                    }catch(Throwable e){
                         e.printStackTrace();
-                        System.out.println("Exception caught (problème d'un plugin externe)");
                     }
                 }
             }
