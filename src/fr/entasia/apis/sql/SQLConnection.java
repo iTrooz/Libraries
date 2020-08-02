@@ -116,7 +116,7 @@ public class SQLConnection {
 	}
 
 	public void broadcastError(){
-		ServerUtils.permMsg("errorlog", "§cUne erreur s'est produite lors d'une requête SQL ! PREVENIR ITROOZ D'URGENCE");
+		ServerUtils.permMsg("log.sqlerror", "§cUne erreur s'est produite lors d'une requête SQL ! PREVENIR ITROOZ D'URGENCE");
 	}
 
 }
