@@ -94,7 +94,6 @@ public class SQLConnection {
 		return ps.executeQuery();
 	}
 
-	@Nullable
 	public int fastUpdate(String requ, Object... args){
 		try{
 			return fastUpdateUnsafe(requ, args);
