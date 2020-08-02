@@ -1,7 +1,5 @@
 package fr.entasia.apis.utils;
 
-import net.minecraft.server.v1_12_R1.PlayerConnection;
-import org.bukkit.Effect;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Field;

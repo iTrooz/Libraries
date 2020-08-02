@@ -7,15 +7,6 @@ import java.lang.reflect.Method;
 
 public class NBTer { // on juge pas le nom de la class merci :)
 
-	/*
-		NBTComponent.mapProperty = TagCompoundClass.getDeclaredField("map");
-		NBTComponent.mapProperty.setAccessible(true);
-
-		Class<?> mapClass = HashMap.class;
-
-		NBTComponent.mapGetter = mapClass.getDeclaredMethod("get", Object.class);
-	 */
-
 	public static Class<?> TagCompoundClass;
 
 	public static Method parseNBT;
@@ -39,7 +30,10 @@ public class NBTer { // on juge pas le nom de la class merci :)
 		}
 
 		NBTComponent.getList = TagCompoundClass.getDeclaredMethod("remove", String.class);
-		NBTComponent.getCompound = TagCompoundClass.getDeclaredMethod("getCompound", String.class);
+		NBTComponent.getAny = TagCompoundClass.getDeclaredMethod("get", String.class);
+
+		NBTComponent.mapField = TagCompoundClass.getDeclaredField("map");
+		NBTComponent.mapField.setAccessible(true);
 
 
 		// ITEM

@@ -1,20 +1,17 @@
 package fr.entasia.apis.nbt;
 
 import javax.annotation.Nullable;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Map;
 
 public class NBTComponent {
 
-//	public static Method mapGetter;
-//	public static Field mapProperty;
-	public static Method fusion, setPreciseTag, delKey, getList, setList, getCompound;
+	public static Method fusion, setPreciseTag, delKey, getList, setList, getAny;
+	public static Field mapField;
 
+	public Map<String, Object> map;
 	protected Object rawnbt;
-
-	@Deprecated
-	public void setNBT(Object nbt){
-		this.rawnbt = nbt;
-	}
 
 	@Deprecated
 	public Object getRawNBT(){
@@ -27,27 +24,30 @@ public class NBTComponent {
 
 	protected NBTComponent(Object nbt){
 		this.rawnbt = nbt;
+		try{
+			map = (Map<String, Object>) mapField.get(nbt);
+		}catch(ReflectiveOperationException e){
+			e.printStackTrace();
+		}
 	}
 
 	public NBTComponent(String nbt){
-		this.rawnbt = NBTer.rawParseNBT(nbt);
+		this(NBTer.rawParseNBT(nbt));
 	}
 
 	public NBTComponent(){
-		this.rawnbt = NBTer.rawParseNBT("{}");
+		this(NBTer.rawParseNBT("{}"));
 	}
 
 
-
-	@Deprecated
-	public void setCompound(NBTComponent toAdd) {
-		fusion(toAdd);
+	public boolean isEmpty() {
+		return map.size()==0;
 	}
 
 	public void setComponent(String key, NBTComponent toAdd) {
 		try{
 			setPreciseTag.invoke(rawnbt, key, toAdd.rawnbt);
-		} catch (Exception e) {
+		} catch (ReflectiveOperationException e) {
 			e.printStackTrace();
 		}
 	}
@@ -55,7 +55,7 @@ public class NBTComponent {
 	public void fusion(NBTComponent toAdd) {
 		try{
 			fusion.invoke(rawnbt, toAdd.rawnbt);
-		} catch (Exception e) {
+		} catch (ReflectiveOperationException e) {
 			e.printStackTrace();
 		}
 	}
@@ -65,7 +65,7 @@ public class NBTComponent {
 	public void delKey(String key) {
 		try{
 			delKey.invoke(rawnbt, key);
-		} catch (Exception e) {
+		} catch (ReflectiveOperationException e) {
 			e.printStackTrace();
 		}
 	}
@@ -73,7 +73,7 @@ public class NBTComponent {
 	public void setValue(NBTTypes type, String key, Object value) {
 		try{
 			type.setter.invoke(rawnbt, key, value);
-		} catch (Exception e) {
+		} catch (ReflectiveOperationException e) {
 			e.printStackTrace();
 		}
 	}
@@ -84,7 +84,7 @@ public class NBTComponent {
 			Object a = type.getter.invoke(rawnbt, key);
 			if(a.equals(""))return null;
 			else return a;
-		} catch (Exception e) {
+		} catch (ReflectiveOperationException e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -99,7 +99,7 @@ public class NBTComponent {
 	public void setKeyString(String key, String value) {
 		try{
 			NBTTypes.String.setter.invoke(rawnbt, key, value);
-		} catch (Exception e) {
+		} catch (ReflectiveOperationException e) {
 			e.printStackTrace();
 		}
 	}
@@ -111,7 +111,7 @@ public class NBTComponent {
 			String a = (String) NBTTypes.String.getter.invoke(rawnbt, key);
 			if(a.equals(""))return null;
 			return a;
-		} catch (Exception e) {
+		} catch (ReflectiveOperationException e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -122,7 +122,7 @@ public class NBTComponent {
 //	public void setList(String key) {
 //		try{
 //			mapGetter.invoke(mapProperty.get(rawnbt), key);
-//		} catch (Exception e) {
+//		} catch (ReflectiveOperationException e) {
 //			e.printStackTrace();
 //		}
 //	}
@@ -131,7 +131,7 @@ public class NBTComponent {
 //	public String getList(String key) {
 //		try{
 //			Object o = mapGetter.invoke(mapProperty.get(rawnbt), key);
-//		} catch (Exception e) {
+//		} catch (ReflectiveOperationException e) {
 //			e.printStackTrace();
 //		}
 //		return null;
@@ -142,11 +142,13 @@ public class NBTComponent {
 	@Nullable
 	public NBTComponent getComponent(String key) {
 		try{
-			return new NBTComponent(getCompound.invoke(rawnbt, key));
-		} catch (Exception e) {
+			Object o = getAny.invoke(rawnbt, key);
+			if(o==null)return null;
+			else return new NBTComponent(o);
+		} catch (ReflectiveOperationException e) {
 			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 
 	public NBTComponent getComponentSafe(String key) {

@@ -1,6 +1,5 @@
 package fr.entasia.apis.utils;
 
-import com.google.gson.Gson;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import fr.entasia.errors.EntasiaException;
