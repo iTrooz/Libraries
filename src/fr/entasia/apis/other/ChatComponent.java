@@ -45,7 +45,10 @@ public class ChatComponent {
 		return this;
 	}
 
-
+	public ChatComponent setTextHover(String s){
+		setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(s)));
+		return this;
+	}
 
 	public ChatComponent setHoverEvent(HoverEvent hover){
 		for(BaseComponent b : comps) b.setHoverEvent(hover);
@@ -61,7 +64,6 @@ public class ChatComponent {
 		for(BaseComponent b : comps) b.setColor(color);
 		return this;
 	}
-
 
 
 //	public static BaseComponent[] create(BaseComponent[]... compos){
