@@ -1,5 +1,6 @@
 package fr.entasia.apis.utils;
 
+import fr.entasia.errors.MirrorException;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Field;
@@ -14,40 +15,67 @@ public class ReflectionUtils {
 	public static Class<?> Packet;
 
 	static {
-		try {
-			CraftPlayer = getOBCClass("entity.CraftPlayer");
-			EntityPlayer = getNMSClass("EntityPlayer");
-			PlayerConnection = getNMSClass("PlayerConnection");
-			Packet = getNMSClass("Packet");
-		} catch (ReflectiveOperationException ex) {
-			ex.printStackTrace();
+		CraftPlayer = getOBCClass("entity.CraftPlayer");
+		EntityPlayer = getNMSClass("EntityPlayer");
+		PlayerConnection = getNMSClass("PlayerConnection");
+		Packet = getNMSClass("Packet");
+	}
+
+	public static Class<?> getNMSClass(String c) {
+		try{
+			return Class.forName("net.minecraft.server." + ServerUtils.version + "." + c);
+		}catch(ReflectiveOperationException e) {
+			e.printStackTrace();
+			throw new MirrorException(e);
 		}
 	}
 
-	public static Class<?> getNMSClass(String c) throws ClassNotFoundException {
-		return Class.forName("net.minecraft.server." + ServerUtils.version + "." + c);
+	public static Class<?> getOBCClass(String c) {
+		try{
+			return Class.forName("org.bukkit.craftbukkit."+ServerUtils.version+"." + c);
+		}catch(ReflectiveOperationException e){
+			e.printStackTrace();
+			throw new MirrorException(e);
+		}
 	}
 
-	public static Class<?> getOBCClass(String c) throws ClassNotFoundException {
-		return Class.forName("org.bukkit.craftbukkit."+ServerUtils.version+"." + c);
+	public static void setField(Object obj, String field, Object value) {
+		try{
+			Field f = obj.getClass().getDeclaredField(field);
+			f.setAccessible(true);
+			f.set(obj, value);
+		}catch(ReflectiveOperationException e){
+			e.printStackTrace();
+			throw new MirrorException(e);
+		}
 	}
 
-	public static void setField(Object obj, String field, Object value) throws ReflectiveOperationException {
-		Field f = obj.getClass().getDeclaredField(field);
-		f.setAccessible(true);
-		f.set(obj, value);
-	}
-
-	public static Object getField(Object obj, String field) throws ReflectiveOperationException {
-		Field f = obj.getClass().getDeclaredField(field);
-		f.setAccessible(true);
-		return f.get(obj);
-	}
-
-	public static void sendPacket(Player p, Object packet){
+	public static Object getField(Object obj, String field) {
 		try {
-			Method getHandle = CraftPlayer.getDeclaredMethod("getHandle");
-			Object o = getHandle.invoke(p);
+			Field f = obj.getClass().getDeclaredField(field);
+			f.setAccessible(true);
+			return f.get(obj);
+		}catch(ReflectiveOperationException e) {
+			e.printStackTrace();
+			throw new MirrorException(e);
+		}
+	}
+
+	public static Object getNMS(Object o) {
+		try{
+			Method getHandle = o.getClass().getSuperclass().getDeclaredMethod("getHandle");
+			return getHandle.invoke(o);
+		}catch(ReflectiveOperationException e){
+			e.printStackTrace();
+			throw new MirrorException(e);
+		}
+	}
+
+
+
+	public static void sendPacket(Player p, Object packet) {
+		try {
+			Object o = getNMS(p);
 			Field pc = EntityPlayer.getDeclaredField("playerConnection");
 			o = pc.get(o);
 			Method send = PlayerConnection.getDeclaredMethod("sendPacket", Packet);
