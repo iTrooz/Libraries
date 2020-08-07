@@ -14,6 +14,7 @@ import java.lang.reflect.Method;
 // pour la réflection & les packets (oui je sais le nom est pas bon)
 public class ReflectionUtils {
 
+	public static Class<?> CraftMagicNumbers;
 	public static Class<?> CraftPlayer;
 	public static Class<?> CraftBlockState;
 	public static Class<?> EntityPlayer;
@@ -21,6 +22,7 @@ public class ReflectionUtils {
 	public static Class<?> Packet;
 
 	static {
+		CraftMagicNumbers = getOBCClass("util.CraftMagicNumbers");
 		CraftPlayer = getOBCClass("entity.CraftPlayer");
 		CraftBlockState = getOBCClass("block.CraftBlockState");
 		EntityPlayer = getNMSClass("EntityPlayer");
@@ -68,17 +70,18 @@ public class ReflectionUtils {
 		}
 	}
 
-	public static Object getNMS(Block b) {
-		try{
-			Method method = CraftBlockState.getDeclaredMethod("getHandle");
-			Object i = method.invoke(b.getState());
-			method = i.getClass().getDeclaredMethod("getBlock");
-			return method.invoke(i);
-		}catch(ReflectiveOperationException e){
-			e.printStackTrace();
-			throw new MirrorException(e);
-		}
-	}
+//	public static Object getNMS(Block b) {
+//		try{
+//			CraftMagicNumbers
+//			Method method = CraftBlockState.getDeclaredMethod("getHandle");
+//			Object i = method.invoke(b.getState());
+//			method = i.getClass().getDeclaredMethod("getBlock");
+//			return method.invoke(i);
+//		}catch(ReflectiveOperationException e){
+//			e.printStackTrace();
+//			throw new MirrorException(e);
+//		}
+//	}
 
 	public static Object getNMS(Object o) {
 		try{
