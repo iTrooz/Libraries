@@ -1,6 +1,11 @@
 package fr.entasia.apis.utils;
 
 import fr.entasia.errors.MirrorException;
+import net.minecraft.server.v1_12_R1.IBlockData;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
+import org.bukkit.craftbukkit.v1_12_R1.block.CraftBlock;
+import org.bukkit.craftbukkit.v1_12_R1.block.CraftBlockState;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Field;
@@ -10,12 +15,14 @@ import java.lang.reflect.Method;
 public class ReflectionUtils {
 
 	public static Class<?> CraftPlayer;
+	public static Class<?> CraftBlockState;
 	public static Class<?> EntityPlayer;
 	public static Class<?> PlayerConnection;
 	public static Class<?> Packet;
 
 	static {
 		CraftPlayer = getOBCClass("entity.CraftPlayer");
+		CraftBlockState = getOBCClass("block.CraftBlockState");
 		EntityPlayer = getNMSClass("EntityPlayer");
 		PlayerConnection = getNMSClass("PlayerConnection");
 		Packet = getNMSClass("Packet");
@@ -61,16 +68,27 @@ public class ReflectionUtils {
 		}
 	}
 
-	public static Object getNMS(Object o) {
+	public static Object getNMS(Block b) {
 		try{
-			Method getHandle = o.getClass().getSuperclass().getDeclaredMethod("getHandle");
-			return getHandle.invoke(o);
+			Method method = CraftBlockState.getDeclaredMethod("getHandle");
+			Object i = method.invoke(b.getState());
+			method = i.getClass().getDeclaredMethod("getBlock");
+			return method.invoke(i);
 		}catch(ReflectiveOperationException e){
 			e.printStackTrace();
 			throw new MirrorException(e);
 		}
 	}
 
+	public static Object getNMS(Object o) {
+		try{
+			Method getHandle = o.getClass().getDeclaredMethod("getHandle");
+			return getHandle.invoke(o);
+		}catch(ReflectiveOperationException e){
+			e.printStackTrace();
+			throw new MirrorException(e);
+		}
+	}
 
 
 	public static void sendPacket(Player p, Object packet) {
