@@ -1,13 +1,11 @@
 package fr.entasia.apis.utils;
 
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.Vector;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.Locale;
 import java.util.UUID;
 
 public class PlayerUtils {

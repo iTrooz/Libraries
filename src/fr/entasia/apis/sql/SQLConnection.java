@@ -4,7 +4,6 @@ import fr.entasia.apis.utils.ServerUtils;
 
 import javax.annotation.Nullable;
 import java.sql.*;
-import java.util.HashSet;
 
 public class SQLConnection {
 

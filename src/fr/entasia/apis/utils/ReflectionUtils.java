@@ -1,11 +1,6 @@
 package fr.entasia.apis.utils;
 
 import fr.entasia.errors.MirrorException;
-import net.minecraft.server.v1_12_R1.IBlockData;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockState;
-import org.bukkit.craftbukkit.v1_12_R1.block.CraftBlock;
-import org.bukkit.craftbukkit.v1_12_R1.block.CraftBlockState;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Field;
