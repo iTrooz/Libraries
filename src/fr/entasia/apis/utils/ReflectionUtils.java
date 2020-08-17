@@ -1,6 +1,7 @@
 package fr.entasia.apis.utils;
 
 import fr.entasia.errors.MirrorException;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Field;
@@ -15,19 +16,23 @@ public class ReflectionUtils {
 	public static Class<?> EntityPlayer;
 	public static Class<?> PlayerConnection;
 	public static Class<?> Packet;
+	public static Class<?> MinecraftServer;
+	public static Object servInst;
 
-	static {
+	public static void initBukkit(){
 		CraftMagicNumbers = getOBCClass("util.CraftMagicNumbers");
 		CraftPlayer = getOBCClass("entity.CraftPlayer");
 		CraftBlockState = getOBCClass("block.CraftBlockState");
 		EntityPlayer = getNMSClass("EntityPlayer");
 		PlayerConnection = getNMSClass("PlayerConnection");
 		Packet = getNMSClass("Packet");
+		MinecraftServer = getNMSClass("MinecraftServer");
+		servInst = getField(Bukkit.getServer(), "console");
 	}
 
 	public static Class<?> getNMSClass(String c) {
 		try{
-			return Class.forName("net.minecraft.server." + ServerUtils.version + "." + c);
+			return Class.forName("net.minecraft.server." + ServerUtils.getVersionStr() + "." + c);
 		}catch(ReflectiveOperationException e) {
 			e.printStackTrace();
 			throw new MirrorException(e);
@@ -36,7 +41,7 @@ public class ReflectionUtils {
 
 	public static Class<?> getOBCClass(String c) {
 		try{
-			return Class.forName("org.bukkit.craftbukkit."+ServerUtils.version+"." + c);
+			return Class.forName("org.bukkit.craftbukkit."+ServerUtils.getVersionStr() +"." + c);
 		}catch(ReflectiveOperationException e){
 			e.printStackTrace();
 			throw new MirrorException(e);

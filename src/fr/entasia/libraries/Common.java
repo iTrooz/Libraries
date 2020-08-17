@@ -59,7 +59,6 @@ public abstract class Common {
 
 	public static void main(String[] fa){
 		Class<?> cl = JavaPlugin.class;
-		System.out.println(cl.getInterfaces().length);
 	}
 
 //	public static void loadAPIs() throws Throwable {

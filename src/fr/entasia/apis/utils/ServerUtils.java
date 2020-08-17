@@ -9,10 +9,25 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public class ServerUtils {
-	public static String version;
+
+	protected static String versionStr;
+	protected static int majorVersion;
+	protected static int minorVersion;
 	public static String serverName;
 	public static boolean bukkit;
 	public static boolean bungeeMode;
+
+	public static String getVersionStr(){
+		return versionStr;
+	}
+
+	public static int getMajorVersion(){
+		return majorVersion;
+	}
+
+	public static int getMinorVersion(){
+		return minorVersion;
+	}
 
 	public static boolean isGameServer(){
 		return !(serverName==null||serverName.equalsIgnoreCase("login")||serverName.equalsIgnoreCase("hub"));

@@ -1,5 +1,6 @@
 package fr.entasia.libraries.paper;
 
+import com.google.common.reflect.Reflection;
 import fr.entasia.apis.events.bukkit.ServerStartEvent;
 import fr.entasia.apis.menus.MenuAPI;
 import fr.entasia.apis.nbt.NBTer;
@@ -7,9 +8,12 @@ import fr.entasia.apis.other.InstantFirework;
 import fr.entasia.apis.other.Signer;
 import fr.entasia.apis.regionManager.api.RegionManager;
 import fr.entasia.apis.sql.SQLSecurity;
+import fr.entasia.apis.utils.Internal;
+import fr.entasia.apis.utils.ReflectionUtils;
 import fr.entasia.apis.utils.ServerUtils;
 import fr.entasia.libraries.Common;
 import fr.entasia.libraries.paper.listeners.BaseListener;
+import io.netty.util.internal.ReflectionUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;
@@ -43,10 +47,10 @@ public class Paper extends JavaPlugin {
 		    Common.logger = getLogger();
 		    ServerUtils.bukkit = true;
 		    ServerUtils.bungeeMode = Bukkit.spigot().getConfig().getBoolean("settings.bungeecord", false);
-		    ServerUtils.version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
-//		    fr.entasia.apis.ServerUtils.bukkit = ServerUtils.bukkit;
-//		    fr.entasia.apis.ServerUtils.bungeeMode = ServerUtils.bungeeMode;
-//		    fr.entasia.apis.ServerUtils.version = ServerUtils.version;
+			Internal.setVersionStr(Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3]);
+			ReflectionUtils.initBukkit();
+			String ver = (String)ReflectionUtils.MinecraftServer.getDeclaredMethod("getVersion").invoke(ReflectionUtils.servInst);
+			Internal.setVersionInt(ver);
 
 
 		    // Configuration

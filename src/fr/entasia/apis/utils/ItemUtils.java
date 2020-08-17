@@ -147,7 +147,7 @@ public class ItemUtils {
 	public static void placeSkullAsync(Inventory inv, final int slot, final ItemStack item, final OfflinePlayer op, JavaPlugin plugin){
 		assert op!=null;
 		Ownering o;
-		if(ServerUtils.version.equals("v1_9_R2"))o = new Ownering(op.getName());
+		if(ServerUtils.getMajorVersion()<=9)o = new Ownering(op.getName());
 		else o = new Ownering(op);
 		placeSkullAsync(inv, slot, item, o, plugin);
 	}

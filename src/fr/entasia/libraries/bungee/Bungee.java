@@ -3,6 +3,7 @@ package fr.entasia.libraries.bungee;
 import fr.entasia.apis.socket.SocketClient;
 import fr.entasia.apis.socket.SocketEvent;
 import fr.entasia.apis.sql.SQLSecurity;
+import fr.entasia.apis.utils.Internal;
 import fr.entasia.apis.utils.ServerUtils;
 import fr.entasia.libraries.Common;
 import fr.entasia.libraries.bungee.listeners.BaseListeners;
@@ -38,7 +39,6 @@ public class Bungee extends Plugin{
 		try{
 			// Définition des variables utiles
 			main=this;
-			ServerUtils.version = "BungeeCord";
 			Common.logger = getLogger();
 			ServerUtils.bukkit = false;
 

@@ -12,10 +12,10 @@ public class NBTer { // on juge pas le nom de la class merci :)
 	public static Method parseNBT;
 
 	public static void init() throws Throwable {
-		TagCompoundClass = Class.forName("net.minecraft.server." + ServerUtils.version + ".NBTTagCompound");
+		TagCompoundClass = Class.forName("net.minecraft.server." + ServerUtils.getVersionStr() + ".NBTTagCompound");
 
-		Class<?> MojangsonParserClass = Class.forName("net.minecraft.server." + ServerUtils.version + ".MojangsonParser");
-		Class<?> NBTBase = Class.forName("net.minecraft.server." + ServerUtils.version + ".NBTBase");
+		Class<?> MojangsonParserClass = Class.forName("net.minecraft.server." + ServerUtils.getVersionStr() + ".MojangsonParser");
+		Class<?> NBTBase = Class.forName("net.minecraft.server." + ServerUtils.getVersionStr() + ".NBTBase");
 
 		parseNBT = MojangsonParserClass.getDeclaredMethod("parse", String.class);
 
@@ -37,8 +37,8 @@ public class NBTer { // on juge pas le nom de la class merci :)
 
 
 		// ITEM
-		Class<?> NMSItemStackClass = Class.forName("net.minecraft.server." + ServerUtils.version + ".ItemStack");
-		Class<?> CraftItemStackClass = Class.forName("org.bukkit.craftbukkit." + ServerUtils.version + ".inventory.CraftItemStack");
+		Class<?> NMSItemStackClass = Class.forName("net.minecraft.server." + ServerUtils.getVersionStr() + ".ItemStack");
+		Class<?> CraftItemStackClass = Class.forName("org.bukkit.craftbukkit." + ServerUtils.getVersionStr() + ".inventory.CraftItemStack");
 
 		ItemNBT.getNMSItem = CraftItemStackClass.getMethod("asNMSCopy", ItemStack.class);
 		ItemNBT.getNMSItemTag = NMSItemStackClass.getMethod("getTag");
@@ -48,12 +48,12 @@ public class NBTer { // on juge pas le nom de la class merci :)
 
 
 		// ENTITY
-		Class<?> NMSEntityClass = Class.forName("net.minecraft.server." + ServerUtils.version + ".Entity");
-		Class<?> CraftEntityClass = Class.forName("org.bukkit.craftbukkit." + ServerUtils.version + ".entity.CraftEntity");
+		Class<?> NMSEntityClass = Class.forName("net.minecraft.server." + ServerUtils.getVersionStr() + ".Entity");
+		Class<?> CraftEntityClass = Class.forName("org.bukkit.craftbukkit." + ServerUtils.getVersionStr() + ".entity.CraftEntity");
 
 		EntityNBT.getNMSEntity = CraftEntityClass.getDeclaredMethod("getHandle");
 
-		if (ServerUtils.version.startsWith("v1_9_R2") || ServerUtils.version.startsWith("v1_10") || ServerUtils.version.startsWith("v1_11")) {
+		if (ServerUtils.getMajorVersion()<12) {
 			EntityNBT.getNMSEntityNBT = NMSEntityClass.getDeclaredMethod("e", TagCompoundClass);
 		} else {
 			EntityNBT.getNMSEntityNBT = NMSEntityClass.getDeclaredMethod("save", TagCompoundClass);
