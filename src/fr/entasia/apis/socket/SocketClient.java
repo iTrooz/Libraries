@@ -16,7 +16,6 @@ import java.util.logging.Logger;
 public class SocketClient {
 
 	public static Logger logger = Logger.getLogger("SocketClient");
-//	public static Logger debug = Logger.getLogger("SocketDebug");
 	public static boolean isConnected = false;
 	public static boolean firstStartDone = false; // pour savoir dans quel Thead on est
 	public static boolean run = true;
