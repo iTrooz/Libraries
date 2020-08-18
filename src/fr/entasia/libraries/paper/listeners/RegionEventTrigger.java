@@ -45,18 +45,18 @@ public class RegionEventTrigger implements Listener {
 	}
 	
 	private void trigger(Player p, Location from, Location to, RegionAction t){
-		List<Region> fromregs = RegionManager.getRegionsAtLocation(from);
-		List<Region> toregs = RegionManager.getRegionsAtLocation(to);
+		List<Region> fromRegions = RegionManager.getRegionsAtLocation(from);
+		List<Region> toRegions = RegionManager.getRegionsAtLocation(to);
+		if(fromRegions.size()==0&&toRegions.size()==0)return;
 			
-		for(Region reg : fromregs){
-			if(!toregs.contains(reg)){
+		for(Region reg : fromRegions){
+			if(!toRegions.contains(reg)){
 				Bukkit.getPluginManager().callEvent(new RegionLeaveEvent(reg, p, t));
 			}
-				
 		}
 			
-		for(Region reg : toregs){
-			if(!fromregs.contains(reg)){
+		for(Region reg : toRegions){
+			if(!fromRegions.contains(reg)){
 				Bukkit.getPluginManager().callEvent(new RegionEnterEvent(reg, p, t));
 			}
 		}

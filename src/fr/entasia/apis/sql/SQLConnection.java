@@ -2,7 +2,6 @@ package fr.entasia.apis.sql;
 
 import fr.entasia.apis.utils.ServerUtils;
 
-import javax.annotation.Nullable;
 import java.sql.*;
 
 public class SQLConnection {
@@ -62,26 +61,11 @@ public class SQLConnection {
 		return false;
 	}
 
-	public boolean checkConnect() {
+	public void checkConnect() {
 		try{
-			if(!connection.isValid(60)){
-				return connect();
-			}
+			if(!connection.isValid(60)) connect();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		return false;
-	}
-
-	@Nullable
-	@Deprecated
-	public ResultSet fastSelect(String requ, Object... args){
-		try{
-			return fastSelectUnsafe(requ, args);
-		}catch(SQLException e){
-			e.printStackTrace();
-			broadcastError();
-			return null;
 		}
 	}
 

@@ -19,9 +19,9 @@ public class RegionManager {
 	public static File regionsFile = new File(Paper.main.getDataFolder()+"/regions.yml");
 	public static FileConfiguration regionsConfig;
 
-	private static ArrayList<Region> regs = new ArrayList<>();
+	private static final ArrayList<Region> regs = new ArrayList<>();
 
-	public static boolean init() {
+	public static void init() throws Throwable {
 		if (regionsFile.exists()) {
 			regionsConfig = YamlConfiguration.loadConfiguration(regionsFile);
 			int x, y, z;
@@ -37,20 +37,14 @@ public class RegionManager {
 					x = Math.max(regionsConfig.getInt(i + ".b1.x"), regionsConfig.getInt(i + ".b2.x"));
 					y = Math.max(regionsConfig.getInt(i + ".b1.y"), regionsConfig.getInt(i + ".b2.y"));
 					z = Math.max(regionsConfig.getInt(i + ".b1.z"), regionsConfig.getInt(i + ".b2.z"));
-					regs.add(new Region(i, lower, new BasicLocation(x, y, z), w));
+					regs.add(new Region(i.toLowerCase(), lower, new BasicLocation(x, y, z), w));
 					Paper.main.getLogger().info("Région " + i + " chargée");
 				}
 			}
 		}else{
-			try {
-				if (!regionsFile.createNewFile()) throw new IOException("File not created");
-			} catch (IOException e) {
-				e.printStackTrace();
-				return false;
-			}
+			if (!regionsFile.createNewFile()) throw new IOException("File not created");
 		}
 		Paper.main.getServer().getPluginManager().registerEvents(new RegionEventTrigger(), Paper.main);
-		return true;
 	}
 
 //	public static void addRegion(String name, Location b1, Location b2, World w){
@@ -59,10 +53,10 @@ public class RegionManager {
 //		Bukkit.getLogger().info("Nouvelle région chargée : "+name);
 //	}
 
-	public static Region getRegionByName(String r){
-		r = r.toLowerCase();
+	public static Region getRegionByName(String name){
+		name = name.toLowerCase();
 		for(Region i : regs){
-			if(i.getName().equals(r)){
+			if(i.getName().equals(name)){
 				return i;
 			}
 		}

@@ -3,6 +3,7 @@ package fr.entasia.apis.utils;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import fr.entasia.errors.EntasiaException;
+import fr.entasia.errors.LibraryException;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -72,7 +73,7 @@ public class ItemUtils {
 			}
 
 
-		}catch(Exception e){
+		}catch(ReflectiveOperationException e){
 			e.printStackTrace();
 		}
 	}
@@ -100,7 +101,7 @@ public class ItemUtils {
 	public static GameProfile getProfile(SkullMeta im) {
 		try {
 			return (GameProfile) ITProfileField.get(im);
-		} catch (Exception e) {
+		} catch (ReflectiveOperationException e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -117,7 +118,7 @@ public class ItemUtils {
 				setGameProfile.invoke(tile, profile);
 				b.getState().update(true);
 			}
-		}catch(Exception e){
+		}catch(ReflectiveOperationException e){
 			e.printStackTrace();
 		}
 	}
@@ -132,7 +133,7 @@ public class ItemUtils {
 			else{
 				return (GameProfile) BLProfileField.get(tile);
 			}
-		}catch(Exception e){
+		}catch(ReflectiveOperationException e){
 			e.printStackTrace();
 		}
 		return null;
@@ -206,7 +207,7 @@ public class ItemUtils {
 
 
 	public static boolean damage(ItemStack item, int by){
-		if(item.getType().getMaxDurability()==0)throw new EntasiaException("Invalid item : no durability");
+		if(item.getType().getMaxDurability()==0)throw new LibraryException("Invalid item : no durability");
 		short dura = (short) (item.getDurability()+by);
 		if(dura>item.getType().getMaxDurability()){
 			item.setType(Material.AIR);

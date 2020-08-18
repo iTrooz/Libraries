@@ -1,6 +1,5 @@
 package fr.entasia.libraries.paper;
 
-import com.google.common.reflect.Reflection;
 import fr.entasia.apis.events.bukkit.ServerStartEvent;
 import fr.entasia.apis.menus.MenuAPI;
 import fr.entasia.apis.nbt.NBTer;
@@ -13,7 +12,6 @@ import fr.entasia.apis.utils.ReflectionUtils;
 import fr.entasia.apis.utils.ServerUtils;
 import fr.entasia.libraries.Common;
 import fr.entasia.libraries.paper.listeners.BaseListener;
-import io.netty.util.internal.ReflectionUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;

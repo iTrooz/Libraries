@@ -10,6 +10,7 @@ public class RegionLeaveEvent extends EntasiaEvent {
 	private Region r;
 	private Player p;
 	private RegionAction tt;
+
 	public RegionLeaveEvent(Region r, Player p, RegionAction tt) {
 		this.r = r;
 		this.p = p;

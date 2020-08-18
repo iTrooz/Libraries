@@ -1,4 +1,4 @@
-package fr.entasia.libraries.bungee.listeners;
+package fr.entasia.libraries.bungee;
 
 
 import fr.entasia.apis.other.ChatComponent;
