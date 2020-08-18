@@ -29,8 +29,11 @@ public class ItemUtils {
 	private static Class<?> CraftWorld;
 	private static Constructor<?> blockPosConstruct;
 
-	private static Field profileField;
-	private static Method getHandle, getTileEntity, setGameProfile, getGameProfile;
+	// items
+	private static Field ITProfileField;
+	// blocks
+	private static Field BLProfileField;
+	private static Method getHandle, getTileEntity, setGameProfile;
 
 
 	public static boolean hasName(ItemStack item){
@@ -46,8 +49,8 @@ public class ItemUtils {
 	static {
 		try{
 			SkullMeta meta = (SkullMeta) Bukkit.getItemFactory().getItemMeta(Material.SKULL_ITEM);
-			profileField = meta.getClass().getDeclaredField("profile");
-			profileField.setAccessible(true);
+			ITProfileField = meta.getClass().getDeclaredField("profile");
+			ITProfileField.setAccessible(true);
 
 			CraftWorld = ReflectionUtils.getOBCClass("CraftWorld");
 			Class<?> tileSkullClass = ReflectionUtils.getNMSClass("TileEntitySkull");
@@ -62,7 +65,11 @@ public class ItemUtils {
 			getTileEntity = World.getDeclaredMethod("getTileEntity", BlockPosition);
 
 			setGameProfile = tileSkullClass.getDeclaredMethod("setGameProfile", GameProfile.class);
-			getGameProfile = tileSkullClass.getDeclaredMethod("getGameProfile");
+			if(ServerUtils.getMajorVersion()<14){
+				BLProfileField = tileSkullClass.getDeclaredField("g");
+			}else{
+				BLProfileField = tileSkullClass.getDeclaredField("gameProfile");
+			}
 
 
 		}catch(Exception e){
@@ -83,7 +90,7 @@ public class ItemUtils {
 
 	public static void setTexture(SkullMeta im, GameProfile profile) {
 		try {
-			profileField.set(im, profile);
+			ITProfileField.set(im, profile);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -92,7 +99,7 @@ public class ItemUtils {
 	@Nullable
 	public static GameProfile getProfile(SkullMeta im) {
 		try {
-			return (GameProfile) profileField.get(im);
+			return (GameProfile) ITProfileField.get(im);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -123,7 +130,7 @@ public class ItemUtils {
 			Object tile = getTileEntity.invoke(nmsW, blockPosConstruct.newInstance(b.getX(), b.getY(), b.getZ()));
 			if(tile==null)throw new EntasiaException("Invalid tile");
 			else{
-				return (GameProfile) getGameProfile.invoke(tile);
+				return (GameProfile) BLProfileField.get(tile);
 			}
 		}catch(Exception e){
 			e.printStackTrace();
