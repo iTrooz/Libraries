@@ -1,6 +1,7 @@
 package fr.entasia.apis.sql;
 
 import fr.entasia.apis.utils.ServerUtils;
+import org.bukkit.event.EventHandler;
 
 import java.sql.*;
 
@@ -61,12 +62,14 @@ public class SQLConnection {
 		return false;
 	}
 
-	public void checkConnect() {
+	public boolean checkConnect() {
 		try{
-			if(!connection.isValid(60)) connect();
+			if(!connection.isValid(60)) return connect();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
+		return true;
 	}
 
 	public ResultSet fastSelectUnsafe(String requ, Object... args) throws SQLException {
