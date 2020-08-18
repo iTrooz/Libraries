@@ -26,7 +26,7 @@ public class ItemUtils {
 
 	private static final ArrayList<String> skulls = new ArrayList<>();
 
-	private static Class<?> craftWorldClass;
+	private static Class<?> CraftWorld;
 	private static Constructor<?> blockPosConstruct;
 
 	private static Field profileField;
@@ -49,15 +49,17 @@ public class ItemUtils {
 			profileField = meta.getClass().getDeclaredField("profile");
 			profileField.setAccessible(true);
 
-			craftWorldClass = ReflectionUtils.getOBCClass("CraftWorld");
+			CraftWorld = ReflectionUtils.getOBCClass("CraftWorld");
 			Class<?> tileSkullClass = ReflectionUtils.getNMSClass("TileEntitySkull");
-			Class<?> worldServerClass = ReflectionUtils.getNMSClass("WorldServer");
-			Class<?> blockPositionClass = ReflectionUtils.getNMSClass("BlockPosition");
+//			Class<?> WorldServer = ReflectionUtils.getNMSClass("WorldServer");
+			Class<?> World = ReflectionUtils.getNMSClass("World");
+			Class<?> BlockPosition = ReflectionUtils.getNMSClass("BlockPosition");
 
-			blockPosConstruct = blockPositionClass.getConstructor(int.class, int.class, int.class);
+			blockPosConstruct = BlockPosition.getConstructor(int.class, int.class, int.class);
 
-			getHandle = craftWorldClass.getDeclaredMethod("getHandle");
-			getTileEntity = worldServerClass.getDeclaredMethod("getTileEntity", blockPositionClass);
+			getHandle = CraftWorld.getDeclaredMethod("getHandle");
+//			getTileEntity = worldServerClass.getDeclaredMethod("getTileEntity", blockPositionClass);
+			getTileEntity = World.getDeclaredMethod("getTileEntity", BlockPosition);
 
 			setGameProfile = tileSkullClass.getDeclaredMethod("setGameProfile", GameProfile.class);
 			getGameProfile = tileSkullClass.getDeclaredMethod("getGameProfile");
@@ -99,7 +101,7 @@ public class ItemUtils {
 
 	public static void setTexture(Block b, GameProfile profile) {
 		try{
-			Object craftW = craftWorldClass.cast(b.getWorld());
+			Object craftW = CraftWorld.cast(b.getWorld());
 			Object nmsW = getHandle.invoke(craftW);
 			Object tile = getTileEntity.invoke(nmsW, blockPosConstruct.newInstance(b.getX(), b.getY(), b.getZ()));
 			if(tile==null)throw new EntasiaException("Invalid tile");
@@ -116,7 +118,7 @@ public class ItemUtils {
 	@Nullable
 	public static GameProfile getProfile(Block b) {
 		try{
-			Object craftW = craftWorldClass.cast(b.getWorld());
+			Object craftW = CraftWorld.cast(b.getWorld());
 			Object nmsW = getHandle.invoke(craftW);
 			Object tile = getTileEntity.invoke(nmsW, blockPosConstruct.newInstance(b.getX(), b.getY(), b.getZ()));
 			if(tile==null)throw new EntasiaException("Invalid tile");
