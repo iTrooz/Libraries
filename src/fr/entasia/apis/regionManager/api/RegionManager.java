@@ -54,6 +54,7 @@ public class RegionManager {
 //	}
 
 	public static Region getRegionByName(String name){
+		if(name==null)return null;
 		name = name.toLowerCase();
 		for(Region i : regs){
 			if(i.getName().equals(name)){
@@ -64,6 +65,7 @@ public class RegionManager {
 	}
 
 	public static List<Region> getRegionsAtLocation(Location loc) {
+		if(loc==null)return null;
 		ArrayList<Region> reg = new ArrayList<>();
 		for(Region r : regs){
 			if(r.containsLocation(loc)){

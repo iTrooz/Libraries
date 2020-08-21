@@ -30,6 +30,21 @@ public class ChatComponent {
 		append(String.join("\n", lines));
 	}
 
+	public ChatComponent insertFirst(String text){
+		comps.addAll(0, Arrays.asList(TextComponent.fromLegacyText(text)));
+		return this;
+	}
+
+	public ChatComponent insertFirst(ChatComponent cc){
+		comps.addAll(0, cc.comps);
+		return this;
+	}
+
+	public ChatComponent insertFirst(BaseComponent[] cc){
+		comps.addAll(0, Arrays.asList(cc));
+		return this;
+	}
+
 	public ChatComponent append(String text){
 		comps.addAll(Arrays.asList(TextComponent.fromLegacyText(text)));
 		return this;
