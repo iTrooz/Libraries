@@ -78,12 +78,9 @@ public class NBTComponent {
 		}
 	}
 
-//	@Nullable
 	public Object getValue(NBTTypes type, String key) {
 		try{
-			Object a = type.getter.invoke(rawnbt, key);
-			if(a.equals(""))return null;
-			else return a;
+			return type.getter.invoke(rawnbt, key);
 		} catch (ReflectiveOperationException e) {
 			e.printStackTrace();
 		}

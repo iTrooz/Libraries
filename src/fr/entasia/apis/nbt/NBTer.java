@@ -1,6 +1,7 @@
 package fr.entasia.apis.nbt;
 
 import fr.entasia.apis.utils.ServerUtils;
+import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import org.bukkit.inventory.ItemStack;
 
 import java.lang.reflect.Method;
