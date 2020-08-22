@@ -78,7 +78,7 @@ public class NBTComponent {
 		}
 	}
 
-	public Object getValue(NBTTypes type, String key) {
+	public Object getValue(NBTTypes type, String key) { // peut return un string vide
 		try{
 			return type.getter.invoke(rawnbt, key);
 		} catch (ReflectiveOperationException e) {
