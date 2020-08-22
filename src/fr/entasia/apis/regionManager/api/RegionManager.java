@@ -13,7 +13,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class RegionManager {
 
@@ -62,6 +64,9 @@ public class RegionManager {
 	}
 
 	public static Region getRegionByName(String name){
+		return getRegion(name);
+	}
+	public static Region getRegion(String name){
 		if(name==null)return null;
 		name = name.toLowerCase();
 		for(Region i : regs){
@@ -72,15 +77,20 @@ public class RegionManager {
 		return null;
 	}
 
-	public static List<Region> getRegionsAtLocation(Location loc) {
+	@Deprecated
+	public static Set<Region> getRegionsAtLocation(Location loc) {
+		return getRegionsAt(loc);
+	}
+
+	public static Set<Region> getRegionsAt(Location loc) {
 		if(loc==null)return null;
-		ArrayList<Region> reg = new ArrayList<>();
+		HashSet<Region> set = new HashSet<>();
 		for(Region r : regs){
 			if(r.containsLocation(loc)){
-				reg.add(r);
+				set.add(r);
 			}
 		}
-		return reg;
+		return set;
 	}
 	
 }
