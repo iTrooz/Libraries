@@ -78,19 +78,19 @@ public class RegionManager {
 	}
 
 	@Deprecated
-	public static Set<Region> getRegionsAtLocation(Location loc) {
+	public static List<Region> getRegionsAtLocation(Location loc) {
 		return getRegionsAt(loc);
 	}
 
-	public static Set<Region> getRegionsAt(Location loc) {
+	public static List<Region> getRegionsAt(Location loc) {
 		if(loc==null)return null;
-		HashSet<Region> set = new HashSet<>();
+		List<Region> list = new ArrayList<>();
 		for(Region r : regs){
 			if(r.containsLocation(loc)){
-				set.add(r);
+				list.add(r);
 			}
 		}
-		return set;
+		return list;
 	}
 	
 }
