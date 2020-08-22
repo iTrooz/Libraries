@@ -6,15 +6,15 @@ import org.bukkit.World;
 
 public class Region {
 
+	private final String name;
 	private final World world;
 	private final BasicLocation bound1, bound2;
-	private final String name;
-	
-	public Region(String n, BasicLocation b1, BasicLocation b2, World w){
+
+	public Region(String n, World w, BasicLocation b1, BasicLocation b2){
 		name = n;
+		world = w;
 		bound1 = b1;
 		bound2 = b2;
-		world = w;
 	}
 
 	private boolean between(int a, int min, int max){

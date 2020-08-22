@@ -7,6 +7,10 @@ public class BasicLocation {
 	public int y;
 	public int z;
 
+	public BasicLocation(){
+
+	}
+
 	public BasicLocation(Location loc){
 		this(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ());
 	}

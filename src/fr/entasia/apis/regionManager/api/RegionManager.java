@@ -31,14 +31,15 @@ public class RegionManager {
 				w = Bukkit.getWorld(regionsConfig.getString(i + ".world"));
 				if (w == null) Paper.main.getLogger().info("Région " + i + " non chargée : monde invalide");
 				else {
-					x = Math.min(regionsConfig.getInt(i + ".b1.x"), regionsConfig.getInt(i + ".b2.x"));
-					y = Math.min(regionsConfig.getInt(i + ".b1.y"), regionsConfig.getInt(i + ".b2.y"));
-					z = Math.min(regionsConfig.getInt(i + ".b1.z"), regionsConfig.getInt(i + ".b2.z"));
-					BasicLocation lower = new BasicLocation(x, y, z);
-					x = Math.max(regionsConfig.getInt(i + ".b1.x"), regionsConfig.getInt(i + ".b2.x"));
-					y = Math.max(regionsConfig.getInt(i + ".b1.y"), regionsConfig.getInt(i + ".b2.y"));
-					z = Math.max(regionsConfig.getInt(i + ".b1.z"), regionsConfig.getInt(i + ".b2.z"));
-					regs.add(new Region(i.toLowerCase(), lower, new BasicLocation(x, y, z), w));
+					BasicLocation bound1 = new BasicLocation();
+					bound1.x = regionsConfig.getInt(i + ".b1.x");
+					bound1.y = regionsConfig.getInt(i + ".b1.y");
+					bound1.z = regionsConfig.getInt(i + ".b1.z");
+					BasicLocation bound2 = new BasicLocation();
+					bound2.x = regionsConfig.getInt(i + ".b2.x");
+					bound2.y = regionsConfig.getInt(i + ".b2.y");
+					bound2.z = regionsConfig.getInt(i + ".b2.z");
+					registerRegion(i, w, bound1, bound2);
 					Paper.main.getLogger().info("Région " + i + " chargée");
 				}
 			}
@@ -48,10 +49,16 @@ public class RegionManager {
 		Paper.main.getServer().getPluginManager().registerEvents(new RegionEventTrigger(), Paper.main);
 	}
 
-	public static void registerRegion(String name, Location b1, Location b2, World w){
-		name = name.toLowerCase();
-		regs.add(new Region(name, new BasicLocation(b1), new BasicLocation(b2), w));
-		Common.logger.info("Région chargée dynamiquement : "+name);
+	public static void registerRegion(String name, World w, BasicLocation bound1, BasicLocation bound2){
+		BasicLocation a = new BasicLocation();
+		a.x = Math.min(bound1.getX(), bound2.getX());
+		a.y = Math.min(bound1.getX(), bound2.getX());
+		a.z = Math.min(bound1.getX(), bound2.getX());
+		BasicLocation b = new BasicLocation();
+		b.x = Math.min(bound1.getX(), bound2.getX());
+		b.y = Math.min(bound1.getX(), bound2.getX());
+		b.z = Math.min(bound1.getX(), bound2.getX());
+		regs.add(new Region(name.toLowerCase(), w, b, b));
 	}
 
 	public static Region getRegionByName(String name){
