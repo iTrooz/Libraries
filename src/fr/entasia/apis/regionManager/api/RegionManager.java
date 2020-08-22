@@ -1,6 +1,7 @@
 package fr.entasia.apis.regionManager.api;
 
 import fr.entasia.apis.utils.BasicLocation;
+import fr.entasia.libraries.Common;
 import fr.entasia.libraries.paper.Paper;
 import fr.entasia.libraries.paper.listeners.RegionEventTrigger;
 import org.bukkit.Bukkit;
@@ -47,11 +48,11 @@ public class RegionManager {
 		Paper.main.getServer().getPluginManager().registerEvents(new RegionEventTrigger(), Paper.main);
 	}
 
-//	public static void addRegion(String name, Location b1, Location b2, World w){
-//		name = name.toLowerCase();
-//		regs.add(new Region(name, b1, b2, w));
-//		Bukkit.getLogger().info("Nouvelle région chargée : "+name);
-//	}
+	public static void registerRegion(String name, Location b1, Location b2, World w){
+		name = name.toLowerCase();
+		regs.add(new Region(name, new BasicLocation(b1), new BasicLocation(b2), w));
+		Common.logger.info("Région chargée dynamiquement : "+name);
+	}
 
 	public static Region getRegionByName(String name){
 		if(name==null)return null;

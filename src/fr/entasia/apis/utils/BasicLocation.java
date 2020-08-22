@@ -1,9 +1,15 @@
 package fr.entasia.apis.utils;
 
+import org.bukkit.Location;
+
 public class BasicLocation {
 	public int x;
 	public int y;
 	public int z;
+
+	public BasicLocation(Location loc){
+		this(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ());
+	}
 
 	public BasicLocation(int x, int y, int z){
 		this.x = x;
