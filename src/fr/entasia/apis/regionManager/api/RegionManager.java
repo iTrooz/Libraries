@@ -51,7 +51,7 @@ public class RegionManager {
 		Paper.main.getServer().getPluginManager().registerEvents(new RegionEventTrigger(), Paper.main);
 	}
 
-	public static void registerRegion(String name, World w, BasicLocation bound1, BasicLocation bound2){
+	public static Region registerRegion(String name, World w, BasicLocation bound1, BasicLocation bound2){
 		BasicLocation a = new BasicLocation();
 		a.x = Math.min(bound1.getX(), bound2.getX());
 		a.y = Math.min(bound1.getX(), bound2.getX());
@@ -60,12 +60,16 @@ public class RegionManager {
 		b.x = Math.min(bound1.getX(), bound2.getX());
 		b.y = Math.min(bound1.getX(), bound2.getX());
 		b.z = Math.min(bound1.getX(), bound2.getX());
-		regs.add(new Region(name.toLowerCase(), w, b, b));
+		Region reg = new Region(name.toLowerCase(), w, b, b);
+		regs.add(reg);
+		return reg;
 	}
 
+	@Deprecated
 	public static Region getRegionByName(String name){
 		return getRegion(name);
 	}
+
 	public static Region getRegion(String name){
 		if(name==null)return null;
 		name = name.toLowerCase();

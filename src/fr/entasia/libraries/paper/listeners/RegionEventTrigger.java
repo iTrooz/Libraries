@@ -31,22 +31,22 @@ public class RegionEventTrigger implements Listener {
 	
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e){
-		for(Region reg : RegionManager.getRegionsAtLocation(e.getPlayer().getLocation())){
+		for(Region reg : RegionManager.getRegionsAt(e.getPlayer().getLocation())){
 			Bukkit.getPluginManager().callEvent(new RegionEnterEvent(reg, e.getPlayer(), RegionAction.JOIN_QUIT));
 		}
 	}
 	
 	@EventHandler
 	public void onQuit(PlayerQuitEvent e){
-		for(Region reg : RegionManager.getRegionsAtLocation(e.getPlayer().getLocation())){
+		for(Region reg : RegionManager.getRegionsAt(e.getPlayer().getLocation())){
 			Bukkit.getPluginManager().callEvent(new RegionLeaveEvent(reg, e.getPlayer(), RegionAction.JOIN_QUIT));
 		}
 		
 	}
 	
 	private void trigger(Player p, Location from, Location to, RegionAction t){
-		List<Region> fromRegions = RegionManager.getRegionsAtLocation(from);
-		List<Region> toRegions = RegionManager.getRegionsAtLocation(to);
+		List<Region> fromRegions = RegionManager.getRegionsAt(from);
+		List<Region> toRegions = RegionManager.getRegionsAt(to);
 		if(fromRegions.size()==0&&toRegions.size()==0)return;
 			
 		for(Region reg : fromRegions){
