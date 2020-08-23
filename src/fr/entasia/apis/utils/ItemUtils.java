@@ -71,6 +71,7 @@ public class ItemUtils {
 			}else{
 				BLProfileField = tileSkullClass.getDeclaredField("gameProfile");
 			}
+			BLProfileField.setAccessible(true);
 
 
 		}catch(ReflectiveOperationException e){
