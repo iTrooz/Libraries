@@ -32,4 +32,8 @@ public class BasicLocation {
 	public int getZ(){
 		return z;
 	}
+
+	public String toString(){
+		return "BasicLocation["+x+";"+y+";"+z+"]";
+	}
 }

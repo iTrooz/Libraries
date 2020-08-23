@@ -42,7 +42,6 @@ public class RegionManager {
 					bound2.y = regionsConfig.getInt(i + ".b2.y");
 					bound2.z = regionsConfig.getInt(i + ".b2.z");
 					registerRegion(i, w, bound1, bound2);
-					Paper.main.getLogger().info("Région " + i + " chargée");
 				}
 			}
 		}else{
@@ -51,17 +50,18 @@ public class RegionManager {
 		Paper.main.getServer().getPluginManager().registerEvents(new RegionEventTrigger(), Paper.main);
 	}
 
-	public static Region registerRegion(String name, World w, BasicLocation bound1, BasicLocation bound2){
-		BasicLocation a = new BasicLocation();
-		a.x = Math.min(bound1.getX(), bound2.getX());
-		a.y = Math.min(bound1.getX(), bound2.getX());
-		a.z = Math.min(bound1.getX(), bound2.getX());
-		BasicLocation b = new BasicLocation();
-		b.x = Math.min(bound1.getX(), bound2.getX());
-		b.y = Math.min(bound1.getX(), bound2.getX());
-		b.z = Math.min(bound1.getX(), bound2.getX());
-		Region reg = new Region(name.toLowerCase(), w, b, b);
+	public static Region registerRegion(String name, World w, BasicLocation t1, BasicLocation t2){
+		BasicLocation bound1 = new BasicLocation();
+		bound1.x = Math.min(t1.getX(), t2.getX());
+		bound1.y = Math.min(t1.getY(), t2.getY());
+		bound1.z = Math.min(t1.getZ(), t2.getZ());
+		BasicLocation bound2 = new BasicLocation();
+		bound2.x = Math.max(t1.getX(), t2.getX());
+		bound2.y = Math.max(t1.getY(), t2.getY());
+		bound2.z = Math.max(t1.getZ(), t2.getZ());
+		Region reg = new Region(name.toLowerCase(), w, bound1, bound2);
 		regs.add(reg);
+		Paper.main.getLogger().info("Région " + name + " chargée");
 		return reg;
 	}
 
