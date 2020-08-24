@@ -1,7 +1,6 @@
 package fr.entasia.apis.sql;
 
 import fr.entasia.apis.utils.ServerUtils;
-import org.bukkit.event.EventHandler;
 
 import java.sql.*;
 

@@ -68,6 +68,7 @@ public class ItemBuilder {
 	public ItemBuilder nbt(NBTComponent nbt){
 		item.setItemMeta(meta); // obligé
 		ItemNBT.setNBT(item, nbt);
+		meta = item.getItemMeta(); // obligé
 		return this;
 	}
 

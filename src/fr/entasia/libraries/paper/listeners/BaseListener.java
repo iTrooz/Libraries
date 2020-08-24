@@ -1,7 +1,6 @@
 package fr.entasia.libraries.paper.listeners;
 
 import fr.entasia.apis.socket.SocketClient;
-import fr.entasia.apis.utils.PlayerUtils;
 import fr.entasia.libraries.Common;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
