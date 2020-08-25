@@ -1,9 +1,11 @@
 package fr.entasia.apis.utils;
 
 import fr.entasia.apis.other.Pair;
+import me.lucko.luckperms.common.api.LuckPermsApiProvider;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.cacheddata.CachedMetaData;
+import net.luckperms.api.model.PermissionHolder;
 import net.luckperms.api.model.group.Group;
 import net.luckperms.api.model.user.User;
 import org.bukkit.entity.Player;
@@ -14,7 +16,13 @@ import java.util.Map;
 
 public class LPUtils {
 
-	public static LuckPerms lpAPI = LuckPermsProvider.get();
+	public static boolean enabled = false;
+	public static LuckPerms lpAPI;
+
+	public static void enable(){
+		enabled = true;
+		lpAPI = LuckPermsProvider.get();
+	}
 
 	@Nullable
 	public static User getUser(Player p){
@@ -26,29 +34,47 @@ public class LPUtils {
 		return lpAPI.getUserManager().getUser(name);
 	}
 
-	public static Pair<String, Integer> getHighestPrefix(User u) {
-		CachedMetaData meta = u.getCachedData().getMetaData();
-		Iterator<Map.Entry<Integer, String>> ite = meta.getPrefixes().entrySet().iterator();
-		if(ite.hasNext()){
-			Map.Entry<Integer, String> a = ite.next();
-			return new Pair<>(a.getValue(), a.getKey());
-		}else return null;
-	}
-	public static Pair<String, Integer> getHighestSuffix(User u) {
-		CachedMetaData meta = u.getCachedData().getMetaData();
-		Iterator<Map.Entry<Integer, String>> ite = meta.getSuffixes().entrySet().iterator();
-		if(ite.hasNext()){
-			Map.Entry<Integer, String> a = ite.next();
-			return new Pair<>(a.getValue(), a.getKey());
-		}else return null;
+
+	public static Pair<String, Integer> getPrefixSafe(Player p) {
+		Pair<String, Integer> pair = getPrefix(p);
+		return pair == null ? new Pair<>("", 0) : pair;
 	}
 
-	public static Pair<String, Integer> getHighestSuffix(Group gr){
-		CachedMetaData meta = gr.getCachedData().getMetaData();
-		Iterator<Map.Entry<Integer, String>> ite = meta.getSuffixes().entrySet().iterator();
-		if(ite.hasNext()){
-			Map.Entry<Integer, String> a = ite.next();
-			return new Pair<>(a.getValue(), a.getKey());
-		}else return null;
+	@Nullable
+	public static Pair<String, Integer> getPrefix(Player p) {
+		if(enabled){
+			User u = getUser(p);
+			if(u!=null){
+				CachedMetaData meta = u.getCachedData().getMetaData();
+				Iterator<Map.Entry<Integer, String>> ite = meta.getPrefixes().entrySet().iterator();
+				if(ite.hasNext()) {
+					Map.Entry<Integer, String> a = ite.next();
+					return new Pair<>(a.getValue().replace("&", "§"), a.getKey());
+				}
+			}
+			return null;
+		}else return new Pair<>("", 0);
 	}
+
+	public static Pair<String, Integer> getSuffixSafe(Player p) {
+		Pair<String, Integer> pair = getSuffix(p);
+		return pair == null ? new Pair<>("", 0) : pair;
+	}
+
+	@Nullable
+	public static Pair<String, Integer> getSuffix(Player p) {
+		if(enabled){
+			User u = getUser(p);
+			if(u!=null){
+				CachedMetaData meta = u.getCachedData().getMetaData();
+				Iterator<Map.Entry<Integer, String>> ite = meta.getSuffixes().entrySet().iterator();
+				if(ite.hasNext()) {
+					Map.Entry<Integer, String> a = ite.next();
+					return new Pair<>(a.getValue().replace("&", "§"), a.getKey());
+				}
+			}
+			return null;
+		}else return new Pair<>("", 0);
+	}
+
 }

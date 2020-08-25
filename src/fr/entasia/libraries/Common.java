@@ -2,6 +2,7 @@ package fr.entasia.libraries;
 
 import fr.entasia.apis.socket.SocketClient;
 import fr.entasia.apis.sql.SQLConnection;
+import fr.entasia.apis.utils.LPUtils;
 import fr.entasia.apis.utils.ServerUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -13,13 +14,15 @@ import java.util.logging.Logger;
 
 public abstract class Common {
 
-	public static ArrayList<Class<?>> classesData = new ArrayList<>();
 	public static SQLConnection sql;
 	public static boolean enableDev, enableSocket, enableSQL;
 	public static Logger logger;
 	public static Thread mainThread = Thread.currentThread();
 
 	public static boolean load() throws Throwable {
+
+		new LPUtils();
+
 		logger.info("Librairies globales en cours de chargement...");
 
 //		loadAPIs();

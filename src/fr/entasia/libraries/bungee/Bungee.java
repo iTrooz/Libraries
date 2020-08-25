@@ -3,6 +3,7 @@ package fr.entasia.libraries.bungee;
 import fr.entasia.apis.socket.SocketClient;
 import fr.entasia.apis.socket.SocketEvent;
 import fr.entasia.apis.sql.SQLSecurity;
+import fr.entasia.apis.utils.LPUtils;
 import fr.entasia.apis.utils.ServerUtils;
 import fr.entasia.libraries.Common;
 import net.md_5.bungee.api.ProxyServer;
@@ -65,6 +66,10 @@ public class Bungee extends Plugin {
 			conf = conf.getSection("pass");
 			for(String i : conf.getKeys()){
 				SQLSecurity.addPass(i, conf.getString(i));
+			}
+
+			if(getProxy().getPluginManager().getPlugin("LuckPerms")!=null){
+				LPUtils.enable();
 			}
 
 

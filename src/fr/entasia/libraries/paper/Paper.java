@@ -8,6 +8,7 @@ import fr.entasia.apis.other.Signer;
 import fr.entasia.apis.regionManager.api.RegionManager;
 import fr.entasia.apis.sql.SQLSecurity;
 import fr.entasia.apis.utils.Internal;
+import fr.entasia.apis.utils.LPUtils;
 import fr.entasia.apis.utils.ReflectionUtils;
 import fr.entasia.apis.utils.ServerUtils;
 import fr.entasia.libraries.Common;
@@ -71,6 +72,9 @@ public class Paper extends JavaPlugin {
 			    SQLSecurity.addPass(i, conf.getString("pass."+i));
 		    }
 
+		    if(getServer().getPluginManager().getPlugin("LuckPerms")!=null){
+				LPUtils.enable();
+			}
 
 		    // Commons
 		    if(!Common.load()&&!Common.enableDev){
