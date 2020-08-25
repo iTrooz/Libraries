@@ -30,10 +30,11 @@ public class SQLConnection {
 		unsafeConnect();
 	}
 
-	public static SQLConnection sqlite(String file) throws ClassNotFoundException {
+	public static SQLConnection sqlite(String file) throws ClassNotFoundException, SQLException {
 		Class.forName("org.sqlite.JDBC");
 		SQLConnection c = new SQLConnection();
 		c.url = "jdbc:sqlite:"+file;
+		c.unsafeConnect();
 		return c;
 	}
 
