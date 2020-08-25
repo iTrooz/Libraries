@@ -34,7 +34,6 @@ public class ReflectionUtils {
 		try{
 			return Class.forName("net.minecraft.server." + ServerUtils.getVersionStr() + "." + c);
 		}catch(ReflectiveOperationException e) {
-			e.printStackTrace();
 			throw new MirrorException(e);
 		}
 	}
@@ -43,7 +42,6 @@ public class ReflectionUtils {
 		try{
 			return Class.forName("org.bukkit.craftbukkit."+ServerUtils.getVersionStr() +"." + c);
 		}catch(ReflectiveOperationException e){
-			e.printStackTrace();
 			throw new MirrorException(e);
 		}
 	}
@@ -54,7 +52,6 @@ public class ReflectionUtils {
 			f.setAccessible(true);
 			f.set(obj, value);
 		}catch(ReflectiveOperationException e){
-			e.printStackTrace();
 			throw new MirrorException(e);
 		}
 	}
@@ -65,7 +62,6 @@ public class ReflectionUtils {
 			f.setAccessible(true);
 			return f.get(obj);
 		}catch(ReflectiveOperationException e) {
-			e.printStackTrace();
 			throw new MirrorException(e);
 		}
 	}
@@ -88,7 +84,6 @@ public class ReflectionUtils {
 			Method getHandle = o.getClass().getDeclaredMethod("getHandle");
 			return getHandle.invoke(o);
 		}catch(ReflectiveOperationException e){
-			e.printStackTrace();
 			throw new MirrorException(e);
 		}
 	}
@@ -102,7 +97,7 @@ public class ReflectionUtils {
 			Method send = PlayerConnection.getDeclaredMethod("sendPacket", Packet);
 			send.invoke(o, packet);
 		} catch (ReflectiveOperationException e) {
-			e.printStackTrace();
+			throw new MirrorException(e);
 		}
 	}
 
