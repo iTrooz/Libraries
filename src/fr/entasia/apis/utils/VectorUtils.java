@@ -4,6 +4,10 @@ import org.bukkit.util.Vector;
 
 public class VectorUtils {
 
+	public static void limitVector(Vector v){
+		limitVector(v, 4);
+	}
+
 	public static void limitVector(Vector v, double max){
 		if(v.getX()>max)v.setX(max);
 		else if(v.getX()<-max)v.setX(-max);

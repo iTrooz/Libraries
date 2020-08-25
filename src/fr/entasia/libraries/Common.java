@@ -7,7 +7,6 @@ import fr.entasia.apis.utils.ServerUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.FileInputStream;
-import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Logger;
 

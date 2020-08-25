@@ -23,15 +23,11 @@ public class PlayerUtils {
 		}
 	}
 
-	public static String colorPing(int ping){
+	public static String getPingColor(Player p){
+		int ping = getPing(p);
 		if(ping<100) return "§a"+ping;
 		else if(ping<325) return "§3"+ping;
 		else return "§c"+ping;
-	}
-
-	@Deprecated
-	public static String getPing(Player p, boolean color){
-		return colorPing(getPing(p));
 	}
 
 	public static UUID getUUID(String name){

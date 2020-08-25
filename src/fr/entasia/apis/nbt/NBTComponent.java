@@ -13,7 +13,6 @@ public class NBTComponent {
 	public Map<String, Object> map;
 	protected Object rawnbt;
 
-	@Deprecated
 	public Object getRawNBT(){
 		return rawnbt;
 	}

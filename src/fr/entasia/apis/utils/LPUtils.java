@@ -1,12 +1,9 @@
 package fr.entasia.apis.utils;
 
 import fr.entasia.apis.other.Pair;
-import me.lucko.luckperms.common.api.LuckPermsApiProvider;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.cacheddata.CachedMetaData;
-import net.luckperms.api.model.PermissionHolder;
-import net.luckperms.api.model.group.Group;
 import net.luckperms.api.model.user.User;
 import org.bukkit.entity.Player;
 
