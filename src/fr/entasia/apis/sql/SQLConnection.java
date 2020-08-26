@@ -2,6 +2,7 @@ package fr.entasia.apis.sql;
 
 import fr.entasia.apis.utils.ServerUtils;
 
+import java.io.File;
 import java.sql.*;
 
 public class SQLConnection {
@@ -28,6 +29,10 @@ public class SQLConnection {
 		this.password = SQLSecurity.getPassword(user);
 		this.url = "jdbc:mysql://" + host+":"+port+"/"+this.db+"?useSSL=false";
 		unsafeConnect();
+	}
+
+	public static SQLConnection sqlite(File folder, String file) throws ClassNotFoundException, SQLException {
+		return sqlite(folder.getPath()+"/"+file);
 	}
 
 	public static SQLConnection sqlite(String file) throws ClassNotFoundException, SQLException {
