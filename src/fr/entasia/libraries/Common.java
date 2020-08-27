@@ -28,8 +28,8 @@ public abstract class Common {
 
 		if(enableSQL){
 			sql = new SQLConnection(true);
-			if(enableDev)sql.mysql("root");
-			else sql.mysql("libraries");
+			if(enableDev)sql.mariadb("root");
+			else sql.mariadb("libraries");
 			logger.info("Connection à la base SQL réussie !");
 		}
 
