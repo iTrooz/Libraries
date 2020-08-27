@@ -14,15 +14,29 @@ public class SQLConnection {
 	protected String url;
 	public String user,password;
 	public String db;
+	protected boolean dev = false;
 
 	public SQLConnection(){
 	}
 
+	// <ANCIENS>
+	@Deprecated
 	public SQLConnection(String user) throws SQLException {
-		this(user, null);
+		sql(user);
 	}
 
+	@Deprecated
 	public SQLConnection(String user, String db) throws SQLException {
+		sql(user, db);
+	}
+	// </ANCIENS>
+
+	public void sql(String user) throws SQLException {
+		sql(user, null);
+	}
+
+	@Deprecated
+	public void sql(String user, String db) throws SQLException {
 		if(db==null)this.db = "";
 		else this.db = db;
 		this.user = user;
@@ -31,16 +45,18 @@ public class SQLConnection {
 		unsafeConnect();
 	}
 
-	public static SQLConnection sqlite(File folder, String file) throws ClassNotFoundException, SQLException {
-		return sqlite(folder.getPath()+"/"+file);
+	public void sqlite(File folder, String file) throws ClassNotFoundException, SQLException {
+		sqlite(folder.getPath()+"/"+file);
 	}
 
-	public static SQLConnection sqlite(String file) throws ClassNotFoundException, SQLException {
+	public void sqlite(String file) throws ClassNotFoundException, SQLException {
 		Class.forName("org.sqlite.JDBC");
-		SQLConnection c = new SQLConnection();
-		c.url = "jdbc:sqlite:"+file;
-		c.unsafeConnect();
-		return c;
+		url = "jdbc:sqlite:"+file;
+		unsafeConnect();
+	}
+
+	public void setDev(){
+		dev = true;
 	}
 
 	public boolean connect() {
@@ -110,5 +126,15 @@ public class SQLConnection {
 	public void broadcastError(){
 		ServerUtils.permMsg("log.sqlerror", "§cUne erreur s'est produite lors d'une requête SQL ! PREVENIR ITROOZ D'URGENCE");
 	}
+
+//	public static void main(String[] fa) throws Exception {
+//		SQLConnection sql = new SQLConnection();
+//		sql.setDev();
+//		sql.sql("root", "playerdata");
+//
+//		SQLConnection sqlite = new SQLConnection();
+//		sqlite.setDev();
+//		sqlite.sqlite("database.db");
+//	}
 
 }
