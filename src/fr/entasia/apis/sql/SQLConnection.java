@@ -22,12 +22,12 @@ public class SQLConnection {
 	// <ANCIENS>
 	@Deprecated
 	public SQLConnection(String user) throws SQLException {
-		mysql(user);
+		mariadb(user);
 	}
 
 	@Deprecated
 	public SQLConnection(String user, String db) throws SQLException {
-		mysql(user, db);
+		mariadb(user, db);
 	}
 	// </ANCIENS>
 
@@ -35,11 +35,11 @@ public class SQLConnection {
 		if(dev)hint = 1;
 	}
 
-	public SQLConnection mysql(String user) throws SQLException {
-		return mysql(user, null);
+	public SQLConnection mariadb(String user) throws SQLException {
+		return mariadb(user, null);
 	}
 
-	public SQLConnection mysql(String user, String db) throws SQLException {
+	public SQLConnection mariadb(String user, String db) throws SQLException {
 		if(db==null)this.db = "";
 		else this.db = db;
 		this.user = user;
