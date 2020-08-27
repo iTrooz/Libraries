@@ -14,7 +14,7 @@ public class SQLConnection {
 	protected String url;
 	public String user,password;
 	public String db;
-	protected boolean dev = false;
+	public byte dev = 0;
 
 	public SQLConnection(){
 	}
@@ -42,7 +42,14 @@ public class SQLConnection {
 		this.user = user;
 		this.password = SQLSecurity.getPassword(user);
 		this.url = "jdbc:mysql://" + host+":"+port+"/"+this.db+"?useSSL=false";
-		unsafeConnect();
+		try{
+			unsafeConnect();
+		}catch(SQLException e) {
+			if(dev==1){
+				dev = 2;
+				connection = new FakeConnection();
+			}else throw e;
+		}
 	}
 
 	public void sqlite(File folder, String file) throws ClassNotFoundException, SQLException {
@@ -56,7 +63,7 @@ public class SQLConnection {
 	}
 
 	public void setDev(){
-		dev = true;
+		dev = 1;
 	}
 
 	public boolean connect() {
@@ -85,6 +92,7 @@ public class SQLConnection {
 	}
 
 	public boolean checkConnect() {
+		if(dev==2)return true;
 		try{
 			if(!connection.isValid(60)) return connect();
 		} catch (SQLException e) {
