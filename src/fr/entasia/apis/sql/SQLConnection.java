@@ -14,7 +14,7 @@ public class SQLConnection {
 	protected String url;
 	public String user,password;
 	public String db;
-	public byte dev = 0;
+	public byte hint = 0;
 
 	public SQLConnection(){
 	}
@@ -22,21 +22,24 @@ public class SQLConnection {
 	// <ANCIENS>
 	@Deprecated
 	public SQLConnection(String user) throws SQLException {
-		sql(user);
+		mysql(user);
 	}
 
 	@Deprecated
 	public SQLConnection(String user, String db) throws SQLException {
-		sql(user, db);
+		mysql(user, db);
 	}
 	// </ANCIENS>
 
-	public void sql(String user) throws SQLException {
-		sql(user, null);
+	public SQLConnection(boolean dev) {
+		if(dev)hint = 1;
 	}
 
-	@Deprecated
-	public void sql(String user, String db) throws SQLException {
+	public SQLConnection mysql(String user) throws SQLException {
+		return mysql(user, null);
+	}
+
+	public SQLConnection mysql(String user, String db) throws SQLException {
 		if(db==null)this.db = "";
 		else this.db = db;
 		this.user = user;
@@ -45,25 +48,30 @@ public class SQLConnection {
 		try{
 			unsafeConnect();
 		}catch(SQLException e) {
-			if(dev==1){
-				dev = 2;
-				connection = new FakeConnection();
+			if(hint ==1){
+				setFake(true);
 			}else throw e;
 		}
+		return this;
 	}
 
-	public void sqlite(File folder, String file) throws ClassNotFoundException, SQLException {
-		sqlite(folder.getPath()+"/"+file);
+	public SQLConnection sqlite(File folder, String file) throws ClassNotFoundException, SQLException {
+		return sqlite(folder.getPath()+"/"+file);
 	}
 
-	public void sqlite(String file) throws ClassNotFoundException, SQLException {
+	public SQLConnection sqlite(String file) throws ClassNotFoundException, SQLException {
 		Class.forName("org.sqlite.JDBC");
 		url = "jdbc:sqlite:"+file;
 		unsafeConnect();
+		return this;
 	}
 
-	public void setDev(){
-		dev = 1;
+	public SQLConnection setFake(boolean fake){
+		if(fake) {
+			hint = 2;
+			connection = new FakeConnection();
+		}
+		return this;
 	}
 
 	public boolean connect() {
@@ -92,7 +100,7 @@ public class SQLConnection {
 	}
 
 	public boolean checkConnect() {
-		if(dev==2)return true;
+		if(hint ==2)return true;
 		try{
 			if(!connection.isValid(60)) return connect();
 		} catch (SQLException e) {

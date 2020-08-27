@@ -27,8 +27,9 @@ public abstract class Common {
 //		loadAPIs();
 
 		if(enableSQL){
-			if(enableDev) sql = new SQLConnection("root");
-			else sql = new SQLConnection("libraries");
+			sql = new SQLConnection(true);
+			if(enableDev)sql.mysql("root");
+			else sql.mysql("libraries");
 			logger.info("Connection à la base SQL réussie !");
 		}
 
