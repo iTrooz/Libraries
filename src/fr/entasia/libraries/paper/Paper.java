@@ -24,6 +24,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.Map;
 
 public class Paper extends JavaPlugin {
 
@@ -63,16 +64,23 @@ public class Paper extends JavaPlugin {
 			enableSigner = sec.getBoolean("signer", true);
 			Common.enableSQL = sec.getBoolean("sql", true);
 			Common.enableSocket = sec.getBoolean("socket", true);
-			SocketSecurity.secret = getConfig().getString("socketSecret").getBytes(StandardCharsets.UTF_8);
 
 		    // Fichiers passwords
-		    File f = new File(getDataFolder(), "sql.yml");
-		    if(!f.exists())Files.copy(getResource("sql.yml"), f.toPath());
-		    Configuration conf = YamlConfiguration.loadConfiguration(f);
+		    File f = new File(getDataFolder(), "passes.yml");
+		    if(!f.exists())Files.copy(getResource("passes.yml"), f.toPath());
+
+		    Configuration base = YamlConfiguration.loadConfiguration(f);
+
+		    ConfigurationSection conf = base.getConfigurationSection("socket");
+			SocketSecurity.secret = conf.getString("secret").getBytes(StandardCharsets.UTF_8);
+			SocketSecurity.setHost(conf.getString("host"));
+			SocketSecurity.setPort(conf.getInt("port"));
+
+		    conf = base.getConfigurationSection("sql");
 		    SQLSecurity.setHost(conf.getString("host"));
 		    SQLSecurity.setPort(conf.getInt("port"));
-		    for(String i : conf.getConfigurationSection("pass").getKeys(false)){
-			    SQLSecurity.addPass(i, conf.getString("pass."+i));
+		    for(Map.Entry<String, Object> e : conf.getConfigurationSection("passes").getValues(false).entrySet()){
+			    SQLSecurity.addPass(e.getKey(), (String)e.getValue());
 		    }
 
 		    if(getServer().getPluginManager().getPlugin("LuckPerms")!=null){

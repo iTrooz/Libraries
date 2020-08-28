@@ -1,6 +1,9 @@
 package fr.entasia.apis.socket;
 
+import fr.entasia.apis.sql.SQLConnection;
 import fr.entasia.apis.utils.TextUtils;
+import fr.entasia.errors.LibraryException;
+import fr.entasia.libraries.Common;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -53,7 +56,7 @@ public class SocketSecurity {
 	}
 
 //	public static void main(String[] fa){
-//		String msg = "Salut !";
+//		String msg = "log BungeeCord";
 //		String signature = signMsg(msg);
 //
 //		System.out.println(signature);
@@ -64,6 +67,17 @@ public class SocketSecurity {
 
 	private static String b64(byte[] hash) {
 		return Base64.getEncoder().encodeToString(hash);
+	}
+
+	public static void setHost(String host){
+		if(SocketClient.host==null)SocketClient.host = host;
+		else if(Common.enableDev)Common.logger.severe("Host already set");
+		else throw new LibraryException("Host already set");
+	}
+	public static void setPort(int port){
+		if(SocketClient.port==0)SocketClient.port = port;
+		else if(Common.enableDev)Common.logger.severe("Port already set");
+		else throw new LibraryException("Port already set");
 	}
 
 }

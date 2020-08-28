@@ -56,17 +56,23 @@ public class Bungee extends Plugin {
 			Common.enableDev = config.getBoolean("dev", false);
 			Common.enableSQL = config.getBoolean("features.sql", true);
 			Common.enableSocket = config.getBoolean("features.socket", true);
-			SocketSecurity.secret = config.getString("socketSecret").getBytes(StandardCharsets.UTF_8);
 
 
 			// Fichier passwords
-			File f = new File(getDataFolder(), "sql.yml");
-			if(!f.exists())Files.copy(getResourceAsStream("sql.yml"), f.toPath());
+			File f = new File(getDataFolder(), "passes.yml");
+			if(!f.exists())Files.copy(getResourceAsStream("passes.yml"), f.toPath());
 
-			Configuration conf = ConfigurationProvider.getProvider(YamlConfiguration.class).load(f);
+			Configuration base = ConfigurationProvider.getProvider(YamlConfiguration.class).load(f);
+
+			Configuration conf = base.getSection("socket");
+			SocketSecurity.secret = conf.getString("secret").getBytes(StandardCharsets.UTF_8);
+			SocketSecurity.setHost(conf.getString("host"));
+			SocketSecurity.setPort(conf.getInt("port"));
+
+			conf = base.getSection("sql");
 			SQLSecurity.setHost(conf.getString("host"));
 			SQLSecurity.setPort(conf.getInt("port"));
-			conf = conf.getSection("pass");
+			conf = conf.getSection("passes");
 			for(String i : conf.getKeys()){
 				SQLSecurity.addPass(i, conf.getString(i));
 			}

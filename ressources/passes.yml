@@ -1,0 +1,9 @@
+socket:
+  host: localhost
+  port: 8000
+  secret: "Entasia"
+sql:
+  host: localhost
+  port: 3306
+  passes:
+    root: "azerty123"

@@ -27,6 +27,9 @@ public class SocketClient {
 	public static PrintWriter out;
 	public static Thread whileThread;
 
+	protected static String host;
+	protected static int port;
+
 	public static boolean init() {
 
 		whileThread = new Thread(() -> {
@@ -81,7 +84,7 @@ public class SocketClient {
 	public static boolean connect() {
 		try {
 			logger.info("Connexion au serveur..");
-			serverSocket = new Socket("127.0.0.1", 23461);
+			serverSocket = new Socket(host, port);
 			logger.info("Connecté au serveur !");
 			out = new PrintWriter(serverSocket.getOutputStream());
 			in = new BufferedReader(new InputStreamReader(serverSocket.getInputStream()));

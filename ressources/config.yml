@@ -1,5 +1,4 @@
 dev: true
-socketSecret: "Entasia"
 features:
   menus: true
   regions: true
