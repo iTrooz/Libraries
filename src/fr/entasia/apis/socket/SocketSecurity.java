@@ -1,6 +1,5 @@
 package fr.entasia.apis.socket;
 
-import fr.entasia.apis.sql.SQLConnection;
 import fr.entasia.apis.utils.TextUtils;
 import fr.entasia.errors.LibraryException;
 import fr.entasia.libraries.Common;

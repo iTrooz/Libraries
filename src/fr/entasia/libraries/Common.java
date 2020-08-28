@@ -2,7 +2,6 @@ package fr.entasia.libraries;
 
 import fr.entasia.apis.socket.SocketClient;
 import fr.entasia.apis.sql.SQLConnection;
-import fr.entasia.apis.utils.LPUtils;
 import fr.entasia.apis.utils.ServerUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
