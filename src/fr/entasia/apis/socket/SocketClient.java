@@ -31,42 +31,52 @@ public class SocketClient {
 
 	public static boolean init() {
 
-		whileThread = new Thread(() -> {
-			String msg;
-			while(run){
-				if(isConnected) {
-					try {
-						msg = in.readLine();
-						if (msg == null) throw new IOException("Disconnected from server");
-					} catch (IOException e) {
-						errorHandler(e);
-						continue;
-					}
+		whileThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try{
+					startSocket();
+				}catch(Throwable e){
+					errorHandler(e);
+				}
+			}
+			public void startSocket() {
+				String msg;
+				while (run) {
+					if (isConnected) {
+						try {
+							msg = in.readLine();
+							if (msg == null) throw new IOException("Disconnected from server");
+						} catch (IOException e) {
+							errorHandler(e);
+							continue;
+						}
 
-					String[] arg = msg.split(" ");
-					String signature = arg[0];
-					arg = Arrays.copyOfRange(arg, 1, arg.length);
-					if(SocketSecurity.verifyMsg(signature, String.join(" ", arg))){
-						String key = arg[0];
+						String[] arg = msg.split(" ");
+						String signature = arg[0];
 						arg = Arrays.copyOfRange(arg, 1, arg.length);
-						for (SocketEvent se : eventListeners) {
-							if (se.key.equals(key)) {
-								try {
-									se.onEvent(arg);
-								} catch (Exception e) {
-									e.printStackTrace();
-									logger.info("Erreur détectée dans un event ! Contenu du paquet : " + msg);
+						if (SocketSecurity.verifyMsg(signature, String.join(" ", arg))) {
+							String key = arg[0];
+							arg = Arrays.copyOfRange(arg, 1, arg.length);
+							for (SocketEvent se : eventListeners) {
+								if (se.key.equals(key)) {
+									try {
+										se.onEvent(arg);
+									} catch (Exception e) {
+										e.printStackTrace();
+										logger.info("Erreur détectée dans un event ! Contenu du paquet : " + msg);
+									}
 								}
 							}
+						} else {
+							errorHandler(new LibraryException("Invalid message signature : " + msg));
 						}
-					}else{
-						errorHandler(new LibraryException("Invalid message signature : "+msg));
-					}
-				}else{
-					try {
-						Thread.sleep(250);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
+					} else {
+						try {
+							Thread.sleep(250);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
 					}
 				}
 			}
@@ -112,7 +122,7 @@ public class SocketClient {
 		eventListeners.add(evt);
 	}
 
-	private static void errorHandler(Exception e) {
+	private static void errorHandler(Throwable e) {
 		isConnected = false;
 		if(serverSocket!=null){
 			try {
