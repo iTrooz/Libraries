@@ -49,7 +49,6 @@ public class SocketSecurity {
 	}
 
 	public static boolean verifyMsg(String msg, String signature){
-//		System.out.println(signature);
 		String[] list = signature.split(";");
 		return signature.equals(signMsg(msg, list[1]));
 	}

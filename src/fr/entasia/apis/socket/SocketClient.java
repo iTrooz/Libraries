@@ -55,7 +55,7 @@ public class SocketClient {
 						String[] arg = msg.split(" ");
 						String signature = arg[0];
 						arg = Arrays.copyOfRange(arg, 1, arg.length);
-						if (SocketSecurity.verifyMsg(signature, String.join(" ", arg))) {
+						if (SocketSecurity.verifyMsg(String.join(" ", arg), signature)) {
 							String key = arg[0];
 							arg = Arrays.copyOfRange(arg, 1, arg.length);
 							for (SocketEvent se : eventListeners) {
