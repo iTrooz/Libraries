@@ -6,6 +6,7 @@ import fr.entasia.apis.nbt.NBTer;
 import fr.entasia.apis.other.InstantFirework;
 import fr.entasia.apis.other.Signer;
 import fr.entasia.apis.regionManager.api.RegionManager;
+import fr.entasia.apis.socket.SocketSecurity;
 import fr.entasia.apis.sql.SQLSecurity;
 import fr.entasia.apis.utils.Internal;
 import fr.entasia.apis.utils.LPUtils;
@@ -21,6 +22,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
 public class Paper extends JavaPlugin {
@@ -61,6 +63,7 @@ public class Paper extends JavaPlugin {
 			enableSigner = sec.getBoolean("signer", true);
 			Common.enableSQL = sec.getBoolean("sql", true);
 			Common.enableSocket = sec.getBoolean("socket", true);
+			SocketSecurity.secret = getConfig().getString("socketSecret").getBytes(StandardCharsets.UTF_8);
 
 		    // Fichiers passwords
 		    File f = new File(getDataFolder(), "sql.yml");

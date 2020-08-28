@@ -2,6 +2,7 @@ package fr.entasia.libraries.bungee;
 
 import fr.entasia.apis.socket.SocketClient;
 import fr.entasia.apis.socket.SocketEvent;
+import fr.entasia.apis.socket.SocketSecurity;
 import fr.entasia.apis.sql.SQLSecurity;
 import fr.entasia.apis.utils.LPUtils;
 import fr.entasia.apis.utils.ServerUtils;
@@ -15,6 +16,7 @@ import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
 public class Bungee extends Plugin {
@@ -52,8 +54,9 @@ public class Bungee extends Plugin {
 			if(!configFile.exists())Files.copy(getResourceAsStream("config.yml"), configFile.toPath());
 			config = ConfigurationProvider.getProvider(YamlConfiguration.class).load(configFile);
 			Common.enableDev = config.getBoolean("dev", false);
-			Common.enableSocket = config.getBoolean("features.socket", true);
 			Common.enableSQL = config.getBoolean("features.sql", true);
+			Common.enableSocket = config.getBoolean("features.socket", true);
+			SocketSecurity.secret = config.getString("socketSecret").getBytes(StandardCharsets.UTF_8);
 
 
 			// Fichier passwords

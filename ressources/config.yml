@@ -1,7 +1,7 @@
 dev: true
+socketSecret: "Entasia"
 features:
   menus: true
   regions: true
   signer: false
   socket: false
-  sql: false

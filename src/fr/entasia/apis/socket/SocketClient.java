@@ -2,12 +2,14 @@ package fr.entasia.apis.socket;
 
 
 import fr.entasia.apis.utils.ServerUtils;
+import fr.entasia.errors.LibraryException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Logger;
@@ -31,7 +33,6 @@ public class SocketClient {
 			String msg;
 			while(run){
 				if(isConnected) {
-//					debug.info("waiting for msg");
 					try {
 						msg = in.readLine();
 						if (msg == null) throw new IOException("Disconnected from server");
@@ -40,19 +41,24 @@ public class SocketClient {
 						continue;
 					}
 
-//					debug.info("Nouveau paquet : " + msg);
 					String[] arg = msg.split(" ");
-					String key = arg[0];
+					String signature = arg[0];
 					arg = Arrays.copyOfRange(arg, 1, arg.length);
-					for (SocketEvent se : eventListeners) {
-						if (se.key.equals(key)) {
-							try {
-								se.onEvent(arg);
-							} catch (Exception e) {
-								e.printStackTrace();
-								logger.info("Erreur détectée dans un event ! Contenu du paquet : " + msg);
+					if(SocketSecurity.verifyMsg(signature, String.join(" ", arg))){
+						String key = arg[0];
+						arg = Arrays.copyOfRange(arg, 1, arg.length);
+						for (SocketEvent se : eventListeners) {
+							if (se.key.equals(key)) {
+								try {
+									se.onEvent(arg);
+								} catch (Exception e) {
+									e.printStackTrace();
+									logger.info("Erreur détectée dans un event ! Contenu du paquet : " + msg);
+								}
 							}
 						}
+					}else{
+						errorHandler(new LibraryException("Invalid message signature : "+msg));
 					}
 				}else{
 					try {
@@ -79,9 +85,9 @@ public class SocketClient {
 			logger.info("Connecté au serveur !");
 			out = new PrintWriter(serverSocket.getOutputStream());
 			in = new BufferedReader(new InputStreamReader(serverSocket.getInputStream()));
-			out.println("log "+ ServerUtils.serverName);
-			out.flush();
 			isConnected = true;
+			sendData("log "+ ServerUtils.serverName);
+			out.flush();
 			firstStartDone = true;
 		} catch (Exception e) {
 			errorHandler(e);
@@ -91,9 +97,11 @@ public class SocketClient {
 		return true;
 	}
 
-	public static void sendData(String a){
+
+	public static void sendData(String str){
 		if(isConnected){
-			out.println(a);
+			String signature = SocketSecurity.signMsg(str);
+			out.println(signature+" "+str);
 			out.flush();
 		}
 	}

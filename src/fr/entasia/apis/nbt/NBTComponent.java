@@ -86,33 +86,6 @@ public class NBTComponent {
 		return null;
 	}
 
-	@Deprecated
-	public void setKeyString(String key, Object value) {
-		setKeyString(key, value.toString());
-	}
-
-	@Deprecated
-	public void setKeyString(String key, String value) {
-		try{
-			NBTTypes.String.setter.invoke(rawnbt, key, value);
-		} catch (ReflectiveOperationException e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Nullable
-	@Deprecated
-	public String getKeyString(String key) {
-		try{
-			String a = (String) NBTTypes.String.getter.invoke(rawnbt, key);
-			if(a.equals(""))return null;
-			return a;
-		} catch (ReflectiveOperationException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
 
 
 //	public void setList(String key) {

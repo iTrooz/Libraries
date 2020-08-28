@@ -20,8 +20,6 @@ public abstract class Common {
 
 	public static boolean load() throws Throwable {
 
-		new LPUtils();
-
 		logger.info("Librairies globales en cours de chargement...");
 
 //		loadAPIs();
