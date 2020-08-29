@@ -13,7 +13,7 @@ public class SQLConnection {
 	protected static String host;
 	protected static int port;
 	protected String url;
-	public Properties props;
+	public Properties props = new Properties();;
 	public String db;
 	public byte hint = 0;
 
@@ -43,11 +43,8 @@ public class SQLConnection {
 	public SQLConnection mariadb(String user, String db) throws SQLException {
 		if(db==null)this.db = "";
 		else this.db = db;
-		this.props = new Properties();
 		this.props.put("user", user);
 		this.props.put("password", SQLSecurity.getPassword(user));
-		this.props.put("connectTimeout", 3000);
-		this.props.put("socketTimeout", 3000);
 		this.url = "jdbc:mysql://" + host+":"+port+"/"+this.db+"?useSSL=false";
 		try{
 			unsafeConnect();
