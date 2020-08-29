@@ -4,6 +4,7 @@ import fr.entasia.apis.utils.ServerUtils;
 
 import java.io.File;
 import java.sql.*;
+import java.util.Properties;
 
 public class SQLConnection {
 
@@ -12,7 +13,7 @@ public class SQLConnection {
 	protected static String host;
 	protected static int port;
 	protected String url;
-	public String user,password;
+	public Properties props;
 	public String db;
 	public byte hint = 0;
 
@@ -42,8 +43,11 @@ public class SQLConnection {
 	public SQLConnection mariadb(String user, String db) throws SQLException {
 		if(db==null)this.db = "";
 		else this.db = db;
-		this.user = user;
-		this.password = SQLSecurity.getPassword(user);
+		this.props = new Properties();
+		this.props.put("user", user);
+		this.props.put("password", SQLSecurity.getPassword(user));
+		this.props.put("connectTimeout", 3000);
+		this.props.put("socketTimeout", 3000);
 		this.url = "jdbc:mysql://" + host+":"+port+"/"+this.db+"?useSSL=false";
 		try{
 			unsafeConnect();
@@ -85,7 +89,8 @@ public class SQLConnection {
 	}
 
 	public void unsafeConnect() throws SQLException {
-		connection = DriverManager.getConnection(url, user, password);
+		DriverManager.setLoginTimeout(3);
+		connection = DriverManager.getConnection(url, props);
 		fastSelectUnsafe("SELECT 1=1");
 	}
 
