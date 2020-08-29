@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -93,7 +94,8 @@ public class SocketClient {
 	public static boolean connect() {
 		try {
 			logger.info("Connexion au serveur..");
-			serverSocket = new Socket(host, port);
+			serverSocket = new Socket();
+			serverSocket.connect(new InetSocketAddress(host, port), 10000);
 			logger.info("Connecté au serveur !");
 			out = new PrintWriter(serverSocket.getOutputStream());
 			in = new BufferedReader(new InputStreamReader(serverSocket.getInputStream()));
