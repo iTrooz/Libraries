@@ -10,13 +10,11 @@ public class SQLSecurity {
 
 	public static void setHost(String host){
 		if(SQLConnection.host==null)SQLConnection.host = host;
-		else if(Common.enableDev)Common.logger.severe("Host already set");
-		else throw new LibraryException("Host already set");
+		throw new LibraryException("Host already set");
 	}
 	public static void setPort(int port){
 		if(SQLConnection.port==0)SQLConnection.port = port;
-		else if(Common.enableDev)Common.logger.severe("Port already set");
-		else throw new LibraryException("Port already set");
+		throw new LibraryException("Port already set");
 	}
 
 	private static final HashMap<String, String> passwords = new HashMap<>();
@@ -30,10 +28,7 @@ public class SQLSecurity {
 		if(passwords.size()==0)throw new LibraryException("DB not loaded");
 		else{
 			String pass = passwords.get(user);
-			if(pass==null){
-				if(Common.enableDev)Common.logger.severe("User "+user+" not found");
-				else throw new LibraryException("User "+user+" not found");
-			}
+			if(pass==null)throw new LibraryException("User "+user+" not found");
 			return pass;
 		}
 	}
