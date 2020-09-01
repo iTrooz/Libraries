@@ -4,6 +4,7 @@ import fr.entasia.errors.MirrorException;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import javax.annotation.Nonnull;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
@@ -47,8 +48,12 @@ public class ReflectionUtils {
 	}
 
 	public static void setField(Object obj, String field, Object value) {
+		setField(obj.getClass(), obj, field, value);
+	}
+
+	public static void setField(Class<?> clazz, Object obj, String field, Object value) {
 		try{
-			Field f = obj.getClass().getDeclaredField(field);
+			Field f = clazz.getDeclaredField(field);
 			f.setAccessible(true);
 			f.set(obj, value);
 		}catch(ReflectiveOperationException e){
@@ -56,15 +61,39 @@ public class ReflectionUtils {
 		}
 	}
 
-	public static Object getField(Object obj, String field) {
+	public static Object getField(@Nonnull Object obj, String field) {
+		return getField(obj.getClass(), obj, field);
+	}
+
+	public static Object getField(Class<?> clazz, Object obj, String field) {
 		try {
-			Field f = obj.getClass().getDeclaredField(field);
+			Field f = clazz.getDeclaredField(field);
 			f.setAccessible(true);
 			return f.get(obj);
 		}catch(ReflectiveOperationException e) {
 			throw new MirrorException(e);
 		}
 	}
+
+	public static Object execMethod(@Nonnull Object obj, String method, Object... args) {
+		return execMethod(obj.getClass(), obj, method, args);
+	}
+
+	public static Object execMethod(Class<?> clazz, Object obj, String method, Object... args) {
+		try {
+			Class<?>[] cls = new Class<?>[args.length];
+			for(int i=0;i<args.length;i++){
+				cls[i] = args[i].getClass();
+			}
+
+			Method m = clazz.getDeclaredMethod(method, cls);
+			return m.invoke(obj, args);
+		}catch(ReflectiveOperationException e) {
+			throw new MirrorException(e);
+		}
+	}
+
+
 
 //	public static Object getNMS(Block b) {
 //		try{

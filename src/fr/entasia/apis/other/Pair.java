@@ -24,6 +24,7 @@ public class Pair<A, B> {
 
     @Override
     public String toString() {
-        return "Pair{"+"a="+ key +" | b="+ value +"}";
+        return "Pair{"+"key="+ key +" | value="+ value +"}";
     }
+
 }
