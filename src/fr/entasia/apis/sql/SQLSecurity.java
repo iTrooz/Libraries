@@ -10,11 +10,11 @@ public class SQLSecurity {
 
 	public static void setHost(String host){
 		if(SQLConnection.host==null)SQLConnection.host = host;
-		throw new LibraryException("Host already set");
+		else throw new LibraryException("Host already set");
 	}
 	public static void setPort(int port){
 		if(SQLConnection.port==0)SQLConnection.port = port;
-		throw new LibraryException("Port already set");
+		else throw new LibraryException("Port already set");
 	}
 
 	private static final HashMap<String, String> passwords = new HashMap<>();
