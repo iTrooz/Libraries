@@ -1,7 +1,6 @@
 package fr.entasia.apis.sql;
 
 import fr.entasia.errors.LibraryException;
-import fr.entasia.libraries.Common;
 
 import java.util.HashMap;
 
