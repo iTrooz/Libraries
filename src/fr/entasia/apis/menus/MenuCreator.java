@@ -6,7 +6,7 @@ import org.bukkit.inventory.Inventory;
 
 import java.util.ArrayList;
 
-public abstract class MenuCreator {
+public class MenuCreator {
 	public ArrayList<MenuAPI.InvInst> instances = new ArrayList<>();
 	public int[] slots = new int[0];
 	public MenuFlag[] flags = new MenuFlag[0];
