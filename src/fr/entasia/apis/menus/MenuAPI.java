@@ -78,7 +78,7 @@ public class MenuAPI implements Listener {
 							if(mce.slot<max){
 								mce.item = entry.getValue();
 								try{
-									if(!md.menu.containSlot(mce.slot)||md.menu.onFreeSlotClick(mce)) {
+									if(!md.menu.hasFreeSlot(mce.slot)||md.menu.onFreeSlotClick(mce)) {
 										e.setCancelled(true);
 										((Player) e.getWhoClicked()).updateInventory();
 										return;
@@ -125,7 +125,7 @@ public class MenuAPI implements Listener {
 							if (e.getClickedInventory() == null )return; // il veut drop un item
 							if (e.getClickedInventory().getType() == InventoryType.CHEST) { // cliqué sur l'inv chest
 								mce.slot = e.getSlot();
-								if (md.menu.containSlot(e.getSlot())){ // slot déplacable
+								if (md.menu.hasFreeSlot(e.getSlot())){ // slot déplacable
 									try{
 										if(md.menu.onFreeSlotClick(mce)) e.setCancelled(true);
 									}catch(Exception e2){
@@ -134,7 +134,7 @@ public class MenuAPI implements Listener {
 								}else{ // slot déplacable
 									e.setCancelled(true);
 									((Player) e.getWhoClicked()).updateInventory();
-									if (md.menu.containFlag(MenuFlag.AllItemsTrigger) || ItemUtils.hasName(e.getCurrentItem())) {
+									if (md.menu.hasFlag(MenuFlag.AllItemsTrigger) || ItemUtils.hasName(e.getCurrentItem())) {
 										try{
 											md.menu.onMenuClick(mce);
 										}catch(Throwable e2){
@@ -143,11 +143,11 @@ public class MenuAPI implements Listener {
 									}
 								}
 							} else { // clické sur son inv
-								if (!(md.menu.containFlag(MenuFlag.NoMoveLocalInv) && md.menu.slots.length == 0)) {
+								if (!(md.menu.hasFlag(MenuFlag.NoMoveLocalInv) && md.menu.freeSlots.length == 0)) {
 									if (e.getAction() == InventoryAction.MOVE_TO_OTHER_INVENTORY) { // shift click
 										e.setCancelled(true);
-										if (md.menu.slots.length != 0) {
-											for (int i : md.menu.slots) {
+										if (md.menu.freeSlots.length != 0) {
+											for (int i : md.menu.freeSlots) {
 												if (e.getInventory().getItem(i) == null) {
 													mce.slot = i;
 
@@ -192,8 +192,8 @@ public class MenuAPI implements Listener {
 				for(InvInst inst : mc.instances){
 					if(inst.inv.hashCode()==inv){
 						mc.instances.remove(inst);
-						if(!mc.containFlag(MenuFlag.NoReturnUnlockedItems)){
-							for(int i : mc.slots){
+						if(!mc.hasFlag(MenuFlag.NoReturnUnlockedItems)){
+							for(int i : mc.freeSlots){
 								ItemStack item = e.getInventory().getItem(i);
 								if(item!=null){
 									int a = e.getPlayer().getInventory().firstEmpty();
@@ -202,7 +202,6 @@ public class MenuAPI implements Listener {
 								}
 							}
 						}
-						mc.onMenuClose((Player)e.getPlayer(), e.getInventory());
 
 						MenuCloseEvent mce = new MenuCloseEvent();
 						mce.player = (Player) e.getPlayer();

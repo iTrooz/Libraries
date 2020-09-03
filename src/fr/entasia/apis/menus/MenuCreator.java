@@ -1,41 +1,53 @@
 package fr.entasia.apis.menus;
 
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
 import java.util.ArrayList;
 
 public class MenuCreator {
 	public ArrayList<MenuAPI.InvInst> instances = new ArrayList<>();
-	public int[] slots = new int[0];
+	public int[] freeSlots = new int[0];
 	public MenuFlag[] flags = new MenuFlag[0];
 
 	public MenuCreator(){
-		this(null, null);
+		MenuAPI.menus.add(this);
 	}
+	@Deprecated
 	public MenuCreator(MenuFlag[] flags){
 		this(flags, null);
 	}
-	public MenuCreator(int[] slots){
-		this(null, slots);
+	@Deprecated
+	public MenuCreator(int[] freeSlots){
+		this(null, freeSlots);
 	}
 
-	public MenuCreator(MenuFlag[] flags, int[] slots){
+	@Deprecated
+	public MenuCreator(MenuFlag[] flags, int[] freeSlots){
+		this();
+		setFlags(flags);
+		setFreeSlots(freeSlots);
+	}
+
+	public MenuCreator setFlags(MenuFlag... flags){
 		if(flags!=null) this.flags = flags;
-		if(slots!=null) this.slots = slots;
-		MenuAPI.menus.add(this);
+		return this;
 	}
 
-	public boolean containFlag(MenuFlag flag){
+	public MenuCreator setFreeSlots(int... freeSlots){
+		if(freeSlots!=null) this.freeSlots = freeSlots;
+		return this;
+	}
+
+	public boolean hasFlag(MenuFlag flag){
 		 for(MenuFlag f : flags){
 		 	if(f==flag)return true;
 		 }
 		 return false;
 	}
 
-	public boolean containSlot(int slot){
-		 for(int s : slots){
+	public boolean hasFreeSlot(int slot){
+		 for(int s : freeSlots){
 		 	if(s==slot)return true;
 		 }
 		return false;
@@ -56,9 +68,6 @@ public class MenuCreator {
 	public void onMenuClick(MenuClickEvent e){};
 
 	public boolean onFreeSlotClick(MenuClickEvent e){return false;};
-
-	@Deprecated
-	public void onMenuClose(Player p, Inventory inv){}
 
 	public void onMenuClose(MenuCloseEvent e){}
 }

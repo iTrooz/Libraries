@@ -1,13 +1,16 @@
 package fr.entasia.apis.other;
 
+import com.google.common.annotations.Beta;
 import fr.entasia.errors.LibraryException;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
 import java.util.Arrays;
 
+// en cours de test :)
 public abstract class ScoreBoard {
 
     public final Player p;
@@ -16,31 +19,44 @@ public abstract class ScoreBoard {
 
     public String[] cache = new String[15];
 
-    public ScoreBoard(String name, Player p){
+    public ScoreBoard(Player p, String id, String name){
         this.p = p;
         scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
-        objective = scoreboard.registerNewObjective(name, "dummy");
+        objective = scoreboard.registerNewObjective(id, "dummy");
+        objective.setDisplayName(name);
+        objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         Arrays.fill(cache, "");
     }
 
-    public void softSet(){
-        if(p.getScoreboard()!=scoreboard)refresh();
+    public void set(){
+        if(p.getScoreboard()!=scoreboard)forceSet();
     }
 
     public void clear(){
         scoreboard.getEntries().forEach(a -> scoreboard.resetScores(a));
     }
 
-    public void refresh(){
+    public void forceSet(){
         p.setScoreboard(scoreboard);
         clear();
         objective.getScore("§bplay.enta§7sia.fr").setScore(0);
     }
 
-    public void refreshLine(int number, String text){
-        if(number>=cache.length)throw new LibraryException("Too high line number. Maximum : "+cache.length);
+    private void check(int number){
+        number = number-10;
+        if(number<0||number>=cache.length)throw new LibraryException("Invalid line number. Accepted 10-"+(cache.length+10));
+
+    }
+
+    public void changeLine(int number, String text){
+        check(number);
         scoreboard.resetScores(cache[number]);
         cache[number] = text;
+        objective.getScore(text).setScore(number);
+    }
+
+    public void staticLine(int number, String text){
+        check(number);
         objective.getScore(text).setScore(number);
     }
 
