@@ -1,5 +1,9 @@
 package fr.entasia.apis.utils;
 
+import net.minecraft.server.v1_15_R1.TagsBlock;
+import org.bukkit.Material;
+import org.bukkit.Tag;
+
 import java.util.ArrayList;
 
 public class OtherUtils {
@@ -21,4 +25,6 @@ public class OtherUtils {
 		notes.add(7);
 		notes.add(21);
 	}
+
+
 }

@@ -4,6 +4,7 @@ import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import fr.entasia.errors.EntasiaException;
 import fr.entasia.errors.LibraryException;
+import fr.entasia.libraries.paper.Paper;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -155,57 +156,32 @@ public class ItemUtils {
 
 
 
-	public static void placeSkullAsync(Inventory inv, final int slot, final ItemStack item, final OfflinePlayer op, JavaPlugin plugin){
-		assert op!=null;
-		Ownering o;
-		if(ServerUtils.getMajorVersion()<=9)o = new Ownering(op.getName());
-		else o = new Ownering(op);
-		placeSkullAsync(inv, slot, item, o, plugin);
+	@Deprecated
+	public static void placeSkullAsync(Inventory inv, int slot, ItemStack item, OfflinePlayer owner, JavaPlugin plugin){
+		placeSkullAsync(inv, slot, item, owner);
 	}
 
-	public static void placeSkullAsync(Inventory inv, final int slot, final ItemStack item, final String owner, JavaPlugin plugin){
-		placeSkullAsync(inv, slot, item, new Ownering(owner), plugin);
-	}
 
-	private static void placeSkullAsync(Inventory inv, final int slot, final ItemStack item, final Ownering owner, JavaPlugin plugin){
-		if(skulls.contains(owner.name)) {
+	private static void placeSkullAsync(Inventory inv, int slot, ItemStack item, OfflinePlayer owner){
+		if(skulls.contains(owner.getName())) {
 			SkullMeta meta = (SkullMeta) item.getItemMeta();
-			if(owner.s==null) meta.setOwningPlayer(owner.op);
-			else meta.setOwner(owner.s);
+			meta.setOwningPlayer(owner);
 			item.setItemMeta(meta);
 			inv.setItem(slot, item);
 		}else{
 			SkullMeta meta = (SkullMeta) item.getItemMeta();
 			inv.setItem(slot, item);
-			if(owner.s==null) meta.setOwningPlayer(owner.op);
-			else meta.setOwner(owner.s);
+			meta.setOwningPlayer(owner);
 			item.setItemMeta(meta);
 			new BukkitRunnable() {
 				@Override
 				public void run() {
 					inv.setItem(slot, item);
-					if(!skulls.contains(owner.name))skulls.add(owner.name);
+					if(!skulls.contains(owner.getName()))skulls.add(owner.getName());
 				}
-			}.runTaskAsynchronously(plugin);
+			}.runTaskAsynchronously(Paper.main);
 		}
 	}
-
-	private static class Ownering{
-		public OfflinePlayer op;
-		public String s;
-		public String name;
-
-		public Ownering(String s){
-			this.s = s;
-			this.name = s;
-		}
-
-		public Ownering(OfflinePlayer op) {
-			this.op = op;
-			this.name = op.getName();
-		}
-	}
-
 
 	public static boolean damage(ItemStack item, int by){
 		if(item.getType().getMaxDurability()==0)throw new LibraryException("Invalid item : no durability");
