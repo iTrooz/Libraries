@@ -162,7 +162,7 @@ public class ItemUtils {
 	}
 
 
-	private static void placeSkullAsync(Inventory inv, int slot, ItemStack item, OfflinePlayer owner){
+	public static void placeSkullAsync(Inventory inv, int slot, ItemStack item, OfflinePlayer owner){
 		if(skulls.contains(owner.getName())) {
 			SkullMeta meta = (SkullMeta) item.getItemMeta();
 			meta.setOwningPlayer(owner);
