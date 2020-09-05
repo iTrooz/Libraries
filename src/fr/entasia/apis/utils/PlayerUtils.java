@@ -36,7 +36,12 @@ public class PlayerUtils {
 
 	// warning : les fire ticks peuvent demander une BukkitRunnable#runTask();
 
+	@Deprecated
 	public static void fakeKill(Player p){
+		reset(p);
+	}
+
+	public static void reset(Player p){
 
 		for (PotionEffect pe : p.getActivePotionEffects()) {
 			p.removePotionEffect(pe.getType());
