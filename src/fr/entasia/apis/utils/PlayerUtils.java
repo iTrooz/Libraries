@@ -41,6 +41,11 @@ public class PlayerUtils {
 		reset(p);
 	}
 
+	public static void hardReset(Player p){
+		reset(p);
+		p.getInventory().clear();
+	}
+
 	public static void reset(Player p){
 
 		for (PotionEffect pe : p.getActivePotionEffects()) {
