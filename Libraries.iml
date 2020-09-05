@@ -1,17 +1,442 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="true">
-    <exclude-output />
-    <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+    <exclude-output/>
+    <content url="file://$MODULE_DIR$/">
+      <sourceFolder url="file://$MODULE_DIR$/ressources" isTestSource="false"/>
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false"/>
+      <excludeFolder url="file://$MODULE_DIR$/.gradle"/>
+      <excludeFolder url="file://$MODULE_DIR$/build"/>
     </content>
-    <orderEntry type="inheritedJdk" />
-    <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="WaterFall" level="project" />
-    <orderEntry type="library" name="ProtocolLib" level="project" />
-    <orderEntry type="library" name="LuckPerms-Spigot" level="project" />
-    <orderEntry type="library" name="paper-1.12.2" level="project" />
-    <orderEntry type="library" name="paper-1.15.2" level="project" />
-    <orderEntry type="library" name="Libraries" level="project" />
+    <orderEntry type="inheritedJdk"/>
+    <orderEntry type="sourceFolder" forTests="false"/>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/com.destroystokyo.paper/paper-api/1.12.2-R0.1-SNAPSHOT/662c3aad8f498c54126ced68c144717026de9ec0/paper-api-1.12.2-R0.1-SNAPSHOT.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/com.destroystokyo.paper/paper-api/1.12.2-R0.1-SNAPSHOT/f46099d3df7a8194ebb3093a681b2eee26d08ab2/paper-api-1.12.2-R0.1-SNAPSHOT-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/io.github.waterfallmc/waterfall-api/1.16-R0.4-SNAPSHOT/8263fe41c79b34cab68049091f93e99e0060e1fc/waterfall-api-1.16-R0.4-SNAPSHOT.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/io.github.waterfallmc/waterfall-api/1.16-R0.4-SNAPSHOT/19ba3f72c13ccbf8135dfa42abe8b161e69b9351/waterfall-api-1.16-R0.4-SNAPSHOT-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/com.comphenix.protocol/ProtocolLib/4.4.0/895951e4cad84d9417d686224f17170af47d8c91/ProtocolLib-4.4.0.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES/>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/net.luckperms/api/5.1/96e3db88e2bdd9e1c8d17f4a0195cb14d6e92aeb/api-5.1.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/net.luckperms/api/5.1/4fb877af8a9a922bd49d91f26f158b9d34a95373/api-5.1-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/com.mojang/authlib/1.5.25/529f53466ca747e0c373b7a6ef3c2fc5d299cf64/authlib-1.5.25.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES/>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/commons-lang/commons-lang/2.6/ce1edb914c94ebc388f086c6827e8bdeec71ac2/commons-lang-2.6.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/commons-lang/commons-lang/2.6/67313d715fbf0ea4fd0bdb69217fb77f807a8ce5/commons-lang-2.6-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/com.googlecode.json-simple/json-simple/1.1.1/c9ad4a0850ab676c5c64461a05ca524cdfff59f1/json-simple-1.1.1.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/com.googlecode.json-simple/json-simple/1.1.1/15bba08e3a239d54b68209c001f9c911559d2fed/json-simple-1.1.1-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/2.0.1/516c03b21d50a644d538de0f0369c620989cd8f0/jsr305-2.0.1.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES/>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/net.md-5/bungeecord-chat/1.12-SNAPSHOT/a8f1a99548f69deaa907c9dc637d837ec0f478a8/bungeecord-chat-1.12-SNAPSHOT.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES/>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/io.github.waterfallmc/waterfall-protocol/1.16-R0.4-SNAPSHOT/1e4a58f3bce074e72052de3dd8b3922a78bc1c9e/waterfall-protocol-1.16-R0.4-SNAPSHOT.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/io.github.waterfallmc/waterfall-protocol/1.16-R0.4-SNAPSHOT/39864e0bb1db4f534749c10eb965ec8e4e3c7751/waterfall-protocol-1.16-R0.4-SNAPSHOT-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/io.github.waterfallmc/waterfall-chat/1.16-R0.4-SNAPSHOT/5a4118a0234f8255f87a3e0a3ea110d8289f9b15/waterfall-chat-1.16-R0.4-SNAPSHOT.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/io.github.waterfallmc/waterfall-chat/1.16-R0.4-SNAPSHOT/b1521d2fb67fc6fba13f969e04b013d09766497/waterfall-chat-1.16-R0.4-SNAPSHOT-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/io.github.waterfallmc/waterfall-config/1.16-R0.4-SNAPSHOT/98a788ca5fcc531a02b0161132f0cfa46b61878/waterfall-config-1.16-R0.4-SNAPSHOT.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/io.github.waterfallmc/waterfall-config/1.16-R0.4-SNAPSHOT/63cb1a589251422b96dc7edb705beb9a05c41e88/waterfall-config-1.16-R0.4-SNAPSHOT-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/io.github.waterfallmc/waterfall-event/1.16-R0.4-SNAPSHOT/704af94fac2a819a60785958b5030be2d0c65ec5/waterfall-event-1.16-R0.4-SNAPSHOT.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/io.github.waterfallmc/waterfall-event/1.16-R0.4-SNAPSHOT/dfae5b8528b9d1ce069a55b3df4896ce3c21df48/waterfall-event-1.16-R0.4-SNAPSHOT-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/21.0/3a3d111be1be1b745edfa7d91678a12d7ed38709/guava-21.0.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/21.0/b9ed26b8c23fe7cd3e6b463b34e54e5c6d9536d5/guava-21.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.0/c4ba5371a29ac9b2ad6129b1d39ea38750043eff/gson-2.8.0.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.0/baf95d8519fc1a11d388f8543cb40cd2bb9d66dc/gson-2.8.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.25/8b6e01ef661d8378ae6dd7b511a7f2a33fae1421/snakeyaml-1.25.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.25/45379604b7a254120101009ba09537737daed6f/snakeyaml-1.25-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.25/da76ca59f6a57ee3102f8f9bd9cee742973efa8a/slf4j-api-1.7.25.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.25/962153db4a9ea71b79d047dfd1b2a0d80d8f4739/slf4j-api-1.7.25-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-commons/6.1.1/70a7deee986e66c015cea1c9978f9654cc667020/asm-commons-6.1.1.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-commons/6.1.1/dfd6d0b2b43e0c6fdb9714645d57f09c53e081ee/asm-commons-6.1.1-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-analysis/6.1.1/376d85732456ec4d2c4bc020ee152061c61f00b5/asm-analysis-6.1.1.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-analysis/6.1.1/bb3f4881f41013a0d090f5f6bf0e7ff67ed93562/asm-analysis-6.1.1-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-tree/6.1.1/19fdc358e7bd3986b9867de508ce6cefa693dda6/asm-tree-6.1.1.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-tree/6.1.1/f858620f9f3ce6fcc1e75b90f900a9aa25942a3e/asm-tree-6.1.1-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/6.1.1/264754515362d92acd39e8d40395f6b8dee7bc08/asm-6.1.1.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/6.1.1/138383e385c7afa9f332ae9d4c4374aacc61db72/asm-6.1.1-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-unix-common/4.1.49.Final/a2a70601dd24dfdb533ac307955b55fa9f52aca1/netty-transport-native-unix-common-4.1.49.Final.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-unix-common/4.1.49.Final/24dee64d6e016e7d4daf0fb69385e98244f7471c/netty-transport-native-unix-common-4.1.49.Final-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/com.comphenix.protocol/ProtocolLib-API/4.4.0/9860054c299bf94430d51da88eb062bab6899c13/ProtocolLib-API-4.4.0.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES/>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/cglib/cglib-nodep/3.2.5/d7a6a551766f1916a940c7fe2a16fd6473d72684/cglib-nodep-3.2.5.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/cglib/cglib-nodep/3.2.5/e479ea0d2ee107b57c83450df3273c453b918bbd/cglib-nodep-3.2.5-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/com.comphenix.executors/BukkitExecutors/1.1-SNAPSHOT/b211d5c12d920bb4243f2b30f9a8769b92595393/BukkitExecutors-1.1-SNAPSHOT.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES/>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.10/4b95f4897fa13f2cd904aee711aeafc0c5295cd8/commons-codec-1.10.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.10/11fb3d88ae7e3b757d70237064210ceb954a5a04/commons-codec-1.10-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.4/b1b6ea3b7e4aa4f492509a4952029cd8e48019ad/commons-io-2.4.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.4/f2d8698c46d1167ff24b06a840a87d91a02db891/commons-io-2.4-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.5/6c6c702c89bfff3cd9e80b04d668c5e190d588c6/commons-lang3-3.5.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.5/f7d878153e86a1cdddf6b37850e00a9f8bff726f/commons-lang3-3.5-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.8.1/4ac28ff2f1ddf05dae3043a190451e8c46b73c31/log4j-core-2.8.1.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.8.1/a0a7f683da620c345b502fff04d1e46cde2e8d9/log4j-core-2.8.1-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.8.1/e801d13612e22cad62a3f4f3fe7fdbe6334a8e72/log4j-api-2.8.1.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.8.1/a5edb6b8c77843c8be98e0cb1f875699e76ee122/log4j-api-2.8.1-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/junit/junit/4.10/e4f1766ce7404a08f45d859fb9c226fc9e41a861/junit-4.10.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/junit/junit/4.10/6c98d6766e72d5575f96c9479d1c1d3b865c6e25/junit-4.10-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/net.md-5/brigadier/1.0.16-SNAPSHOT/86edc5380c2b4fa37dca9810104fff8a7460411c/brigadier-1.0.16-SNAPSHOT.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/net.md-5/brigadier/1.0.16-SNAPSHOT/90711680d8869e70d28ff55b87299afe82836b8a/brigadier-1.0.16-SNAPSHOT-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec/4.1.49.Final/20218de83c906348283f548c255650fd06030424/netty-codec-4.1.49.Final.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec/4.1.49.Final/54b3f85f50141c9921ebce929406302794a46cff/netty-codec-4.1.49.Final-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/net.sf.trove4j/core/3.1.0/5fd0207b685536b29dd65c86f4b3bf89befb885c/core-3.1.0.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/net.sf.trove4j/core/3.1.0/24f13b6f943bc45fab11850f4e51f2cac8498335/core-3.1.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/se.llbit/jo-nbt/1.3.0/fbbf96a883d5b53536bc526a57a22c550e15f02f/jo-nbt-1.3.0.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/se.llbit/jo-nbt/1.3.0/c40e294f569becb698e07c6eb9a276436eb39109/jo-nbt-1.3.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport/4.1.49.Final/415ea7f326635743aec952fe2349ca45959e94a7/netty-transport-4.1.49.Final.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport/4.1.49.Final/7aafb3c826b7be86a494e0ea390727576e63292e/netty-transport-4.1.49.Final-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/io.netty/netty-buffer/4.1.49.Final/8e819a81bca88d1e88137336f64531a53db0a4ad/netty-buffer-4.1.49.Final.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/io.netty/netty-buffer/4.1.49.Final/3f48bab4df16216d4f2a1dd970314d0ca6da17a5/netty-buffer-4.1.49.Final-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/io.netty/netty-resolver/4.1.49.Final/eb81e1f0eaa99e75983bf3d28cae2b103e0f3a34/netty-resolver-4.1.49.Final.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/io.netty/netty-resolver/4.1.49.Final/67549eb1e6e6119c6969ca70fecaccfdf1d293d4/netty-resolver-4.1.49.Final-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/io.netty/netty-common/4.1.49.Final/927c8563a1662d869b145e70ce82ad89100f2c90/netty-common-4.1.49.Final.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/io.netty/netty-common/4.1.49.Final/875a1b34d65936677482f131ad1f3489f4b21647/netty-common-4.1.49.Final-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.1/860340562250678d1a344907ac75754e259cdb14/hamcrest-core-1.1.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/WeeskyBDW/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.1/2ccf1154d1a8936042a8a742dc3e611d02ac7213/hamcrest-core-1.1-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>
