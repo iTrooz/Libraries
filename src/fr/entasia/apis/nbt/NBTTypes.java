@@ -1,7 +1,5 @@
 package fr.entasia.apis.nbt;
 
-import net.minecraft.server.v1_15_R1.NBTTagCompound;
-
 import java.lang.reflect.Method;
 
 public enum NBTTypes {
