@@ -12,7 +12,7 @@ public class EntityNBT {
 	public static NBTComponent getNBT(Entity entity){
 		try{
 			Object nmsEntity = getNMSEntity.invoke(entity);
-			Object a = NBTer.TagCompoundClass.newInstance();
+			Object a = NBTManager.TagCompoundClass.newInstance();
 			getNMSEntityNBT.invoke(nmsEntity, a);
 			return new NBTComponent(a);
 		}catch(Exception ex){
@@ -31,7 +31,7 @@ public class EntityNBT {
 
 	public static void addNBT(Entity entity, NBTComponent add){
 		NBTComponent nbt = getNBT(entity);
-		if(nbt==null)nbt = new NBTComponent();
+//		if(nbt==null)nbt = new NBTComponent(); // pas necessaire normalement ?
 		nbt.fusion(add);
 		setNBT(entity, nbt);
 	}

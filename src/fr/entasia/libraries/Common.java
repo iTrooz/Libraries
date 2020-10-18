@@ -68,7 +68,7 @@ public abstract class Common {
 //		classes.addAll(Arrays.asList("utils.TextUtils", "utils.ServerUtils"));
 //		if (ServerUtils.bukkit) {
 //			classes.addAll(Arrays.asList("menus.MenuAPI", "menus.MenuClickEvent", "menus.MenuCloseEvent", "menus.MenuCreator", "menus.MenuFlag"));
-//			classes.addAll(Arrays.asList("nbt.EntityNBT", "nbt.ItemNBT", "nbt.NBTComponent", "nbt.NBTer", "nbt.TileNBT"));
+//			classes.addAll(Arrays.asList("nbt.EntityNBT", "nbt.ItemNBT", "nbt.NBTComponent", "nbt.NBTManager", "nbt.TileNBT"));
 //			classes.addAll(Arrays.asList("regionManager.api.Region", "regionManager.api.RegionAction", "regionManager.api.RegionManager",
 //					"regionManager.events.RegionEnterEvent", "regionManager.events.RegionLeaveEvent"));
 //			classes.addAll(Arrays.asList("socket.SocketClient", "socket.SocketEvent"));

@@ -19,7 +19,7 @@ public class TileNBT {
 //	public static Object getNBT(Entity entity){
 //		try{
 //			Object nmsEntity = getNMSEntity.invoke(entity);
-//			Object NBT = NBTer.TagCompoundClass.newInstance();
+//			Object NBT = NBTManager.TagCompoundClass.newInstance();
 //			getNMSEntityNBT.invoke(nmsEntity, NBT);
 //			return NBT;
 //		}catch(Exception ex){

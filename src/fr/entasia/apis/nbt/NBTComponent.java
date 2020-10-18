@@ -9,8 +9,8 @@ public class NBTComponent {
 
 	public static Method fusion, setPreciseTag, delKey, getList, setList, getAny;
 	public static Field mapField;
-
-	public Map<String, Object> map;
+	
+	protected Map<String, Object> map;
 	protected Object rawnbt;
 
 	public Object getRawNBT(){
@@ -19,6 +19,10 @@ public class NBTComponent {
 
 	public String getNBT(){
 		return rawnbt.toString();
+	}
+
+	public Map<String, Object> getMap(){
+		return map;
 	}
 
 	protected NBTComponent(Object nbt){
@@ -31,11 +35,11 @@ public class NBTComponent {
 	}
 
 	public NBTComponent(String nbt){
-		this(NBTer.rawParseNBT(nbt));
+		this(NBTManager.rawParseNBT(nbt));
 	}
 
 	public NBTComponent(){
-		this(NBTer.rawParseNBT("{}"));
+		this(NBTManager.rawParseNBT("{}"));
 	}
 
 

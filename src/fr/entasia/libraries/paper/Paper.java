@@ -2,7 +2,7 @@ package fr.entasia.libraries.paper;
 
 import fr.entasia.apis.events.bukkit.ServerStartEvent;
 import fr.entasia.apis.menus.MenuAPI;
-import fr.entasia.apis.nbt.NBTer;
+import fr.entasia.apis.nbt.NBTManager;
 import fr.entasia.apis.other.InstantFirework;
 import fr.entasia.apis.other.Signer;
 import fr.entasia.apis.regionManager.api.RegionManager;
@@ -111,7 +111,7 @@ public class Paper extends JavaPlugin {
 
     public static void others() throws Throwable {
 	    // Grosses APIs
-	    NBTer.init();
+	    NBTManager.init();
 	    InstantFirework.init();
 	    if (enableSigner&&Bukkit.getPluginManager().getPlugin("ProtocolLib") != null) {
 		    Signer.initPackets();
