@@ -4,11 +4,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MenuCreator {
-	public ArrayList<MenuAPI.InvInst> instances = new ArrayList<>();
-	public int[] freeSlots = new int[0];
-	public MenuFlag[] flags = new MenuFlag[0];
+	protected List<InvInst> instances = new ArrayList<>();
+	protected int[] freeSlots = new int[0];
+	protected MenuFlag[] flags = new MenuFlag[0];
 
 	public MenuCreator(){
 		MenuAPI.menus.add(this);
@@ -61,13 +62,13 @@ public class MenuCreator {
 	public Inventory createInv(int size, String name, Object data){
 		if(size<0||size>6)throw new RuntimeException("Menu Size not valid : "+size);
 		Inventory inv = Bukkit.createInventory(null, size*9, name);
-		instances.add(new MenuAPI.InvInst(inv, data));
+		instances.add(new InvInst(inv, data));
 		return inv;
 	}
 
-	public void onMenuClick(MenuClickEvent e){};
+	public void onMenuClick(MenuClickEvent e){}
 
-	public boolean onFreeSlotClick(MenuClickEvent e){return false;};
+	public boolean onFreeSlotClick(MenuClickEvent e){return false;}
 
 	public void onMenuClose(MenuCloseEvent e){}
 }

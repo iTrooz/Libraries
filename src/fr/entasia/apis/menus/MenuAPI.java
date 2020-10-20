@@ -19,15 +19,6 @@ public class MenuAPI implements Listener {
 		Paper.main.getServer().getPluginManager().registerEvents(new MenuAPI(), Paper.main);
 	}
 
-	public static class InvInst{
-		public Inventory inv;
-		public Object data;
-
-		public InvInst(Inventory inv, Object data) {
-			this.inv = inv;
-			this.data = data;
-		}
-	}
 	public static class MenuData{
 		public MenuCreator menu;
 		public InvInst inst;
