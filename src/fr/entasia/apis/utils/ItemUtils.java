@@ -173,7 +173,6 @@ public class ItemUtils {
 			Object tile = getTileEntity.invoke(nmsW, blockPosConstruct.newInstance(b.getX(), b.getY(), b.getZ()));
 			if(tile==null)throw new EntasiaException("Invalid tile");
 			else{
-
 				setGameProfile.invoke(tile, profile);
 				b.getState().update(true);
 			}

@@ -44,12 +44,12 @@ public class SQLConnection {
 		if(db==null)this.db = "";
 		else this.db = db;
 		this.props.put("user", user);
-		this.props.put("password", SQLSecurity.getPassword(user));
 		this.url = "jdbc:mysql://" + host+":"+port+"/"+this.db+"?useSSL=false";
 		try{
+			this.props.put("password", SQLSecurity.getPassword(user));
 			unsafeConnect();
-		}catch(SQLException e) {
-			if(hint ==1){
+		}catch(Exception e) {
+			if(hint==1){
 				setFake(true);
 			}else throw e;
 		}
