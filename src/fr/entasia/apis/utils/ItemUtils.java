@@ -26,7 +26,7 @@ import java.util.UUID;
 
 public class ItemUtils {
 
-	private static final ArrayList<String> skulls = new ArrayList<>();
+	private static final ArrayList<UUID> skulls = new ArrayList<>();
 
 	private static Class<?> CraftWorld;
 	private static Constructor<?> blockPosConstruct;
@@ -36,6 +36,9 @@ public class ItemUtils {
 	// blocks
 	private static Field BLProfileField;
 	private static Method getHandle, getTileEntity, setGameProfile;
+	// joueurs
+	private static Method PLOnlineProfile;
+	private static Field PLOfflineProfile;
 
 
 	public static boolean hasName(ItemStack item){
@@ -56,14 +59,12 @@ public class ItemUtils {
 
 			CraftWorld = ReflectionUtils.getOBCClass("CraftWorld");
 			Class<?> tileSkullClass = ReflectionUtils.getNMSClass("TileEntitySkull");
-//			Class<?> WorldServer = ReflectionUtils.getNMSClass("WorldServer");
 			Class<?> World = ReflectionUtils.getNMSClass("World");
 			Class<?> BlockPosition = ReflectionUtils.getNMSClass("BlockPosition");
 
 			blockPosConstruct = BlockPosition.getConstructor(int.class, int.class, int.class);
 
 			getHandle = CraftWorld.getDeclaredMethod("getHandle");
-//			getTileEntity = worldServerClass.getDeclaredMethod("getTileEntity", blockPositionClass);
 			getTileEntity = World.getDeclaredMethod("getTileEntity", BlockPosition);
 
 			setGameProfile = tileSkullClass.getDeclaredMethod("setGameProfile", GameProfile.class);
@@ -74,11 +75,15 @@ public class ItemUtils {
 			}
 			BLProfileField.setAccessible(true);
 
-
+			PLOnlineProfile = ReflectionUtils.CraftPlayer.getDeclaredMethod("getProfile");
+			PLOfflineProfile = ReflectionUtils.getOBCClass("CraftOfflinePlayer").getDeclaredField("profile");
+			PLOfflineProfile.setAccessible(true);
 		}catch(ReflectiveOperationException e){
 			e.printStackTrace();
 		}
 	}
+
+	// ----- PROFILE INTERNAL STUFF
 
 	public static GameProfile genProfile(String uuidstr, String texture){
 		return genProfile(UUID.nameUUIDFromBytes(uuidstr.getBytes()), texture);
@@ -91,6 +96,31 @@ public class ItemUtils {
 		return profile;
 	}
 
+	public static String getTexture(GameProfile profile){
+		String data=null;
+		for(Property pr : profile.getProperties().values()) {
+			if (pr.getName().equals("textures")) {
+				data = pr.getValue();
+				break;
+			}
+		}
+		if(data==null)return null;
+		data = new String(Base64.getDecoder().decode(data));
+		data = data.substring(60, data.length()-4);
+		return data;
+	}
+
+	@Deprecated
+	public static String retrieveTexture(GameProfile profile){ // wtf was this name
+		return getTexture(profile);
+	}
+
+
+	// ----- PROFILE GETTERS/SETTERS
+
+	// skull
+
+	@Deprecated
 	public static void setTexture(SkullMeta im, GameProfile profile) {
 		try {
 			ITProfileField.set(im, profile);
@@ -104,6 +134,24 @@ public class ItemUtils {
 		try {
 			return (GameProfile) ITProfileField.get(im);
 		} catch (ReflectiveOperationException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	// blocks
+
+	@Nullable
+	public static GameProfile getProfile(Block b) {
+		try{
+			Object craftW = CraftWorld.cast(b.getWorld());
+			Object nmsW = getHandle.invoke(craftW);
+			Object tile = getTileEntity.invoke(nmsW, blockPosConstruct.newInstance(b.getX(), b.getY(), b.getZ()));
+			if(tile==null)throw new EntasiaException("Invalid tile");
+			else{
+				return (GameProfile) BLProfileField.get(tile);
+			}
+		}catch(ReflectiveOperationException e){
 			e.printStackTrace();
 		}
 		return null;
@@ -125,63 +173,68 @@ public class ItemUtils {
 		}
 	}
 
+	// players
+
 	@Nullable
-	public static GameProfile getProfile(Block b) {
-		try{
-			Object craftW = CraftWorld.cast(b.getWorld());
-			Object nmsW = getHandle.invoke(craftW);
-			Object tile = getTileEntity.invoke(nmsW, blockPosConstruct.newInstance(b.getX(), b.getY(), b.getZ()));
-			if(tile==null)throw new EntasiaException("Invalid tile");
-			else{
-				return (GameProfile) BLProfileField.get(tile);
+	public static GameProfile getProfile(OfflinePlayer op) {
+		try {
+			if (op instanceof Player) {
+				return (GameProfile) PLOnlineProfile.invoke(op);
+			} else {
+				return (GameProfile) PLOfflineProfile.get(op);
 			}
-		}catch(ReflectiveOperationException e){
+		} catch (ReflectiveOperationException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 
-	public static String retrieveTexture(GameProfile profile){
-		String data=null;
-		for(Property pr : profile.getProperties().values()) {
-			if (pr.getName().equals("textures")) {
-				data = pr.getValue();
-			}
-		}
-		if(data==null)return null;
-		data = new String(Base64.getDecoder().decode(data));
-		data = data.substring(60, data.length()-4);
-		return data;
-	}
-
-
+	// ----- PLACE SKULL ASYNC
 
 	@Deprecated
 	public static void placeSkullAsync(Inventory inv, int slot, ItemStack item, OfflinePlayer owner, JavaPlugin plugin){
 		placeSkullAsync(inv, slot, item, owner);
 	}
 
+	public static void placeSkullAsync(Inventory inv, int slot, ItemStack item, String owner){
+		placeSkullAsync(inv, slot, item, new GameProfile(null, owner));
+	}
 
 	public static void placeSkullAsync(Inventory inv, int slot, ItemStack item, OfflinePlayer owner){
-		if(skulls.contains(owner.getName())) {
+		GameProfile profile = getProfile(owner);
+		if(profile==null)throw new LibraryException("No profile associated with owner");
+		placeSkullAsync(inv, slot, item, profile);
+	}
+
+	public static void placeSkullAsync(Inventory inv, int slot, ItemStack item, GameProfile profile){
+		UUID uuid;
+		if(profile.getId()==null)uuid = PlayerUtils.getUUID(profile.getName());
+		else uuid = profile.getId();
+
+		if(skulls.contains(uuid)) {
 			SkullMeta meta = (SkullMeta) item.getItemMeta();
-			meta.setOwningPlayer(owner);
+			setTexture(meta, profile);
 			item.setItemMeta(meta);
+
 			inv.setItem(slot, item);
-		}else{
+		}else {
+			inv.setItem(slot, item);
+
 			SkullMeta meta = (SkullMeta) item.getItemMeta();
-			inv.setItem(slot, item);
-			meta.setOwningPlayer(owner);
+			setTexture(meta, profile);
 			item.setItemMeta(meta);
+
 			new BukkitRunnable() {
 				@Override
 				public void run() {
 					inv.setItem(slot, item);
-					if(!skulls.contains(owner.getName()))skulls.add(owner.getName());
+					skulls.add(uuid);
 				}
 			}.runTaskAsynchronously(Paper.main);
 		}
 	}
+
+	// ----- OTHERS
 
 	public static boolean damage(ItemStack item, int by){
 		if(item.getType().getMaxDurability()==0)throw new LibraryException("Invalid item : no durability");
