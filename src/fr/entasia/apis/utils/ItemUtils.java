@@ -120,15 +120,6 @@ public class ItemUtils {
 
 	// skull
 
-	@Deprecated
-	public static void setTexture(SkullMeta im, GameProfile profile) {
-		try {
-			ITProfileField.set(im, profile);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	@Nullable
 	public static GameProfile getProfile(SkullMeta im) {
 		try {
@@ -137,6 +128,19 @@ public class ItemUtils {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Deprecated
+	public static void setTexture(SkullMeta im, GameProfile profile) {
+		setProfile(im, profile);
+	}
+
+	public static void setProfile(SkullMeta im, GameProfile profile) {
+		try {
+			ITProfileField.set(im, profile);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	// blocks
@@ -157,7 +161,12 @@ public class ItemUtils {
 		return null;
 	}
 
+	@Deprecated
 	public static void setTexture(Block b, GameProfile profile) {
+		setProfile(b, profile);
+	}
+
+	public static void setProfile(Block b, GameProfile profile) {
 		try{
 			Object craftW = CraftWorld.cast(b.getWorld());
 			Object nmsW = getHandle.invoke(craftW);
@@ -213,7 +222,7 @@ public class ItemUtils {
 
 		if(skulls.contains(uuid)) {
 			SkullMeta meta = (SkullMeta) item.getItemMeta();
-			setTexture(meta, profile);
+			setProfile(meta, profile);
 			item.setItemMeta(meta);
 
 			inv.setItem(slot, item);
@@ -221,7 +230,7 @@ public class ItemUtils {
 			inv.setItem(slot, item);
 
 			SkullMeta meta = (SkullMeta) item.getItemMeta();
-			setTexture(meta, profile);
+			setProfile(meta, profile);
 			item.setItemMeta(meta);
 
 			new BukkitRunnable() {
