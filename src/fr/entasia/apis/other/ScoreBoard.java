@@ -21,8 +21,8 @@ public abstract class ScoreBoard {
 	public ScoreBoard(Player p, String id, String name){
 		this.p = p;
 		scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
-		objective = scoreboard.registerNewObjective(id, "dummy");
-		objective.setDisplayName(name);
+		objective = scoreboard.registerNewObjective(id, "dummy", name);
+//		objective.setDisplayName(name);
 		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 		Arrays.fill(cache, "");
 	}

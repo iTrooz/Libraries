@@ -53,7 +53,7 @@ public class ItemUtils {
 
 	static {
 		try{
-			SkullMeta meta = (SkullMeta) Bukkit.getItemFactory().getItemMeta(Material.SKULL_ITEM);
+			SkullMeta meta = (SkullMeta) Bukkit.getItemFactory().getItemMeta(Material.PLAYER_HEAD);
 			ITProfileField = meta.getClass().getDeclaredField("profile");
 			ITProfileField.setAccessible(true);
 
@@ -68,11 +68,10 @@ public class ItemUtils {
 			getTileEntity = World.getDeclaredMethod("getTileEntity", BlockPosition);
 
 			setGameProfile = tileSkullClass.getDeclaredMethod("setGameProfile", GameProfile.class);
-			if(ServerUtils.getMajorVersion()<14){
-				BLProfileField = tileSkullClass.getDeclaredField("g");
-			}else{
-				BLProfileField = tileSkullClass.getDeclaredField("gameProfile");
-			}
+//			if(ServerUtils.getMajorVersion()<14){
+//				BLProfileField = tileSkullClass.getDeclaredField("g");
+//			}
+			BLProfileField = tileSkullClass.getDeclaredField("gameProfile");
 			BLProfileField.setAccessible(true);
 
 			PLOnlineProfile = ReflectionUtils.CraftPlayer.getDeclaredMethod("getProfile");
