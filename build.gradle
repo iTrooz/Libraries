@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.destroystokyo.paper:paper-api:1.12.2-R0.1-SNAPSHOT'
+    compile 'com.destroystokyo.paper:paper-api:1.15.2-R0.1-SNAPSHOT'
     compile 'io.github.waterfallmc:waterfall-api:1.16-R0.4-SNAPSHOT'
     compile 'com.comphenix.protocol:ProtocolLib:4.4.0'
     compile 'net.luckperms:api:5.1'
