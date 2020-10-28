@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuCreator {
-	protected List<InvInst> instances = new ArrayList<>();
-	protected int[] freeSlots = new int[0];
-	protected MenuFlag[] flags = new MenuFlag[0];
+	public List<InvInst> instances = new ArrayList<>();
+	public int[] freeSlots = new int[0];
+	public MenuFlag[] flags = new MenuFlag[0];
 
 	public MenuCreator(){
 		MenuAPI.menus.add(this);
