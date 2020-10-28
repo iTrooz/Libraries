@@ -6,6 +6,7 @@ import fr.entasia.apis.utils.ServerUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Logger;
 
@@ -38,8 +39,8 @@ public abstract class Common {
 				logger.severe("server name is not defined");
 				if(!enableDev)return false;
 			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 			if(enableDev){
 				logger.warning("Erreur lors de la lecture de server.properties !");
 			}else {

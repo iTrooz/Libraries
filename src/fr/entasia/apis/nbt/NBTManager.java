@@ -1,6 +1,7 @@
 package fr.entasia.apis.nbt;
 
 import fr.entasia.apis.utils.ServerUtils;
+import fr.entasia.errors.MirrorException;
 import org.bukkit.inventory.ItemStack;
 
 import java.lang.reflect.Method;
@@ -65,9 +66,8 @@ public class NBTManager {
 	protected static Object rawParseNBT(String rawNBT) {
 		try {
 			return parseNBT.invoke(null, rawNBT);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+		} catch (ReflectiveOperationException e) {
+			throw new MirrorException(e);
 		}
 	}
 }

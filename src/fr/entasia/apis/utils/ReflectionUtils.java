@@ -13,6 +13,7 @@ public class ReflectionUtils {
 
 	public static Class<?> CraftMagicNumbers;
 	public static Class<?> CraftPlayer;
+	public static Class<?> CraftWorld;
 	public static Class<?> CraftBlockState;
 	public static Class<?> EntityPlayer;
 	public static Class<?> PlayerConnection;
@@ -23,6 +24,7 @@ public class ReflectionUtils {
 	public static void initBukkit(){
 		CraftMagicNumbers = getOBCClass("util.CraftMagicNumbers");
 		CraftPlayer = getOBCClass("entity.CraftPlayer");
+		CraftWorld = getOBCClass("CraftWorld");
 		CraftBlockState = getOBCClass("block.CraftBlockState");
 		EntityPlayer = getNMSClass("EntityPlayer");
 		PlayerConnection = getNMSClass("PlayerConnection");
@@ -103,7 +105,6 @@ public class ReflectionUtils {
 //			method = i.getClass().getDeclaredMethod("getBlock");
 //			return method.invoke(i);
 //		}catch(ReflectiveOperationException e){
-//			e.printStackTrace();
 //			throw new MirrorException(e);
 //		}
 //	}

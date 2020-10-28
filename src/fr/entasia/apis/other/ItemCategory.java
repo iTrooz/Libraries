@@ -1,8 +1,6 @@
 package fr.entasia.apis.other;
 
-import com.destroystokyo.paper.MaterialSetTag;
 import org.bukkit.Material;
-import org.bukkit.Tag;
 
 import java.util.ArrayList;
 import java.util.HashSet;

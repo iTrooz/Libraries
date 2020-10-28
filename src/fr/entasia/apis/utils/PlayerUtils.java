@@ -1,5 +1,6 @@
 package fr.entasia.apis.utils;
 
+import fr.entasia.errors.MirrorException;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.Vector;
@@ -17,9 +18,8 @@ public class PlayerUtils {
 			Field ping = ReflectionUtils.EntityPlayer.getDeclaredField("ping");
 
 			return (int)ping.get(handle);
-		}catch(Exception e){
-			e.printStackTrace();
-			return 0;
+		}catch(ReflectiveOperationException e){
+			throw new MirrorException(e);
 		}
 	}
 

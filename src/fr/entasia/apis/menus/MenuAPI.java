@@ -119,7 +119,7 @@ public class MenuAPI implements Listener {
 								if (md.menu.hasFreeSlot(e.getSlot())){ // slot déplacable
 									try{
 										if(md.menu.onFreeSlotClick(mce)) e.setCancelled(true);
-									}catch(Exception e2){
+									}catch(Throwable e2){
 										e2.printStackTrace();
 									}
 								}else{ // slot déplacable

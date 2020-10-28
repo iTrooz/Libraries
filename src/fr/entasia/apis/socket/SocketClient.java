@@ -63,7 +63,7 @@ public class SocketClient {
 								if (se.key.equals(key)) {
 									try {
 										se.onEvent(arg);
-									} catch (Exception e) {
+									} catch (Throwable e) {
 										e.printStackTrace();
 										logger.info("Erreur détectée dans un event ! Contenu du paquet : " + msg);
 									}

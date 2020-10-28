@@ -46,7 +46,7 @@ public class InstantFirework {
 		Firework fw = loc.getWorld().spawn(loc, Firework.class);
 		fw.setFireworkMeta(fmeta);
 		explode(fw);
-	}
+	};
 
 	public static void explode(Firework fw) {
 		try {
@@ -54,8 +54,8 @@ public class InstantFirework {
 			Object handle = getHandle.invoke(firework);
 			ticksFlown.setInt(handle, expectedLifespan.getInt(handle)-1);
 			setInvisible.invoke(handle, true);
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		} catch (ReflectiveOperationException e) {
+			e.printStackTrace();
 		}
 	}
 }

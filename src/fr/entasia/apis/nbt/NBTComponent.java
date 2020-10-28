@@ -1,5 +1,7 @@
 package fr.entasia.apis.nbt;
 
+import fr.entasia.errors.MirrorException;
+
 import javax.annotation.Nullable;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -30,7 +32,7 @@ public class NBTComponent {
 		try{
 			map = (Map<String, Object>) mapField.get(nbt);
 		}catch(ReflectiveOperationException e){
-			e.printStackTrace();
+			throw new MirrorException(e);
 		}
 	}
 

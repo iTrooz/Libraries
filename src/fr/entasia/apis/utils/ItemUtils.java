@@ -4,6 +4,7 @@ import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import fr.entasia.errors.EntasiaException;
 import fr.entasia.errors.LibraryException;
+import fr.entasia.errors.MirrorException;
 import fr.entasia.libraries.paper.Paper;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -28,7 +29,6 @@ public class ItemUtils {
 
 	private static final ArrayList<UUID> skulls = new ArrayList<>();
 
-	private static Class<?> CraftWorld;
 	private static Constructor<?> blockPosConstruct;
 
 	// items
@@ -57,14 +57,13 @@ public class ItemUtils {
 			ITProfileField = meta.getClass().getDeclaredField("profile");
 			ITProfileField.setAccessible(true);
 
-			CraftWorld = ReflectionUtils.getOBCClass("CraftWorld");
 			Class<?> tileSkullClass = ReflectionUtils.getNMSClass("TileEntitySkull");
 			Class<?> World = ReflectionUtils.getNMSClass("World");
 			Class<?> BlockPosition = ReflectionUtils.getNMSClass("BlockPosition");
 
 			blockPosConstruct = BlockPosition.getConstructor(int.class, int.class, int.class);
 
-			getHandle = CraftWorld.getDeclaredMethod("getHandle");
+			getHandle = ReflectionUtils.CraftWorld.getDeclaredMethod("getHandle");
 			getTileEntity = World.getDeclaredMethod("getTileEntity", BlockPosition);
 
 			setGameProfile = tileSkullClass.getDeclaredMethod("setGameProfile", GameProfile.class);
@@ -78,7 +77,7 @@ public class ItemUtils {
 			PLOfflineProfile = ReflectionUtils.getOBCClass("CraftOfflinePlayer").getDeclaredField("profile");
 			PLOfflineProfile.setAccessible(true);
 		}catch(ReflectiveOperationException e){
-			e.printStackTrace();
+			throw new MirrorException(e);
 		}
 	}
 
@@ -137,8 +136,8 @@ public class ItemUtils {
 	public static void setProfile(SkullMeta im, GameProfile profile) {
 		try {
 			ITProfileField.set(im, profile);
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (ReflectiveOperationException e) {
+			throw new MirrorException();
 		}
 	}
 
@@ -147,7 +146,7 @@ public class ItemUtils {
 	@Nullable
 	public static GameProfile getProfile(Block b) {
 		try{
-			Object craftW = CraftWorld.cast(b.getWorld());
+			Object craftW = ReflectionUtils.CraftWorld.cast(b.getWorld());
 			Object nmsW = getHandle.invoke(craftW);
 			Object tile = getTileEntity.invoke(nmsW, blockPosConstruct.newInstance(b.getX(), b.getY(), b.getZ()));
 			if(tile==null)throw new EntasiaException("Invalid tile");
@@ -155,9 +154,8 @@ public class ItemUtils {
 				return (GameProfile) BLProfileField.get(tile);
 			}
 		}catch(ReflectiveOperationException e){
-			e.printStackTrace();
+			throw new MirrorException(e);
 		}
-		return null;
 	}
 
 	@Deprecated
@@ -167,7 +165,7 @@ public class ItemUtils {
 
 	public static void setProfile(Block b, GameProfile profile) {
 		try{
-			Object craftW = CraftWorld.cast(b.getWorld());
+			Object craftW = ReflectionUtils.CraftWorld.cast(b.getWorld());
 			Object nmsW = getHandle.invoke(craftW);
 			Object tile = getTileEntity.invoke(nmsW, blockPosConstruct.newInstance(b.getX(), b.getY(), b.getZ()));
 			if(tile==null)throw new EntasiaException("Invalid tile");
@@ -176,7 +174,7 @@ public class ItemUtils {
 				b.getState().update(true);
 			}
 		}catch(ReflectiveOperationException e){
-			e.printStackTrace();
+			throw new MirrorException(e);
 		}
 	}
 

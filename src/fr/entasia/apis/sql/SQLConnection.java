@@ -48,7 +48,7 @@ public class SQLConnection {
 		try{
 			this.props.put("password", SQLSecurity.getPassword(user));
 			unsafeConnect();
-		}catch(Exception e) {
+		}catch(SecurityException e) {
 			if(hint==1){
 				setFake(true);
 			}else throw e;

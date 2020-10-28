@@ -1,6 +1,6 @@
 package fr.entasia.apis.nbt;
 
-import fr.entasia.errors.EntasiaException;
+import fr.entasia.errors.MirrorException;
 import org.bukkit.entity.Entity;
 
 import java.lang.reflect.Method;
@@ -15,8 +15,8 @@ public class EntityNBT {
 			Object a = NBTManager.TagCompoundClass.newInstance();
 			getNMSEntityNBT.invoke(nmsEntity, a);
 			return new NBTComponent(a);
-		}catch(Exception ex){
-			throw new EntasiaException(ex);
+		}catch(ReflectiveOperationException e){
+			throw new MirrorException(e);
 		}
 	}
 
@@ -24,8 +24,8 @@ public class EntityNBT {
 		try {
 			Object nmsEntity = getNMSEntity.invoke(entity);
 			setNMSEntityNBT.invoke(nmsEntity, nbt.rawnbt);
-		} catch (Exception ex) {
-			throw new EntasiaException(ex);
+		} catch (ReflectiveOperationException e) {
+			throw new MirrorException(e);
 		}
 	}
 

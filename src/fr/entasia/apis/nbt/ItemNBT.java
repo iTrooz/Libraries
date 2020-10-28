@@ -1,6 +1,6 @@
 package fr.entasia.apis.nbt;
 
-import fr.entasia.errors.EntasiaException;
+import fr.entasia.errors.MirrorException;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -21,8 +21,8 @@ public class ItemNBT {
 			ItemMeta meta = (ItemMeta) getBukkitMeta.invoke(null, nmsStack);
 			item.setItemMeta(meta);
 			return item;
-		} catch (Exception ex) {
-			throw new EntasiaException(ex);
+		} catch (ReflectiveOperationException e) {
+			throw new MirrorException(e);
 		}
 	}
 
@@ -40,8 +40,8 @@ public class ItemNBT {
 			Object a = getNMSItemTag.invoke(nmsStack);
 			if(a==null)return null;
 			else return new NBTComponent(a);
-		}catch(Exception ex){
-			throw new EntasiaException(ex);
+		}catch(ReflectiveOperationException e){
+			throw new MirrorException(e);
 		}
 	}
 
