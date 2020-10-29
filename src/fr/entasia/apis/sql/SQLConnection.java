@@ -1,6 +1,7 @@
 package fr.entasia.apis.sql;
 
 import fr.entasia.apis.utils.ServerUtils;
+import fr.entasia.errors.LibraryException;
 
 import java.io.File;
 import java.sql.*;
@@ -48,7 +49,7 @@ public class SQLConnection {
 		try{
 			this.props.put("password", SQLSecurity.getPassword(user));
 			unsafeConnect();
-		}catch(SecurityException e) {
+		}catch(SQLException|LibraryException e) {
 			if(hint==1){
 				setFake(true);
 			}else throw e;
