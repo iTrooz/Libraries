@@ -10,7 +10,7 @@ import java.util.Calendar;
 public class FakeStatement implements PreparedStatement {
 	@Override
 	public ResultSet executeQuery() {
-		return null;
+		return new FakeResultSet();
 	}
 
 	@Override
@@ -360,7 +360,7 @@ public class FakeStatement implements PreparedStatement {
 
 	@Override
 	public ResultSet getResultSet() {
-		return null;
+		return new FakeResultSet();
 	}
 
 	@Override
