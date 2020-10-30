@@ -10,7 +10,7 @@ import org.bukkit.scoreboard.Scoreboard;
 import java.util.Arrays;
 
 // en cours de test :)
-public abstract class ScoreBoard {
+public abstract class ScoreBoardHelper {
 
 	public final Player p;
 	public Scoreboard scoreboard;
@@ -18,7 +18,7 @@ public abstract class ScoreBoard {
 
 	public String[] cache = new String[15];
 
-	public ScoreBoard(Player p, String id, String name){
+	public ScoreBoardHelper(Player p, String id, String name){
 		this.p = p;
 		scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
 		objective = scoreboard.registerNewObjective(id, "dummy", name);
