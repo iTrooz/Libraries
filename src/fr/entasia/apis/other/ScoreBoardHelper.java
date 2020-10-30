@@ -44,8 +44,8 @@ public abstract class ScoreBoardHelper {
 	protected abstract void setSlots();
 
 	private int check(int number){
-		if(number<0||number>89)throw new LibraryException("Invalid line number. Accepted 10-99");
-		return number+10;
+		if(number<0||number>88)throw new LibraryException("Invalid line number. Accepted 0-88"); // 11-99
+		return number+11;
 	}
 
 	public void dynamicLine(int number, String text){
