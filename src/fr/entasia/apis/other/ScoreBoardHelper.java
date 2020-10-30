@@ -37,7 +37,7 @@ public abstract class ScoreBoardHelper {
 	public void reload(){
 		p.setScoreboard(scoreboard);
 		clear();
-		objective.getScore("§bplay.enta§7sia.fr").setScore(0);
+		objective.getScore("§bplay.enta§7sia.fr").setScore(10);
 		setSlots();
 	}
 
