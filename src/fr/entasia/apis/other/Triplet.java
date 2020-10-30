@@ -1,7 +1,5 @@
 package fr.entasia.apis.other;
 
-import java.util.Map;
-
 public class Triplet<A, B, C> {
 
     public A a;
