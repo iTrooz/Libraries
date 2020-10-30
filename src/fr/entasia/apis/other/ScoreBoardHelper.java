@@ -8,6 +8,7 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 // en cours de test :)
 public abstract class ScoreBoardHelper {
@@ -16,46 +17,48 @@ public abstract class ScoreBoardHelper {
 	public Scoreboard scoreboard;
 	public Objective objective;
 
-	public String[] cache = new String[15];
+	public HashMap<Integer, String> cache = new HashMap<>(); // can't do an Array ):
 
 	public ScoreBoardHelper(Player p, String id, String name){
 		this.p = p;
 		scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
 		objective = scoreboard.registerNewObjective(id, "dummy", name);
-//		objective.setDisplayName(name);
 		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-		Arrays.fill(cache, "");
 	}
 
-	public void set(){
-		if(p.getScoreboard()!=scoreboard)forceSet();
+	public boolean isActive(){
+		return p.getScoreboard()==scoreboard;
 	}
 
 	public void clear(){
 		scoreboard.getEntries().forEach(a -> scoreboard.resetScores(a));
 	}
 
-	public void forceSet(){
+	public void reload(){
 		p.setScoreboard(scoreboard);
 		clear();
 		objective.getScore("§bplay.enta§7sia.fr").setScore(0);
+		setSlots();
 	}
+
+	protected abstract void setSlots();
 
 	private int check(int number){
-		number = number-10;
-		if(number<0||number>=cache.length)throw new LibraryException("Invalid line number. Accepted 10-"+(cache.length+10));
-		return number;
+		if(number<0||number>89)throw new LibraryException("Invalid line number. Accepted 10-99");
+		return number+10;
 	}
 
-	public void changeLine(int number, String text){
-		int n2 = check(number);
-		scoreboard.resetScores(cache[n2]);
-		cache[n2] = text;
+	public void dynamicLine(int number, String text){
+		number = check(number);
+		String s = cache.get(number);
+		if(s!=null) scoreboard.resetScores(cache.get(number));
+
+		cache.put(number, text);
 		objective.getScore(text).setScore(number);
 	}
 
 	public void staticLine(int number, String text){
-		check(number);
+		number = check(number);
 		objective.getScore(text).setScore(number);
 	}
 
