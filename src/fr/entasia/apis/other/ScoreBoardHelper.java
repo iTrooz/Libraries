@@ -13,7 +13,7 @@ import java.util.HashMap;
 // en cours de test :)
 public abstract class ScoreBoardHelper {
 
-	public final Player p;
+	public Player p;
 	public Scoreboard scoreboard;
 	public Objective objective;
 
@@ -62,4 +62,10 @@ public abstract class ScoreBoardHelper {
 		objective.getScore(text).setScore(number);
 	}
 
+	public void delete(){
+		p.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
+		p = null;
+		scoreboard = null;
+		objective = null;
+	}
 }
