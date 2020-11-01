@@ -2,6 +2,7 @@ package fr.entasia.apis.sql;
 
 import fr.entasia.apis.utils.ServerUtils;
 import fr.entasia.errors.LibraryException;
+import fr.entasia.libraries.Common;
 
 import java.io.File;
 import java.sql.*;
@@ -51,6 +52,7 @@ public class SQLConnection {
 			unsafeConnect();
 		}catch(SQLException|LibraryException e) {
 			if(hint==1){
+				Common.logger.warning("Connection SQL de l'user "+user+" faussée");
 				setFake(true);
 			}else throw e;
 		}
