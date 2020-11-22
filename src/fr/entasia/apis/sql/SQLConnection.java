@@ -17,7 +17,7 @@ public class SQLConnection {
 	protected String url;
 	public Properties props = new Properties();;
 	public String db;
-	public byte hint = 0;
+	public byte fakeHint = 0;
 
 	public SQLConnection(){
 	}
@@ -35,7 +35,7 @@ public class SQLConnection {
 	// </ANCIENS>
 
 	public SQLConnection(boolean dev) {
-		if(dev)hint = 1;
+		if(dev) fakeHint = 1;
 	}
 
 	public SQLConnection mariadb(String user) throws SQLException {
@@ -51,7 +51,7 @@ public class SQLConnection {
 			this.props.put("password", SQLSecurity.getPassword(user));
 			unsafeConnect();
 		}catch(SQLException|LibraryException e) {
-			if(hint==1){
+			if(fakeHint ==1){
 				Common.logger.warning("Connection SQL de l'user "+user+" faussée");
 				setFake(true);
 			}else throw e;
@@ -72,10 +72,14 @@ public class SQLConnection {
 
 	public SQLConnection setFake(boolean fake){
 		if(fake) {
-			hint = 2;
+			fakeHint = 2;
 			connection = new FakeConnection();
 		}
 		return this;
+	}
+
+	public boolean isFake(){
+		return fakeHint == 2;
 	}
 
 	public boolean connect() {
@@ -105,7 +109,7 @@ public class SQLConnection {
 	}
 
 	public boolean checkConnect() {
-		if(hint ==2)return true;
+		if(fakeHint ==2)return true;
 		try{
 			if(!connection.isValid(60)) return connect();
 		} catch (SQLException e) {
