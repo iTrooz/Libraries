@@ -41,13 +41,16 @@ public class ItemUtils {
 	private static Field PLOfflineProfile;
 
 
+	public static boolean is(ItemStack item, Material m, String name){
+		return (item!=null&&item.getType()==m)&&hasName(item, name);
+	}
+
 	public static boolean hasName(ItemStack item){
 		return (item!=null&&item.hasItemMeta()&&item.getItemMeta().hasDisplayName());
 	}
 
 	public static boolean hasName(ItemStack item, String name){
-		if(!hasName(item))return false;
-		return item.getItemMeta().getDisplayName().equals(name);
+		return hasName(item)&&item.getItemMeta().getDisplayName().equals(name);
 	}
 
 
