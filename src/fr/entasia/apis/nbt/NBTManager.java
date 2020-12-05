@@ -2,6 +2,8 @@ package fr.entasia.apis.nbt;
 
 import fr.entasia.apis.utils.ServerUtils;
 import fr.entasia.errors.MirrorException;
+import net.minecraft.server.v1_15_R1.Entity;
+import net.minecraft.server.v1_15_R1.NBTTagCompound;
 import org.bukkit.inventory.ItemStack;
 
 import java.lang.reflect.Method;
@@ -58,9 +60,12 @@ public class NBTManager {
 			EntityNBT.getNMSEntityNBT = NMSEntityClass.getDeclaredMethod("e", TagCompoundClass);
 		} else {
 			EntityNBT.getNMSEntityNBT = NMSEntityClass.getDeclaredMethod("save", TagCompoundClass);
-
 		}
-		EntityNBT.setNMSEntityNBT = NMSEntityClass.getDeclaredMethod("f", TagCompoundClass);
+		if (ServerUtils.getMajorVersion()<16) {
+			EntityNBT.setNMSEntityNBT = NMSEntityClass.getDeclaredMethod("f", TagCompoundClass);
+		}else{
+			EntityNBT.setNMSEntityNBT = NMSEntityClass.getDeclaredMethod("save", TagCompoundClass);
+		}
 	}
 
 	protected static Object rawParseNBT(String rawNBT) {
