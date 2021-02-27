@@ -1,6 +1,5 @@
 package fr.itrooz.libraries;
 
-import fr.itrooz.apis.socket.SocketClient;
 import fr.itrooz.apis.sql.SQLConnection;
 import fr.itrooz.apis.utils.ServerUtils;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -14,7 +13,6 @@ import java.util.logging.Logger;
 public abstract class Common {
 
 	public static SQLConnection sql;
-	public static boolean enableDev, enableSocket, enableSQL;
 	public static Logger logger;
 	public static Thread mainThread = Thread.currentThread();
 
@@ -24,12 +22,6 @@ public abstract class Common {
 
 //		loadAPIs();
 
-		if(enableSQL){
-			sql = new SQLConnection(true);
-			if(enableDev)sql.mariadb("root");
-			else sql.mariadb("libraries");
-			logger.info("Connection à la base SQL réussie !");
-		}
 
 		try {
 			Properties prop = new Properties();
@@ -37,16 +29,12 @@ public abstract class Common {
 			ServerUtils.serverName = prop.getProperty("server-name");
 			if(ServerUtils.serverName == null){
 				logger.severe("server name is not defined");
-				if(!enableDev)return false;
+				return false;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
-			if(enableDev){
-				logger.warning("Erreur lors de la lecture de server.properties !");
-			}else {
-				logger.severe("Erreur lors de la lecture de server.properties !");
-				return false;
-			}
+			logger.severe("Erreur lors de la lecture de server.properties !");
+			return false;
 		}
 		logger.info("Nom du serveur : " + ServerUtils.serverName);
 

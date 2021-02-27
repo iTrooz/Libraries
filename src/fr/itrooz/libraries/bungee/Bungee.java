@@ -26,15 +26,6 @@ public class Bungee extends Plugin {
 	public static File configFile;
 	public static Configuration config;
 
-	public void stopServer(){
-		if(Common.enableDev){
-			getLogger().severe("Une erreur est survenue, mais le serveur est en mode développement !");
-		}else {
-			getLogger().info("LE PROXY VA S'ETEINDRE");
-			ProxyServer.getInstance().stop();
-		}
-	}
-
 	@Override
 	public void onEnable() {
 		try{
@@ -53,9 +44,6 @@ public class Bungee extends Plugin {
 			configFile = new File(getDataFolder(), "config.yml");
 			if(!configFile.exists())Files.copy(getResourceAsStream("config.yml"), configFile.toPath());
 			config = ConfigurationProvider.getProvider(YamlConfiguration.class).load(configFile);
-			Common.enableDev = config.getBoolean("dev", false);
-			Common.enableSQL = config.getBoolean("features.sql", true);
-			Common.enableSocket = config.getBoolean("features.socket", true);
 
 
 			// Fichier passwords
@@ -64,12 +52,7 @@ public class Bungee extends Plugin {
 
 			Configuration base = ConfigurationProvider.getProvider(YamlConfiguration.class).load(f);
 
-			Configuration conf = base.getSection("socket");
-			SocketSecurity.secret = conf.getString("secret").getBytes(StandardCharsets.UTF_8);
-			SocketSecurity.setHost(conf.getString("host"));
-			SocketSecurity.setPort(conf.getInt("port"));
-
-			conf = base.getSection("sql");
+			Configuration conf = base.getSection("sql");
 			SQLSecurity.setHost(conf.getString("host"));
 			SQLSecurity.setPort(conf.getInt("port"));
 			conf = conf.getSection("passes");
@@ -77,27 +60,15 @@ public class Bungee extends Plugin {
 				SQLSecurity.addPass(i, conf.getString(i));
 			}
 
-			if(getProxy().getPluginManager().getPlugin("LuckPerms")!=null){
-				LPUtils.enable();
-			}
+			Common.load();
 
+//			if(getProxy().getPluginManager().getPlugin("LuckPerms")!=null){
+//				LPUtils.enable();
+//			}
 
-			// Commons
-			if(!Common.load()){
-				stopServer();
-				return;
-			}
-
-			// Events de base pour le socket
-
-			// Chargement des listeners
-			getProxy().getPluginManager().registerListener(this, new BaseListeners());
-
-			others();
 
 		}catch(Throwable e){
 			e.printStackTrace();
-			stopServer();
 		}
 	}
 
@@ -106,16 +77,4 @@ public class Bungee extends Plugin {
 		getLogger().info("[Librairies] Librairies globales déchargées");
 	}
 
-
-	private static void others() throws Throwable {
-
-		SocketClient.addListener(new SocketEvent("send") {
-			@Override
-			public void onEvent(String[] data) {
-				ProxiedPlayer p = ProxyServer.getInstance().getPlayer(data[0]);
-				ServerInfo t = ProxyServer.getInstance().getServerInfo(data[1]);
-				if (t != null && p != null) p.connect(t);
-			}
-		});
-	}
 }

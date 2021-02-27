@@ -6,7 +6,6 @@ import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
 import org.bukkit.entity.Firework;
 import org.bukkit.inventory.meta.FireworkMeta;
-import org.fusesource.hawtjni.runtime.Library;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

@@ -32,15 +32,6 @@ public class Paper extends JavaPlugin {
 
     public static boolean enableRegions, enableSigner, enableMenus;
 
-    public void stopServer(){
-    	if(Common.enableDev){
-		    getLogger().severe("Une erreur est survenue, mais le serveur est en mode développement !");
-	    }else{
-		    getLogger().severe("LE SERVEUR VA S'ETEINDRE");
-		    getServer().shutdown();
-	    }
-    }
-
     @Override
     public void onEnable() {
 	    try {
@@ -58,12 +49,9 @@ public class Paper extends JavaPlugin {
 		    // Configuration
 		    saveDefaultConfig();
 		    ConfigurationSection sec = getConfig().getConfigurationSection("features");
-		    Common.enableDev = getConfig().getBoolean("dev", false);
 			enableMenus = sec.getBoolean("menus", true);
 			enableRegions = sec.getBoolean("regions", true);
 			enableSigner = sec.getBoolean("signer", true);
-			Common.enableSQL = sec.getBoolean("sql", true);
-			Common.enableSocket = sec.getBoolean("socket", true);
 
 		    // Fichiers passwords
 		    File f = new File(getDataFolder(), "passes.yml");
@@ -71,12 +59,7 @@ public class Paper extends JavaPlugin {
 
 		    Configuration base = YamlConfiguration.loadConfiguration(f);
 
-		    ConfigurationSection conf = base.getConfigurationSection("socket");
-			SocketSecurity.secret = conf.getString("secret").getBytes(StandardCharsets.UTF_8);
-			SocketSecurity.setHost(conf.getString("host"));
-			SocketSecurity.setPort(conf.getInt("port"));
-
-		    conf = base.getConfigurationSection("sql");
+		    ConfigurationSection conf = base.getConfigurationSection("sql");
 		    SQLSecurity.setHost(conf.getString("host"));
 		    SQLSecurity.setPort(conf.getInt("port"));
 		    for(Map.Entry<String, Object> e : conf.getConfigurationSection("passes").getValues(false).entrySet()){
@@ -88,44 +71,37 @@ public class Paper extends JavaPlugin {
 			}
 
 		    // Commons
-		    if(!Common.load()&&!Common.enableDev){
-			    stopServer();
-			    return;
-		    }
+		    Common.load();
 
 		    // Chargement des listeners
 		    getServer().getPluginManager().registerEvents(new BaseListener(), this);
 
-		    others();
 
-	    } catch (Throwable e) {
+			NBTManager.init();
+			InstantFirework.init();
+
+			if (enableSigner&&Bukkit.getPluginManager().getPlugin("ProtocolLib") != null) {
+				Signer.initPackets();
+			}
+			if (enableRegions) RegionManager.init();
+			if (enableMenus) MenuAPI.init();
+
+
+			new BukkitRunnable() {
+				@Override
+				public void run() {
+					Bukkit.getPluginManager().callEvent(new ServerStartEvent());
+				}
+			}.runTask(main);
+
+
+		} catch (Throwable e) {
 		    e.printStackTrace();
-		    stopServer();
 	    }
     }
 
     @Override
     public void onDisable() {
 	    getLogger().info("Librairies globales déchargées");
-    }
-
-    public static void others() throws Throwable {
-	    // Grosses APIs
-	    NBTManager.init();
-	    InstantFirework.init();
-	    if (enableSigner&&Bukkit.getPluginManager().getPlugin("ProtocolLib") != null) {
-		    Signer.initPackets();
-	    }
-	    if (enableRegions) RegionManager.init();
-	    if (enableMenus) MenuAPI.init();
-
-
-	    new BukkitRunnable() {
-		    @Override
-		    public void run() {
-	            Bukkit.getPluginManager().callEvent(new ServerStartEvent());
-		    }
-	    }.runTask(main);
-
     }
 }
