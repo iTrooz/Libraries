@@ -1,0 +1,32 @@
+package fr.entasia.apis.regionManager.events;
+
+import fr.entasia.apis.events.BaseEvent;
+import fr.entasia.apis.regionManager.api.Region;
+import fr.entasia.apis.regionManager.api.RegionAction;
+import org.bukkit.entity.Player;
+
+public class RegionEnterEvent extends BaseEvent {
+
+	private Region r;
+	private Player p;
+	private RegionAction tt;
+
+	public RegionEnterEvent(Region r, Player p, RegionAction tt) {
+		this.r = r;
+		this.p = p;
+		this.tt = tt;
+	}
+	
+	public Region getRegion() {
+		return r;
+	}
+	
+	public Player getPlayer() {
+		return p;
+	}
+	
+	public RegionAction getTriggerType(){
+		return tt;
+	}
+
+}
