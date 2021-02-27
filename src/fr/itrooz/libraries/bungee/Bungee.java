@@ -22,11 +22,9 @@ public class Bungee extends Plugin {
 	public void onEnable() {
 		try{
 			// Définition des variables utiles
-			main=this;
+			main = this;
 			Common.logger = getLogger();
 			ServerUtils.bukkit = false;
-
-
 
 			// Configuration
 			if (!getDataFolder().exists()) {

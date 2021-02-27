@@ -15,7 +15,7 @@ public class Mutable <T> {
 
     @Override
     public String toString() {
-        return "Mutable{"+"value="+value+"}";
+        return value.toString();
     }
 
 
