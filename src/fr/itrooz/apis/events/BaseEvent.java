@@ -1,4 +1,4 @@
-package fr.itrooz.apis.other;
+package fr.itrooz.apis.events;
 
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
