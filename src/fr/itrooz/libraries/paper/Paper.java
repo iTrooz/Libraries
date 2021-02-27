@@ -4,7 +4,6 @@ import fr.itrooz.apis.events.bukkit.ServerStartEvent;
 import fr.itrooz.apis.menus.MenuAPI;
 import fr.itrooz.apis.nbt.NBTManager;
 import fr.itrooz.apis.other.InstantFirework;
-import fr.itrooz.apis.other.Signer;
 import fr.itrooz.apis.regionManager.api.RegionManager;
 import fr.itrooz.apis.socket.SocketSecurity;
 import fr.itrooz.apis.sql.SQLSecurity;
