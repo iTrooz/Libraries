@@ -4,19 +4,14 @@ import fr.itrooz.apis.socket.SocketClient;
 import fr.itrooz.apis.socket.SocketEvent;
 import fr.itrooz.apis.socket.SocketSecurity;
 import fr.itrooz.apis.sql.SQLSecurity;
-import fr.itrooz.apis.utils.LPUtils;
 import fr.itrooz.apis.utils.ServerUtils;
 import fr.itrooz.libraries.Common;
-import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.api.config.ServerInfo;
-import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 
 import java.io.File;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
 public class Bungee extends Plugin {

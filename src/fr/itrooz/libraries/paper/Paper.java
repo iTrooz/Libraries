@@ -9,7 +9,6 @@ import fr.itrooz.apis.regionManager.api.RegionManager;
 import fr.itrooz.apis.socket.SocketSecurity;
 import fr.itrooz.apis.sql.SQLSecurity;
 import fr.itrooz.apis.utils.Internal;
-import fr.itrooz.apis.utils.LPUtils;
 import fr.itrooz.apis.utils.ReflectionUtils;
 import fr.itrooz.apis.utils.ServerUtils;
 import fr.itrooz.libraries.Common;
@@ -22,7 +21,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.File;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Map;
 
