@@ -1,17 +1,15 @@
 package fr.itrooz.libraries.paper;
 
-import fr.itrooz.apis.events.bukkit.ServerStartEvent;
+import fr.itrooz.apis.events.ServerStartEvent;
 import fr.itrooz.apis.menus.MenuAPI;
 import fr.itrooz.apis.nbt.NBTManager;
 import fr.itrooz.apis.other.InstantFirework;
 import fr.itrooz.apis.regionManager.api.RegionManager;
-import fr.itrooz.apis.socket.SocketSecurity;
 import fr.itrooz.apis.sql.SQLSecurity;
 import fr.itrooz.apis.utils.Internal;
 import fr.itrooz.apis.utils.ReflectionUtils;
 import fr.itrooz.apis.utils.ServerUtils;
 import fr.itrooz.libraries.Common;
-import fr.itrooz.libraries.paper.listeners.BaseListener;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;
@@ -63,23 +61,11 @@ public class Paper extends JavaPlugin {
 			    SQLSecurity.addPass(e.getKey(), (String)e.getValue());
 		    }
 
-		    if(getServer().getPluginManager().getPlugin("LuckPerms")!=null){
-				LPUtils.enable();
-			}
-
-		    // Commons
 		    Common.load();
-
-		    // Chargement des listeners
-		    getServer().getPluginManager().registerEvents(new BaseListener(), this);
-
 
 			NBTManager.init();
 			InstantFirework.init();
 
-			if (enableSigner&&Bukkit.getPluginManager().getPlugin("ProtocolLib") != null) {
-				Signer.initPackets();
-			}
 			if (enableRegions) RegionManager.init();
 			if (enableMenus) MenuAPI.init();
 

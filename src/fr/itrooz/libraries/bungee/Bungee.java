@@ -1,8 +1,5 @@
 package fr.itrooz.libraries.bungee;
 
-import fr.itrooz.apis.socket.SocketClient;
-import fr.itrooz.apis.socket.SocketEvent;
-import fr.itrooz.apis.socket.SocketSecurity;
 import fr.itrooz.apis.sql.SQLSecurity;
 import fr.itrooz.apis.utils.ServerUtils;
 import fr.itrooz.libraries.Common;
