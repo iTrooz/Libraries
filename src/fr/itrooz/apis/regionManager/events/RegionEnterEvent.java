@@ -1,11 +1,11 @@
 package fr.itrooz.apis.regionManager.events;
 
-import fr.itrooz.apis.events.EntasiaEvent;
+import fr.itrooz.apis.other.BaseEvent;
 import fr.itrooz.apis.regionManager.api.Region;
 import fr.itrooz.apis.regionManager.api.RegionAction;
 import org.bukkit.entity.Player;
 
-public class RegionEnterEvent extends EntasiaEvent {
+public class RegionEnterEvent extends BaseEvent {
 
 	private Region r;
 	private Player p;
