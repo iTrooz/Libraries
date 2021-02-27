@@ -11,8 +11,6 @@ public class TextUtils {
 		return a.substring(0, 1).toUpperCase()+a.substring(1).toLowerCase();
 	}
 
-	public static Pattern regex = Pattern.compile("entasia", Pattern.CASE_INSENSITIVE);
-
 	public static String setColors(String msg) {
 		char[] list = msg.toCharArray();
 		for(int i=1;i<list.length;i++){
@@ -26,7 +24,7 @@ public class TextUtils {
 	}
 
 	public static String formatMessage(String msg, ChatColor color) {
-		return regex.matcher(msg).replaceAll("§bEnta§7sia"+color)
+		return msg
 				.replace("#", "§c#"+color).replace("<3", "§c❤"+color)
 				.replace(":)", "§6☺"+color).replace("(:", "§6☻"+color);
 	}
