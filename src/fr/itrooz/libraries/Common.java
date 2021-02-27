@@ -50,10 +50,6 @@ public abstract class Common {
 		}
 		logger.info("Nom du serveur : " + ServerUtils.serverName);
 
-		if(enableSocket){
-			if(!SocketClient.init()&&!enableDev)return false;
-		}
-
 		logger.info("Librairies globales chargées !");
 		return true;
 	}

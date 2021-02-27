@@ -151,7 +151,7 @@ public class ItemUtils {
 			Object craftW = ReflectionUtils.CraftWorld.cast(b.getWorld());
 			Object nmsW = getHandle.invoke(craftW);
 			Object tile = getTileEntity.invoke(nmsW, blockPosConstruct.newInstance(b.getX(), b.getY(), b.getZ()));
-			if(tile==null)throw new EntasiaException("Invalid tile");
+			if(tile==null)throw new LibraryException("Invalid tile");
 			else{
 				return (GameProfile) BLProfileField.get(tile);
 			}
@@ -170,7 +170,7 @@ public class ItemUtils {
 			Object craftW = ReflectionUtils.CraftWorld.cast(b.getWorld());
 			Object nmsW = getHandle.invoke(craftW);
 			Object tile = getTileEntity.invoke(nmsW, blockPosConstruct.newInstance(b.getX(), b.getY(), b.getZ()));
-			if(tile==null)throw new EntasiaException("Invalid tile");
+			if(tile==null)throw new LibraryException("Invalid tile");
 			else{
 				setGameProfile.invoke(tile, profile);
 				b.getState().update(true);

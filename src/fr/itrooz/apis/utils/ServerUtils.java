@@ -70,16 +70,4 @@ public class ServerUtils {
 		wantMainThread();
 	}
 
-
-
-//	public static void warn(JavaPlugin plugin, String msg) {
-//		warn(plugin, "logs.others", msg);
-//	}
-//
-//	public static void warn(JavaPlugin plugin, String permission, String msg) {
-//		new EntasiaException("Warning du plugin "+plugin.getName()).printStackTrace();
-//		plugin.getLogger().warning(msg);
-//		ServerUtils.permMsg(permission, "§6Warning <"+plugin.getName()+"> : §c"+msg);
-//	}
-
 }

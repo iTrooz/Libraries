@@ -1,10 +1,12 @@
 package fr.itrooz.apis.other;
 
 import fr.itrooz.apis.utils.ReflectionUtils;
+import fr.itrooz.errors.LibraryException;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
 import org.bukkit.entity.Firework;
 import org.bukkit.inventory.meta.FireworkMeta;
+import org.fusesource.hawtjni.runtime.Library;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -18,7 +20,7 @@ public class InstantFirework {
 	public static Field expectedLifespan, ticksFlown;
 
 	public static void init() throws Throwable {
-		if(init)throw new EntasiaException("already initied !");
+		if(init)throw new LibraryException("already initied !");
 		init = true;
 		entityFireworkClass = ReflectionUtils.getNMSClass("EntityFireworks"); // handle
 		craftFireworkClass = ReflectionUtils.getOBCClass("entity.CraftFirework");
