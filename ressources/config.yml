@@ -1,6 +1,4 @@
-dev: true
 features:
   menus: true
   regions: true
   signer: false
-  socket: false
