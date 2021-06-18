@@ -35,7 +35,14 @@ public class Paper extends JavaPlugin {
 		    Common.logger = getLogger();
 			Internal.setBukkitVersions();
 
-			ReflectionUtils.initBukkit();
+			try{
+				ReflectionUtils.initBukkit();
+				NBTManager.init();
+				InstantFirework.init();
+			}catch(Throwable e){
+				e.printStackTrace();
+				getLogger().warning("Le chargement des classes NBT/NMS/reflection a échoué !");
+			}
 
 		    ServerUtils.bukkit = true;
 		    ServerUtils.bungeeMode = Bukkit.spigot().getConfig().getBoolean("settings.bungeecord", false);
@@ -62,9 +69,6 @@ public class Paper extends JavaPlugin {
 		    }
 
 		    Common.load();
-
-			NBTManager.init();
-			InstantFirework.init();
 
 			if (enableRegions) RegionManager.init();
 			if (enableMenus) MenuAPI.init();
