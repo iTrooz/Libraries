@@ -26,16 +26,21 @@ public class ReflectionUtils {
 		CraftPlayer = getOBCClass("entity.CraftPlayer");
 		CraftWorld = getOBCClass("CraftWorld");
 		CraftBlockState = getOBCClass("block.CraftBlockState");
-		EntityPlayer = getNMSClass("EntityPlayer");
-		PlayerConnection = getNMSClass("PlayerConnection");
-		Packet = getNMSClass("Packet");
-		MinecraftServer = getNMSClass("MinecraftServer");
+		EntityPlayer = getNMSClass("server.level", "EntityPlayer");
+		PlayerConnection = getNMSClass("server.network", "PlayerConnection");
+		Packet = getNMSClass("network.protocol", "Packet");
+		MinecraftServer = getNMSClass("server", "MinecraftServer");
 		servInst = getField(Bukkit.getServer(), "console");
 	}
 
-	public static Class<?> getNMSClass(String c) {
+	private static String getPackage(String def){
+		if(ServerUtils.getMajorVersion()>16) return def;
+		else return "server." + ServerUtils.getVersionStr();
+	}
+
+	public static Class<?> getNMSClass(String packag, String c) {
 		try{
-			return Class.forName("net.minecraft.server." + ServerUtils.getVersionStr() + "." + c);
+			return Class.forName("net.minecraft." + getPackage(packag)+ "." + c);
 		}catch(ReflectiveOperationException e) {
 			throw new MirrorException(e);
 		}

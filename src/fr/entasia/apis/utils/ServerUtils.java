@@ -40,7 +40,7 @@ public class ServerUtils {
 	public static void permMsg(String perm, BaseComponent[] message){
 		if(bukkit){
 			for(Player p : Bukkit.getOnlinePlayers()){
-				if(p.hasPermission(perm))p.sendMessage(message);
+				if(p.hasPermission(perm))p.spigot().sendMessage(message);
 			}
 		}else{
 			for(ProxiedPlayer p : ProxyServer.getInstance().getPlayers()){

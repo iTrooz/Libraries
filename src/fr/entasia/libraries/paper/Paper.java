@@ -33,12 +33,12 @@ public class Paper extends JavaPlugin {
 	    	// Variables de base
 		    main = this;
 		    Common.logger = getLogger();
+			Internal.setBukkitVersions();
+
+			ReflectionUtils.initBukkit();
+
 		    ServerUtils.bukkit = true;
 		    ServerUtils.bungeeMode = Bukkit.spigot().getConfig().getBoolean("settings.bungeecord", false);
-			Internal.setVersionStr(Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3]);
-			ReflectionUtils.initBukkit();
-			String ver = (String)ReflectionUtils.MinecraftServer.getDeclaredMethod("getVersion").invoke(ReflectionUtils.servInst);
-			Internal.setVersionInt(ver);
 
 
 		    // Configuration

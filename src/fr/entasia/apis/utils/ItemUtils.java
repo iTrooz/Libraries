@@ -59,9 +59,9 @@ public class ItemUtils {
 			ITProfileField = meta.getClass().getDeclaredField("profile");
 			ITProfileField.setAccessible(true);
 
-			Class<?> tileSkullClass = ReflectionUtils.getNMSClass("TileEntitySkull");
-			Class<?> World = ReflectionUtils.getNMSClass("World");
-			Class<?> BlockPosition = ReflectionUtils.getNMSClass("BlockPosition");
+			Class<?> tileSkullClass = ReflectionUtils.getNMSClass("world.level.block", "TileEntitySkull");
+			Class<?> World = ReflectionUtils.getNMSClass("world.level", "World");
+			Class<?> BlockPosition = ReflectionUtils.getNMSClass("server.level", "BlockPosition");
 
 			blockPosConstruct = BlockPosition.getConstructor(int.class, int.class, int.class);
 

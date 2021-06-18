@@ -1,7 +1,9 @@
 package fr.entasia.apis.other;
 
 import fr.entasia.apis.utils.ReflectionUtils;
+import fr.entasia.apis.utils.ServerUtils;
 import fr.entasia.errors.LibraryException;
+import net.minecraft.world.entity.projectile.EntityFireworks;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
 import org.bukkit.entity.Firework;
@@ -21,14 +23,19 @@ public class InstantFirework {
 	public static void init() throws Throwable {
 		if(init)throw new LibraryException("already initied !");
 		init = true;
-		entityFireworkClass = ReflectionUtils.getNMSClass("EntityFireworks"); // handle
+		entityFireworkClass = ReflectionUtils.getNMSClass("world.entity.projectile", "EntityFireworks"); // handle
 		craftFireworkClass = ReflectionUtils.getOBCClass("entity.CraftFirework");
 
 		getHandle = craftFireworkClass.getMethod("getHandle");
 		setInvisible = entityFireworkClass.getMethod("setInvisible", boolean.class);
 
-		expectedLifespan = entityFireworkClass.getDeclaredField("expectedLifespan");
-		ticksFlown = entityFireworkClass.getDeclaredField("ticksFlown");
+		if(ServerUtils.getMajorVersion()>16) {
+			expectedLifespan = entityFireworkClass.getDeclaredField("f");
+			ticksFlown = entityFireworkClass.getDeclaredField("e");
+		}else{
+			expectedLifespan = entityFireworkClass.getDeclaredField("expectedLifespan");
+			ticksFlown = entityFireworkClass.getDeclaredField("ticksFlown");
+		}
 		ticksFlown.setAccessible(true);
 	}
 

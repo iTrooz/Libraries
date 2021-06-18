@@ -39,7 +39,7 @@ public abstract class Common {
 		logger.info("Nom du serveur : " + ServerUtils.serverName);
 
 		logger.info("Librairies globales chargées !");
-		logger.info("(Entasia était un bon serveur ):)");
+		logger.info("Entasia était un bon serveur :(");
 		return true;
 	}
 
